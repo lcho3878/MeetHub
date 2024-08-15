@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898B2C6C746E00CD877D /* AppDelegate.swift */; };
 		5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898D2C6C746E00CD877D /* SceneDelegate.swift */; };
-		543489902C6C746E00CD877D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898F2C6C746E00CD877D /* ViewController.swift */; };
-		543489932C6C746E00CD877D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 543489922C6C746E00CD877D /* Base */; };
+		543489902C6C746E00CD877D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898F2C6C746E00CD877D /* LoginViewController.swift */; };
 		543489952C6C747000CD877D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543489942C6C747000CD877D /* Assets.xcassets */; };
 		543489982C6C747000CD877D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 543489972C6C747000CD877D /* Base */; };
 		543489A02C6C74CE00CD877D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5434899F2C6C74CE00CD877D /* .gitignore */; };
@@ -21,8 +20,7 @@
 		543489882C6C746E00CD877D /* MeetHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5434898B2C6C746E00CD877D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5434898D2C6C746E00CD877D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5434898F2C6C746E00CD877D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		543489922C6C746E00CD877D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5434898F2C6C746E00CD877D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		543489942C6C747000CD877D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		543489972C6C747000CD877D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		543489992C6C747000CD877D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,14 +61,21 @@
 			children = (
 				5434898B2C6C746E00CD877D /* AppDelegate.swift */,
 				5434898D2C6C746E00CD877D /* SceneDelegate.swift */,
-				5434898F2C6C746E00CD877D /* ViewController.swift */,
+				543489A32C6DCE7B00CD877D /* LoginView */,
 				543489A12C6C74E800CD877D /* APIKey.swift */,
-				543489912C6C746E00CD877D /* Main.storyboard */,
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
 				543489992C6C747000CD877D /* Info.plist */,
 			);
 			path = MeetHub;
+			sourceTree = "<group>";
+		};
+		543489A32C6DCE7B00CD877D /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				5434898F2C6C746E00CD877D /* LoginViewController.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +139,6 @@
 				543489A02C6C74CE00CD877D /* .gitignore in Resources */,
 				543489952C6C747000CD877D /* Assets.xcassets in Resources */,
 				543489982C6C747000CD877D /* Base in Resources */,
-				543489932C6C746E00CD877D /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				543489902C6C746E00CD877D /* ViewController.swift in Sources */,
+				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
@@ -155,14 +159,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		543489912C6C746E00CD877D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				543489922C6C746E00CD877D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		543489962C6C747000CD877D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -305,7 +301,6 @@
 				INFOPLIST_FILE = MeetHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -338,7 +333,6 @@
 				INFOPLIST_FILE = MeetHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
