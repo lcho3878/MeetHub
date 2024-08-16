@@ -23,6 +23,9 @@
 		543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489B42C6F1B3400CD877D /* ViewModel.swift */; };
 		543489B82C6F201000CD877D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489B72C6F201000CD877D /* APIManager.swift */; };
 		543489BA2C6F211400CD877D /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489B92C6F211400CD877D /* TargetType.swift */; };
+		543489BC2C6F243A00CD877D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489BB2C6F243A00CD877D /* Router.swift */; };
+		543489BE2C6F250100CD877D /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489BD2C6F250100CD877D /* Header.swift */; };
+		543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489C02C6F260F00CD877D /* LoginQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		543489B42C6F1B3400CD877D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		543489B72C6F201000CD877D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		543489B92C6F211400CD877D /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		543489BB2C6F243A00CD877D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		543489BD2C6F250100CD877D /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		543489C02C6F260F00CD877D /* LoginQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 		5434898A2C6C746E00CD877D /* MeetHub */ = {
 			isa = PBXGroup;
 			children = (
+				543489BF2C6F260600CD877D /* RequestModel */,
 				543489B62C6F200500CD877D /* Network */,
 				543489B32C6F1B2E00CD877D /* Protocol */,
 				5434898B2C6C746E00CD877D /* AppDelegate.swift */,
@@ -112,9 +119,19 @@
 			isa = PBXGroup;
 			children = (
 				543489B72C6F201000CD877D /* APIManager.swift */,
+				543489BD2C6F250100CD877D /* Header.swift */,
+				543489BB2C6F243A00CD877D /* Router.swift */,
 				543489B92C6F211400CD877D /* TargetType.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		543489BF2C6F260600CD877D /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				543489C02C6F260F00CD877D /* LoginQuery.swift */,
+			);
+			path = RequestModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,12 +218,15 @@
 			files = (
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
+				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
+				543489BE2C6F250100CD877D /* Header.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
+				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

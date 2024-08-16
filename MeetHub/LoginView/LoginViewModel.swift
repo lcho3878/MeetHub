@@ -13,11 +13,6 @@ final class LoginViewModel: ViewModel {
     
     private let disposeBag = DisposeBag()
     
-    struct LoginModel {
-        let email: String
-        let password: String
-    }
-    
     struct Input {
         let emailInput: ControlProperty<String>
         let passwordInput: ControlProperty<String>
@@ -36,7 +31,8 @@ final class LoginViewModel: ViewModel {
                 Observable.zip(input.emailInput, input.passwordInput)
             }
             .bind(onNext: { value1, value2 in
-                print(value1, value2)
+                let query = LoginQuery(email: value1, password: value2)
+                APIManager.shared.createLogin(query: query)
             })
             .disposed(by: disposeBag)
         
