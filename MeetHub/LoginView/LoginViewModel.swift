@@ -26,13 +26,17 @@ final class LoginViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
+        let queryInput = Observable.combineLatest(input.emailInput, input.passwordInput)
         input.loginButtonTap
-            .flatMap { _ in
-                Observable.zip(input.emailInput, input.passwordInput)
+            .withLatestFrom(queryInput)
+            .map {
+                LoginQuery(email: $0.0, password: $0.1)
             }
-            .bind(onNext: { value1, value2 in
-                let query = LoginQuery(email: value1, password: value2)
-                APIManager.shared.createLogin(query: query)
+            .flatMap {
+                APIManager.shared.createLogin(query: $0)
+            }
+            .bind(onNext: { value in
+                print(value)
             })
             .disposed(by: disposeBag)
         
