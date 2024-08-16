@@ -19,6 +19,8 @@
 		543489AC2C6DD19900CD877D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 543489AB2C6DD19900CD877D /* RxCocoa */; };
 		543489AE2C6DD19900CD877D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 543489AD2C6DD19900CD877D /* RxSwift */; };
 		543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489AF2C6DD1EE00CD877D /* LoginView.swift */; };
+		543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489B12C6F1B1E00CD877D /* LoginViewModel.swift */; };
+		543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489B42C6F1B3400CD877D /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		5434899F2C6C74CE00CD877D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		543489A12C6C74E800CD877D /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		543489AF2C6DD1EE00CD877D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		543489B12C6F1B1E00CD877D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		543489B42C6F1B3400CD877D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 		5434898A2C6C746E00CD877D /* MeetHub */ = {
 			isa = PBXGroup;
 			children = (
+				543489B32C6F1B2E00CD877D /* Protocol */,
 				5434898B2C6C746E00CD877D /* AppDelegate.swift */,
 				5434898D2C6C746E00CD877D /* SceneDelegate.swift */,
 				543489A32C6DCE7B00CD877D /* LoginView */,
@@ -85,8 +90,17 @@
 			children = (
 				5434898F2C6C746E00CD877D /* LoginViewController.swift */,
 				543489AF2C6DD1EE00CD877D /* LoginView.swift */,
+				543489B12C6F1B1E00CD877D /* LoginViewModel.swift */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		543489B32C6F1B2E00CD877D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				543489B42C6F1B3400CD877D /* ViewModel.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +187,8 @@
 			files = (
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
+				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
+				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
