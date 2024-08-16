@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     private let loginView = LoginView()
     
@@ -35,6 +35,19 @@ class LoginViewController: UIViewController {
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(LoginViewController(), animated: true)
             }
+            .disposed(by: disposeBag)
+        
+        output.loginModelOutput
+            .bind(with: self, onNext: { owner, value in
+                if let responseCode = value.responseCode {
+                    //에러. 팝업
+                    owner.showAlert(content: "에러입니다. \(responseCode)")
+                }
+                else {
+                    //로그인후 화면전환 로직
+                    owner.showAlert(content: "로그인 성공")
+                }
+            })
             .disposed(by: disposeBag)
     }
 

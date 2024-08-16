@@ -14,12 +14,13 @@ final class APIManager {
     
     private init() {}
     
-    func createLogin(query: LoginQuery) -> Single<String> {
+    func createLogin(query: LoginQuery) -> Single<LoginModel> {
         return Single.create { single -> Disposable in
             do {
                 let request = try Router.login(query: query).asURLRequest()
                 AF.request(request)
-                    .responseString { result in
+                    .validate(statusCode: 200..<300)
+                    .responseDecodable(of: LoginModel.self) { result in
                         switch result.result {
                         case .success(let v):
                             single(.success(v))
