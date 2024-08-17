@@ -28,7 +28,7 @@ final class SignupView: BaseView {
         return textField
     }()
     
-    private let passwordTextField: UITextField = {
+    let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호"
         textField.borderStyle = .roundedRect

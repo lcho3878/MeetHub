@@ -43,7 +43,8 @@ final class APIManager {
                 AF.request(request)
                     .responseDecodable(of: EmailValidationModel.self) { response in
                         switch response.result {
-                        case .success(let v):
+                        case .success(var v):
+                            v.responseCode = response.response?.statusCode
                             single(.success(v))
                         case .failure(let e):
                             single(.failure(e))

@@ -28,7 +28,12 @@ class LoginViewController: BaseViewController {
     }
 
     private func bind() {
-        let input = LoginViewModel.Input(emailInput: loginView.emailTextField.rx.text.orEmpty, passwordInput: loginView.passwordTextField.rx.text.orEmpty, loginButtonTap: loginView.loginButton.rx.tap, signButtonTap: loginView.signButton.rx.tap)
+        let input = LoginViewModel.Input(
+            emailInput: loginView.emailTextField.rx.text.orEmpty,
+            passwordInput: loginView.passwordTextField.rx.text.orEmpty,
+            loginButtonTap: loginView.loginButton.rx.tap,
+            signButtonTap: loginView.signButton.rx.tap
+        )
         let output = viewModel.transform(input: input)
         
         output.signButtonTap

@@ -35,6 +35,7 @@
 		543489D22C70A38C00CD877D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D12C70A38C00CD877D /* RoundButton.swift */; };
 		543489D42C70A64400CD877D /* EmailQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D32C70A64400CD877D /* EmailQuery.swift */; };
 		543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D52C70A69E00CD877D /* EmailValidationModel.swift */; };
+		543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D72C70A8E700CD877D /* SignupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		543489D12C70A38C00CD877D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		543489D32C70A64400CD877D /* EmailQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailQuery.swift; sourceTree = "<group>"; };
 		543489D52C70A69E00CD877D /* EmailValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationModel.swift; sourceTree = "<group>"; };
+		543489D72C70A8E700CD877D /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				543489CB2C709F2000CD877D /* SignupViewController.swift */,
 				543489CF2C70A18300CD877D /* SignupView.swift */,
+				543489D72C70A8E700CD877D /* SignupViewModel.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
+				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
