@@ -32,6 +32,7 @@
 		543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489CB2C709F2000CD877D /* SignupViewController.swift */; };
 		543489CE2C70A10000CD877D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489CD2C70A10000CD877D /* BaseView.swift */; };
 		543489D02C70A18300CD877D /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489CF2C70A18300CD877D /* SignupView.swift */; };
+		543489D22C70A38C00CD877D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D12C70A38C00CD877D /* RoundButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		543489CB2C709F2000CD877D /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		543489CD2C70A10000CD877D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		543489CF2C70A18300CD877D /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		543489D12C70A38C00CD877D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			children = (
 				543489C62C6F528800CD877D /* BaseViewController.swift */,
 				543489CD2C70A10000CD877D /* BaseView.swift */,
+				543489D12C70A38C00CD877D /* RoundButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
 				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
+				543489D22C70A38C00CD877D /* RoundButton.swift in Sources */,
 				543489CE2C70A10000CD877D /* BaseView.swift in Sources */,
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,

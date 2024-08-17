@@ -34,14 +34,7 @@ final class LoginView: BaseView {
         return textField
     }()
     
-    let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("로그인", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 5
-        return button
-    }()
+    let loginButton = RoundButton(title: "로그인")
     
     let signButton: UIButton = {
         let button = UIButton(type: .system)
