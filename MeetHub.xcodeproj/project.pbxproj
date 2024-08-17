@@ -33,6 +33,8 @@
 		543489CE2C70A10000CD877D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489CD2C70A10000CD877D /* BaseView.swift */; };
 		543489D02C70A18300CD877D /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489CF2C70A18300CD877D /* SignupView.swift */; };
 		543489D22C70A38C00CD877D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D12C70A38C00CD877D /* RoundButton.swift */; };
+		543489D42C70A64400CD877D /* EmailQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D32C70A64400CD877D /* EmailQuery.swift */; };
+		543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D52C70A69E00CD877D /* EmailValidationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		543489CD2C70A10000CD877D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		543489CF2C70A18300CD877D /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		543489D12C70A38C00CD877D /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		543489D32C70A64400CD877D /* EmailQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailQuery.swift; sourceTree = "<group>"; };
+		543489D52C70A69E00CD877D /* EmailValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				543489C02C6F260F00CD877D /* LoginQuery.swift */,
+				543489D32C70A64400CD877D /* EmailQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				543489C32C6F381500CD877D /* LoginModel.swift */,
+				543489D52C70A69E00CD877D /* EmailValidationModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
 				543489C72C6F528800CD877D /* BaseViewController.swift in Sources */,
 				543489BE2C6F250100CD877D /* Header.swift in Sources */,
+				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
@@ -278,6 +285,7 @@
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
+				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
 			);

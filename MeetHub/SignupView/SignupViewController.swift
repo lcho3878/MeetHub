@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SignupViewController: BaseViewController {
     
@@ -17,5 +19,10 @@ final class SignupViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+    }
+    
+    private func bind() {
+        
     }
 }

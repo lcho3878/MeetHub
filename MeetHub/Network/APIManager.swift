@@ -20,8 +20,8 @@ final class APIManager {
                 let request = try Router.login(query: query).asURLRequest()
                 AF.request(request)
                     .validate(statusCode: 200..<300)
-                    .responseDecodable(of: LoginModel.self) { result in
-                        switch result.result {
+                    .responseDecodable(of: LoginModel.self) { response in
+                        switch response.result {
                         case .success(let v):
                             single(.success(v))
                         case .failure(let e):
@@ -34,7 +34,27 @@ final class APIManager {
             }
             return Disposables.create()
         }
-        
+    }
+    
+    func createEmailValidation(query: EmailQuery) -> Single<EmailValidationModel> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try Router.emailValidation(query: query).asURLRequest()
+                AF.request(request)
+                    .responseDecodable(of: EmailValidationModel.self) { response in
+                        switch response.result {
+                        case .success(let v):
+                            single(.success(v))
+                        case .failure(let e):
+                            single(.failure(e))
+                        }
+                    }
+            }
+            catch {
+                print("error")
+            }
+            return Disposables.create()
+        }
     }
 }
 
