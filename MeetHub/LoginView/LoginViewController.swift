@@ -33,13 +33,13 @@ class LoginViewController: BaseViewController {
         
         output.signButtonTap
             .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(LoginViewController(), animated: true)
+                owner.navigationController?.pushViewController(SignupViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         
         output.loginModelOutput
             .bind(with: self, onNext: { owner, value in
-                if let responseCode = value.responseCode {
+                if value.responseCode != nil {
                     //에러. 팝업
                     owner.showAlert(content: value.errorMessage)
                 }

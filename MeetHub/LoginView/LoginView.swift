@@ -8,7 +8,8 @@
 import UIKit
 import SnapKit
 
-final class LoginView: UIView {
+final class LoginView: BaseView {
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "MeetHub"
@@ -50,16 +51,7 @@ final class LoginView: UIView {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupViews() {
+    override func setupViews() {
         backgroundColor = .white
         
         addSubview(titleLabel)
