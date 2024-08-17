@@ -41,7 +41,7 @@ class LoginViewController: BaseViewController {
             .bind(with: self, onNext: { owner, value in
                 if let responseCode = value.responseCode {
                     //에러. 팝업
-                    owner.showAlert(content: "에러입니다. \(responseCode)")
+                    owner.showAlert(content: value.errorMessage)
                 }
                 else {
                     //로그인후 화면전환 로직

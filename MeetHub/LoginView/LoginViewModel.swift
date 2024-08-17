@@ -43,7 +43,6 @@ final class LoginViewModel: ViewModel {
                     }
             }
             .bind(onNext: { value in
-//                dump(value)
                 loginModelOutput.onNext(value)
             })
             .disposed(by: disposeBag)
