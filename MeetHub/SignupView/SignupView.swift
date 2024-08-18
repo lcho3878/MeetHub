@@ -28,6 +28,13 @@ final class SignupView: BaseView {
         return textField
     }()
     
+    let nicknameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "닉네임"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호"
@@ -41,6 +48,7 @@ final class SignupView: BaseView {
     override func setupViews() {
         addSubview(titleLabel)
         addSubview(emailTextField)
+        addSubview(nicknameTextField)
         addSubview(passwordTextField)
         addSubview(signUpButton)
         
@@ -55,8 +63,14 @@ final class SignupView: BaseView {
             $0.height.equalTo(44)
         }
         
-        passwordTextField.snp.makeConstraints {
+        nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).offset(20)
+            $0.left.right.equalTo(emailTextField)
+            $0.height.equalTo(44)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(20)
             $0.left.right.equalTo(emailTextField)
             $0.height.equalTo(44)
         }
