@@ -30,6 +30,7 @@ final class SignupViewController: BaseViewController {
         guard let validButton = signupView.emailTextField.rightView as? RoundButton else { return }
         let input = SignupViewModel.Input(
             emailInput: signupView.emailTextField.rx.text.orEmpty,
+            nicknameInput: signupView.nicknameTextField.rx.text.orEmpty,
             passwordInput: signupView.passwordTextField.rx.text.orEmpty,
             validButtonTap: validButton.rx.tap,
             signupButtonTap: signupView.signUpButton.rx.tap
@@ -51,6 +52,18 @@ final class SignupViewController: BaseViewController {
         output.validationButtonEnabled
             .bind{ isEnabled in
                 validButton.rx.isEnabled.onNext(isEnabled)
+            }
+            .disposed(by: disposeBag)
+        
+        output.signupModelOutput
+            .bind(with: self) { owner, value in
+                dump(value)
+                if value.responseCode != nil {
+                    owner.showAlert(content: value.errorMessage)
+                }
+                else {
+                    owner.showAlert(content: "회원가입 완료")
+                }
             }
             .disposed(by: disposeBag)
     }

@@ -36,6 +36,8 @@
 		543489D42C70A64400CD877D /* EmailQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D32C70A64400CD877D /* EmailQuery.swift */; };
 		543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D52C70A69E00CD877D /* EmailValidationModel.swift */; };
 		543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D72C70A8E700CD877D /* SignupViewModel.swift */; };
+		543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D92C71F72500CD877D /* SignupQuery.swift */; };
+		543489DC2C71F75900CD877D /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489DB2C71F75900CD877D /* SignupModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		543489D32C70A64400CD877D /* EmailQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailQuery.swift; sourceTree = "<group>"; };
 		543489D52C70A69E00CD877D /* EmailValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationModel.swift; sourceTree = "<group>"; };
 		543489D72C70A8E700CD877D /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		543489D92C71F72500CD877D /* SignupQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupQuery.swift; sourceTree = "<group>"; };
+		543489DB2C71F75900CD877D /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 			children = (
 				543489C02C6F260F00CD877D /* LoginQuery.swift */,
 				543489D32C70A64400CD877D /* EmailQuery.swift */,
+				543489D92C71F72500CD877D /* SignupQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			children = (
 				543489C32C6F381500CD877D /* LoginModel.swift */,
 				543489D52C70A69E00CD877D /* EmailValidationModel.swift */,
+				543489DB2C71F75900CD877D /* SignupModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
@@ -280,6 +287,7 @@
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
 				543489C72C6F528800CD877D /* BaseViewController.swift in Sources */,
 				543489BE2C6F250100CD877D /* Header.swift in Sources */,
+				543489DC2C71F75900CD877D /* SignupModel.swift in Sources */,
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,

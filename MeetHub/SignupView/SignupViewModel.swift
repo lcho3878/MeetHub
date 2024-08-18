@@ -15,6 +15,7 @@ final class SignupViewModel: ViewModel {
     
     struct Input {
         let emailInput: ControlProperty<String>
+        let nicknameInput: ControlProperty<String>
         let passwordInput: ControlProperty<String>
         let validButtonTap: ControlEvent<Void>
         let signupButtonTap: ControlEvent<Void>
@@ -24,14 +25,29 @@ final class SignupViewModel: ViewModel {
         let validationOutput: PublishSubject<String>
         let validationButtonEnabled: BehaviorSubject<Bool>
         let signupButtonEnabled: BehaviorSubject<Bool>
+        let signupModelOutput: PublishSubject<SignupModel>
     }
     
     func transform(input: Input) -> Output {
         let validationOutput = PublishSubject<String>()
         let validationButtonEnabled = BehaviorSubject(value: false)
         let signupButtonEnabled = BehaviorSubject(value: false)
+        let signupModelOutput = PublishSubject<SignupModel>()
         
-        input.emailInput
+        let emailInput = input.emailInput.share()
+        
+        let queryInput = Observable.combineLatest(emailInput, input.passwordInput, input.nicknameInput)
+        
+        Observable.combineLatest(emailInput, input.nicknameInput, input.passwordInput)
+            .map {
+                !$0.0.isEmpty && !$0.1.isEmpty && !$0.2.isEmpty
+            }
+            .bind { isEnabled in
+                signupButtonEnabled.onNext(isEnabled)
+            }
+            .disposed(by: disposeBag)
+        
+        emailInput
             .map {
                 !$0.isEmpty
             }
@@ -55,11 +71,22 @@ final class SignupViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         input.signupButtonTap
-            .bind { _ in
-                print("회원가입 클릭")
+            .withLatestFrom(queryInput)
+            .map {
+                SignupQuery(email: $0.0, password: $0.2, nick: $0.1)
+            }
+            .flatMap {
+                APIManager.shared.createSignUp(query: $0)
+                    .catch { error in
+                        signupModelOutput.onNext(SignupModel.errorModel(responseCode: error.asAFError?.responseCode))
+                        return Single<SignupModel>.never()
+                    }
+            }
+            .bind { value in
+                signupModelOutput.onNext(value)
             }
             .disposed(by: disposeBag)
         
-        return Output(validationOutput: validationOutput, validationButtonEnabled: validationButtonEnabled, signupButtonEnabled: signupButtonEnabled)
+        return Output(validationOutput: validationOutput, validationButtonEnabled: validationButtonEnabled, signupButtonEnabled: signupButtonEnabled, signupModelOutput: signupModelOutput)
     }
 }
