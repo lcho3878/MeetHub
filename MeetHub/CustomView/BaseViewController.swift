@@ -18,4 +18,11 @@ class BaseViewController: UIViewController {
         alert.addAction(ok)
         present(alert, animated: true)
     }
+    
+    func changeRootViewController(_ rootViewController: UIViewController) {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        sceneDelegate?.window?.rootViewController = rootViewController
+        sceneDelegate?.window?.makeKeyAndVisible()
+    }
 }

@@ -38,6 +38,10 @@
 		543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D72C70A8E700CD877D /* SignupViewModel.swift */; };
 		543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489D92C71F72500CD877D /* SignupQuery.swift */; };
 		543489DC2C71F75900CD877D /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489DB2C71F75900CD877D /* SignupModel.swift */; };
+		543489E72C73212600CD877D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489E62C73212600CD877D /* HomeViewController.swift */; };
+		543489E92C73231800CD877D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489E82C73231800CD877D /* HomeView.swift */; };
+		543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */; };
+		543489ED2C73250500CD877D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EC2C73250500CD877D /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +74,10 @@
 		543489D72C70A8E700CD877D /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		543489D92C71F72500CD877D /* SignupQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupQuery.swift; sourceTree = "<group>"; };
 		543489DB2C71F75900CD877D /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		543489E62C73212600CD877D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		543489E82C73231800CD877D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		543489EC2C73250500CD877D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +124,7 @@
 				5434898D2C6C746E00CD877D /* SceneDelegate.swift */,
 				543489A32C6DCE7B00CD877D /* LoginView */,
 				543489CA2C709F1000CD877D /* SignupView */,
+				543489E52C73211B00CD877D /* HomeView */,
 				543489A12C6C74E800CD877D /* APIKey.swift */,
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
@@ -170,6 +179,7 @@
 				543489C32C6F381500CD877D /* LoginModel.swift */,
 				543489D52C70A69E00CD877D /* EmailValidationModel.swift */,
 				543489DB2C71F75900CD877D /* SignupModel.swift */,
+				543489EC2C73250500CD877D /* Post.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -192,6 +202,16 @@
 				543489D72C70A8E700CD877D /* SignupViewModel.swift */,
 			);
 			path = SignupView;
+			sourceTree = "<group>";
+		};
+		543489E52C73211B00CD877D /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				543489E62C73212600CD877D /* HomeViewController.swift */,
+				543489E82C73231800CD877D /* HomeView.swift */,
+				543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543489E72C73212600CD877D /* HomeViewController.swift in Sources */,
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
@@ -290,8 +311,11 @@
 				543489DC2C71F75900CD877D /* SignupModel.swift in Sources */,
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
+				543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */,
+				543489E92C73231800CD877D /* HomeView.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
+				543489ED2C73250500CD877D /* Post.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
