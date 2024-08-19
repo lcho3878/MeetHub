@@ -42,6 +42,7 @@
 		543489E92C73231800CD877D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489E82C73231800CD877D /* HomeView.swift */; };
 		543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */; };
 		543489ED2C73250500CD877D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EC2C73250500CD877D /* Post.swift */; };
+		543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EE2C7329DD00CD877D /* PostsResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		543489E82C73231800CD877D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		543489EC2C73250500CD877D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		543489EE2C7329DD00CD877D /* PostsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				543489D52C70A69E00CD877D /* EmailValidationModel.swift */,
 				543489DB2C71F75900CD877D /* SignupModel.swift */,
 				543489EC2C73250500CD877D /* Post.swift */,
+				543489EE2C7329DD00CD877D /* PostsResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */,
 				543489E72C73212600CD877D /* HomeViewController.swift in Sources */,
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,

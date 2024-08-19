@@ -79,5 +79,27 @@ final class APIManager {
             return Disposables.create()
         }
     }
+    
+    func lookupPosts() -> Single<PostsResponseModel> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try Router.lookUpPost.asURLRequest()
+                AF.request(request)
+                    .validate(statusCode: 200..<300)
+                    .responseDecodable(of: PostsResponseModel.self) { response in
+                        switch response.result {
+                        case .success(var v):
+                            single(.success(v))
+                        case .failure(let e):
+                            single(.failure(e))
+                        }
+                    }
+            }
+            catch {
+                print("error")
+            }
+            return Disposables.create()
+        }
+    }
 }
 

@@ -12,6 +12,7 @@ enum Router {
     case login(query: LoginQuery)
     case emailValidation(query: EmailQuery)
     case signUp(query: SignupQuery)
+    case lookUpPost
     case refresh
 }
 
@@ -24,7 +25,7 @@ extension Router: TargetType {
         switch self {
         case .login, .emailValidation, .signUp:
             return .post
-        case .refresh:
+        case .refresh, .lookUpPost:
             return .get
         }
     }
@@ -37,6 +38,8 @@ extension Router: TargetType {
             return "/validation/email"
         case .signUp:
             return "/users/join"
+        case .lookUpPost:
+            return "/posts"
         case .refresh:
             return "/auth/refresh"
         }
@@ -48,6 +51,11 @@ extension Router: TargetType {
             return [
                 Header.sesacKey.rawValue: Key.key,
                 Header.contentType.rawValue: Header.json.rawValue
+            ]
+        case .lookUpPost:
+            return [
+                Header.sesacKey.rawValue: Key.key,
+                Header.authorization.rawValue: Key.token
             ]
         case .refresh:
             return [:]
@@ -66,7 +74,7 @@ extension Router: TargetType {
             return try? JSONEncoder().encode(query)
         case .signUp(query: let query):
             return try? JSONEncoder().encode(query)
-        case .refresh:
+        case .refresh, .lookUpPost:
             return nil
         }
     }
