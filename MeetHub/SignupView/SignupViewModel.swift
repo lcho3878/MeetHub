@@ -73,7 +73,7 @@ final class SignupViewModel: ViewModel {
         input.signupButtonTap
             .withLatestFrom(queryInput)
             .map {
-                SignupQuery(email: $0.0, password: $0.2, nick: $0.1)
+                SignupQuery(email: $0.0, password: $0.1, nick: $0.2)
             }
             .flatMap {
                 APIManager.shared.callRequest(api: .signUp(query: $0), type: SignupModel.self)
