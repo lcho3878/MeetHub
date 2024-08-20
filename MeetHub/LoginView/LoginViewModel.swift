@@ -41,13 +41,10 @@ final class LoginViewModel: ViewModel {
                         loginModelOutput.onNext(LoginModel.errorModel(responseCode: error.asAFError?.responseCode))
                         return Single<LoginModel>.never()
                     }
-//                APIManager.shared.createLogin(query: $0)
-//                    .catch { error in
-//                        loginModelOutput.onNext(LoginModel.errorModel(responseCode: error.asAFError?.responseCode))
-//                        return Single<LoginModel>.never()
-//                    }
             }
             .bind(onNext: { value in
+                UserDefaultsManager.shared.token = value.accessToken
+                UserDefaultsManager.shared.refreshToken = value.refreshToken
                 loginModelOutput.onNext(value)
             })
             .disposed(by: disposeBag)

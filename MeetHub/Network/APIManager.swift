@@ -86,12 +86,14 @@ final class APIManager {
                 let request = try Router.lookUpPost.asURLRequest()
                 AF.request(request)
                     .validate(statusCode: 200..<300)
-                    .responseDecodable(of: PostsResponseModel.self) { response in
+                    .responseString{ response in
                         switch response.result {
                         case .success(var v):
-                            single(.success(v))
+//                            single(.success(v))
+                            print(v)
                         case .failure(let e):
-                            single(.failure(e))
+//                            single(.failure(e))
+                            print(e)
                         }
                     }
             }
@@ -113,6 +115,7 @@ final class APIManager {
                         case .success(let v):
                             single(.success(v))
                         case .failure(let e):
+                            print(e.asAFError?.responseCode)
                             single(.failure(e))
                         }
                     }

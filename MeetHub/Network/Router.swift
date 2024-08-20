@@ -55,7 +55,7 @@ extension Router: TargetType {
         case .lookUpPost:
             return [
                 Header.sesacKey.rawValue: Key.key,
-                Header.authorization.rawValue: Key.token
+                Header.authorization.rawValue: UserDefaultsManager.shared.token
             ]
         case .refresh:
             return [:]
@@ -63,7 +63,11 @@ extension Router: TargetType {
     }
     
     var queryItems: [URLQueryItem]? {
-        return nil
+        switch self {
+        case .lookUpPost: 
+            return [URLQueryItem(name: "product_id", value: "MeetHub_meet")]
+        default: return nil
+        }
     }
     
     var body: Data? {

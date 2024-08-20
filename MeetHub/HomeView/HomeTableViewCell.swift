@@ -26,7 +26,15 @@ final class HomeTableViewCell: UITableViewCell {
     let contentLabel: UILabel = {
         let label = UILabel()
         label.text = "컨텐츠"
+        label.textColor = .lightGray
         return label
+    }()
+    
+    let content1Label :UILabel = {
+        let view = UILabel()
+        view.text = "컨텐츠1"
+        view.textColor = .lightGray
+        return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -42,6 +50,7 @@ final class HomeTableViewCell: UITableViewCell {
         contentView.addSubview(mainImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(contentLabel)
+        contentView.addSubview(content1Label)
         
         mainImageView.snp.makeConstraints {
             $0.leading.verticalEdges.equalToSuperview().inset(8)
@@ -54,7 +63,12 @@ final class HomeTableViewCell: UITableViewCell {
         }
         
         contentLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(titleLabel)
+        }
+        
+        content1Label.snp.makeConstraints {
+            $0.top.equalTo(contentLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel)
         }
     }
@@ -62,5 +76,6 @@ final class HomeTableViewCell: UITableViewCell {
     func configureDate(_ data: Post) {
         titleLabel.text = data.title
         contentLabel.text = data.content
+        content1Label.text = data.content1
     }
 }

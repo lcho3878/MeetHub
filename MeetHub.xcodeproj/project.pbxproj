@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5409F4422C74752200199D27 /* UserDefaultsManager.swift */; };
 		5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898B2C6C746E00CD877D /* AppDelegate.swift */; };
 		5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898D2C6C746E00CD877D /* SceneDelegate.swift */; };
 		543489902C6C746E00CD877D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5434898F2C6C746E00CD877D /* LoginViewController.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5409F4422C74752200199D27 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		543489882C6C746E00CD877D /* MeetHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5434898B2C6C746E00CD877D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5434898D2C6C746E00CD877D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				543489BD2C6F250100CD877D /* Header.swift */,
 				543489BB2C6F243A00CD877D /* Router.swift */,
 				543489B92C6F211400CD877D /* TargetType.swift */,
+				5409F4422C74752200199D27 /* UserDefaultsManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
+				5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
