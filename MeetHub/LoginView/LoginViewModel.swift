@@ -36,11 +36,16 @@ final class LoginViewModel: ViewModel {
                 LoginQuery(email: $0.0, password: $0.1)
             }
             .flatMap {
-                APIManager.shared.createLogin(query: $0)
+                APIManager.shared.callRequest(api: .login(query: $0), type: LoginModel.self)
                     .catch { error in
                         loginModelOutput.onNext(LoginModel.errorModel(responseCode: error.asAFError?.responseCode))
                         return Single<LoginModel>.never()
                     }
+//                APIManager.shared.createLogin(query: $0)
+//                    .catch { error in
+//                        loginModelOutput.onNext(LoginModel.errorModel(responseCode: error.asAFError?.responseCode))
+//                        return Single<LoginModel>.never()
+//                    }
             }
             .bind(onNext: { value in
                 loginModelOutput.onNext(value)

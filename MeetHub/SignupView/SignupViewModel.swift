@@ -76,7 +76,7 @@ final class SignupViewModel: ViewModel {
                 SignupQuery(email: $0.0, password: $0.2, nick: $0.1)
             }
             .flatMap {
-                APIManager.shared.createSignUp(query: $0)
+                APIManager.shared.callRequest(api: .signUp(query: $0), type: SignupModel.self)
                     .catch { error in
                         signupModelOutput.onNext(SignupModel.errorModel(responseCode: error.asAFError?.responseCode))
                         return Single<SignupModel>.never()

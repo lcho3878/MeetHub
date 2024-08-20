@@ -101,5 +101,27 @@ final class APIManager {
             return Disposables.create()
         }
     }
+    
+    func callRequest<T:Decodable>(api: Router, type: T.Type) -> Single<T> {
+        return Single.create { single -> Disposable in
+            do {
+                let request = try api.asURLRequest()
+                AF.request(request)
+                    .validate(statusCode: 200..<300)
+                    .responseDecodable(of: T.self) { response in
+                        switch response.result {
+                        case .success(let v):
+                            single(.success(v))
+                        case .failure(let e):
+                            single(.failure(e))
+                        }
+                    }
+            }
+            catch {
+                print("error")
+            }
+            return Disposables.create()
+        }
+    }
 }
 
