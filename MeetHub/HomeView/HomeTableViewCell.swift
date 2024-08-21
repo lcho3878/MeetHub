@@ -23,7 +23,7 @@ final class HomeTableViewCell: UITableViewCell {
         return label
     }()
     
-    let contentLabel: UILabel = {
+    let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "컨텐츠"
         label.textColor = .lightGray
@@ -49,7 +49,7 @@ final class HomeTableViewCell: UITableViewCell {
     private func setupViews() {
         contentView.addSubview(mainImageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(contentLabel)
+        contentView.addSubview(dateLabel)
         contentView.addSubview(content1Label)
         
         mainImageView.snp.makeConstraints {
@@ -62,20 +62,20 @@ final class HomeTableViewCell: UITableViewCell {
             $0.leading.equalTo(mainImageView.snp.trailing).offset(8)
         }
         
-        contentLabel.snp.makeConstraints {
+        dateLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel)
         }
         
         content1Label.snp.makeConstraints {
-            $0.top.equalTo(contentLabel.snp.bottom).offset(8)
+            $0.top.equalTo(dateLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel)
         }
     }
     
     func configureDate(_ data: Post) {
         titleLabel.text = data.title
-        contentLabel.text = data.content
+        dateLabel.text = data.createdAt
         content1Label.text = data.content1
     }
 }

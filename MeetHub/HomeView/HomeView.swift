@@ -10,7 +10,12 @@ import SnapKit
 
 final class HomeView: BaseView {
     
-    let tableView = UITableView()
+    let tableView = {
+        let view = UITableView()
+        view.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.id)
+        view.rowHeight = 120
+        return view
+    }()
     
     override func setupViews() {
         addSubview(tableView)

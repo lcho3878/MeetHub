@@ -45,6 +45,7 @@
 		543489ED2C73250500CD877D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EC2C73250500CD877D /* Post.swift */; };
 		543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EE2C7329DD00CD877D /* PostsResponseModel.swift */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
+		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		543489EC2C73250500CD877D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		543489EE2C7329DD00CD877D /* PostsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponseModel.swift; sourceTree = "<group>"; };
 		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
+		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				543489E62C73212600CD877D /* HomeViewController.swift */,
 				543489E82C73231800CD877D /* HomeView.swift */,
 				543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */,
+				54EB84982C75CD4500C0C946 /* HomeViewModel.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */,
 				543489E72C73212600CD877D /* HomeViewController.swift in Sources */,
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
+				54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
