@@ -12,9 +12,11 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    func showAlert(content: String?) {
+    func showAlert(content: String?, handler: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: content, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default)
+        let ok = UIAlertAction(title: "확인", style: .default) { _ in
+            handler?()
+        }
         alert.addAction(ok)
         present(alert, animated: true)
     }
@@ -23,6 +25,13 @@ class BaseViewController: UIViewController {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         sceneDelegate?.window?.rootViewController = rootViewController
+        sceneDelegate?.window?.makeKeyAndVisible()
+    }
+    
+    func changeToLoginViewController() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         sceneDelegate?.window?.makeKeyAndVisible()
     }
 }

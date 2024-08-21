@@ -30,7 +30,12 @@ final class HomeViewController: BaseViewController {
         
         let a = PublishSubject<[Post]>()
         
-        APIManager.shared.callRequest(api: .lookUpPost, type: PostsResponseModel.self).asObservable()
+        APIManager.shared.callRequest(api: .lookUpPost, type: PostsResponseModel.self, hander: { error in
+            self.showAlert(content: error.localizedDescription) {
+                self.changeToLoginViewController()
+            }
+        })
+            .asObservable()
             .bind { value in
                 a.onNext(value.data)
             }

@@ -58,7 +58,11 @@ extension Router: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
             ]
         case .refresh:
-            return [:]
+            return [
+                Header.sesacKey.rawValue: Key.key,
+                Header.authorization.rawValue: UserDefaultsManager.shared.token,
+                Header.refresh.rawValue: UserDefaultsManager.shared.refreshToken
+            ]
         }
     }
     

@@ -66,7 +66,7 @@ final class APIManager {
                     .validate(statusCode: 200..<300)
                     .responseDecodable(of: SignupModel.self) { response in
                         switch response.result {
-                        case .success(var v):
+                        case .success(let v):
                             single(.success(v))
                         case .failure(let e):
                             single(.failure(e))
@@ -88,7 +88,7 @@ final class APIManager {
                     .validate(statusCode: 200..<300)
                     .responseString{ response in
                         switch response.result {
-                        case .success(var v):
+                        case .success(let v):
 //                            single(.success(v))
                             print(v)
                         case .failure(let e):
@@ -104,26 +104,64 @@ final class APIManager {
         }
     }
     
-    func callRequest<T:Decodable>(api: Router, type: T.Type) -> Single<T> {
+    func callRequest<T:Decodable>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
         return Single.create { single -> Disposable in
-            do {
-                let request = try api.asURLRequest()
-                AF.request(request)
-                    .validate(statusCode: 200..<300)
-                    .responseDecodable(of: T.self) { response in
-                        switch response.result {
-                        case .success(let v):
-                            single(.success(v))
-                        case .failure(let e):
-                            print(e.asAFError?.responseCode)
-                            single(.failure(e))
+            func loop() {
+                do {
+                    let request = try api.asURLRequest()
+                    AF.request(request)
+                        .validate(statusCode: 200..<300)
+                        .responseDecodable(of: T.self) { response in
+                            if response.response?.statusCode == 419 {
+                                print("토큰갱신 필요")
+                                self.refreshToken { result in
+                                    switch result {
+                                    case .success(_):
+                                        loop()
+                                    case .failure(let failure):
+                                        hander?(failure)
+                                    }
+                                }
+                            }
+                            else {
+                                switch response.result {
+                                case .success(let v):
+                                    single(.success(v))
+                                case .failure(let e):
+                                    single(.failure(e))
+                                }
+                            }
                         }
-                    }
+                }
+                catch {
+                    print("error")
+                }
             }
-            catch {
-                print("error")
-            }
+            loop()
             return Disposables.create()
+        }
+    }
+    
+    func refreshToken(completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            let request = try Router.refresh.asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: RefreshModel.self) { response in
+                    print(response.response?.statusCode)
+                    switch response.result {
+                    case .success(let success):
+                        UserDefaultsManager.shared.token = success.accessToken
+                        print("토근 갱신 완료")
+                        completion(.success(()))
+                        
+                    case .failure(let error):
+//                        print("Error발생: \(response.response?.statusCode)")
+                        completion(.failure(error))
+                    }
+                }
+        }
+        catch {
+            print("error")
         }
     }
 }

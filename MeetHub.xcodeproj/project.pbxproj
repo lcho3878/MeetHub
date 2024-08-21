@@ -44,6 +44,7 @@
 		543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */; };
 		543489ED2C73250500CD877D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EC2C73250500CD877D /* Post.swift */; };
 		543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EE2C7329DD00CD877D /* PostsResponseModel.swift */; };
+		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		543489EC2C73250500CD877D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		543489EE2C7329DD00CD877D /* PostsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponseModel.swift; sourceTree = "<group>"; };
+		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				543489DB2C71F75900CD877D /* SignupModel.swift */,
 				543489EC2C73250500CD877D /* Post.swift */,
 				543489EE2C7329DD00CD877D /* PostsResponseModel.swift */,
+				54EB84962C75B6BB00C0C946 /* RefreshModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
 				543489C72C6F528800CD877D /* BaseViewController.swift in Sources */,
+				54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */,
 				543489BE2C6F250100CD877D /* Header.swift in Sources */,
 				543489DC2C71F75900CD877D /* SignupModel.swift in Sources */,
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
