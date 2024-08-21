@@ -69,7 +69,10 @@ extension Router: TargetType {
     var queryItems: [URLQueryItem]? {
         switch self {
         case .lookUpPost: 
-            return [URLQueryItem(name: "product_id", value: "MeetHub_meet")]
+            return [
+                URLQueryItem(name: "product_id", value: "MeetHub_meet"),
+                URLQueryItem(name: "limit", value: "10")
+            ]
         default: return nil
         }
     }

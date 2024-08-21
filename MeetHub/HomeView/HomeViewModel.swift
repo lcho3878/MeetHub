@@ -48,8 +48,6 @@ final class HomeViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
 
-        
-
         return Output(menuOutput: Observable.just(menus), postOutput: posts, errorOutput: errorOutput)
     }
 }

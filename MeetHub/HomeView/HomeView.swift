@@ -26,9 +26,18 @@ final class HomeView: BaseView {
         return view
     }()
     
+    let postingButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "plus"), for: .normal)
+        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = 25
+        return view
+    }()
+    
     override func setupViews() {
         addSubview(collectionView)
         addSubview(tableView)
+        addSubview(postingButton)
         
         collectionView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
@@ -38,6 +47,11 @@ final class HomeView: BaseView {
         tableView.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom)
             $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
+        postingButton.snp.makeConstraints {
+            $0.size.equalTo(50)
+            $0.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }
 }

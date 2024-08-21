@@ -48,6 +48,7 @@
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
 		54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849D2C75D21600C0C946 /* UIView+Extension.swift */; };
+		54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84A02C75DEA900C0C946 /* PostingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		54EB849D2C75D21600C0C946 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		54EB84A02C75DEA900C0C946 /* PostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +140,7 @@
 				543489A32C6DCE7B00CD877D /* LoginView */,
 				543489CA2C709F1000CD877D /* SignupView */,
 				543489E52C73211B00CD877D /* HomeView */,
-				543489A12C6C74E800CD877D /* APIKey.swift */,
+				54EB849F2C75DE8900C0C946 /* PostingView */,
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
 				543489992C6C747000CD877D /* Info.plist */,
@@ -238,6 +240,15 @@
 				54EB849D2C75D21600C0C946 /* UIView+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		54EB849F2C75DE8900C0C946 /* PostingView */ = {
+			isa = PBXGroup;
+			children = (
+				54EB84A02C75DEA900C0C946 /* PostingViewController.swift */,
+				543489A12C6C74E800CD877D /* APIKey.swift */,
+			);
+			path = PostingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +362,7 @@
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
 				5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
+				54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
 				54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
