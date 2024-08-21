@@ -31,6 +31,12 @@ final class HomeViewController: BaseViewController {
         let input = HomeViewModel.Input()
         let output = viewModel.transform(input: input)
 
+        output.menuOutput
+            .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in
+                cell.configureData(element)
+            }
+            .disposed(by: disposeBag)
+        
         output.postOutput
             .bind(to: homeView.tableView.rx.items(cellIdentifier: HomeTableViewCell.id, cellType: HomeTableViewCell.self)) { (row, element, cell) in
                 cell.configureDate(element)

@@ -11,13 +11,21 @@ import RxSwift
 final class HomeViewModel: ViewModel {
     private let disposeBag = DisposeBag()
     
-    var posts = PublishSubject<[Post]>()
+    private let menus = Observable.just([
+        "전체",
+        "데이트",
+        "맛집",
+        "기타"
+    ])
+    
+    private var posts = PublishSubject<[Post]>()
     
     struct Input {
         
     }
     
     struct Output {
+        let menuOutput: Observable<[String]>
         let postOutput: PublishSubject<[Post]>
         let errorOutput: PublishSubject<Error>
     }
@@ -35,6 +43,6 @@ final class HomeViewModel: ViewModel {
 
         
 
-        return Output(postOutput: posts, errorOutput: errorOutput)
+        return Output(menuOutput: menus, postOutput: posts, errorOutput: errorOutput)
     }
 }

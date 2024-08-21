@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 final class HomeTableViewCell: UITableViewCell {
-    static let id = "HomeTableViewCell"
     
     let mainImageView: UIImageView = {
         let imageView = UIImageView()

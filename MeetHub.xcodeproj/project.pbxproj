@@ -46,6 +46,8 @@
 		543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EE2C7329DD00CD877D /* PostsResponseModel.swift */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
+		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
+		54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849D2C75D21600C0C946 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		543489EE2C7329DD00CD877D /* PostsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponseModel.swift; sourceTree = "<group>"; };
 		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		54EB849D2C75D21600C0C946 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		5434898A2C6C746E00CD877D /* MeetHub */ = {
 			isa = PBXGroup;
 			children = (
+				54EB849C2C75D21100C0C946 /* Extension */,
 				543489C52C6F527F00CD877D /* CustomView */,
 				543489C22C6F380B00CD877D /* ResponseModel */,
 				543489BF2C6F260600CD877D /* RequestModel */,
@@ -221,9 +226,18 @@
 				543489E62C73212600CD877D /* HomeViewController.swift */,
 				543489E82C73231800CD877D /* HomeView.swift */,
 				543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */,
+				54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */,
 				54EB84982C75CD4500C0C946 /* HomeViewModel.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		54EB849C2C75D21100C0C946 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				54EB849D2C75D21600C0C946 /* UIView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +339,7 @@
 				543489BE2C6F250100CD877D /* Header.swift in Sources */,
 				543489DC2C71F75900CD877D /* SignupModel.swift in Sources */,
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
+				54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */,
 				543489E92C73231800CD877D /* HomeView.swift in Sources */,
@@ -337,6 +352,7 @@
 				5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
+				54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
