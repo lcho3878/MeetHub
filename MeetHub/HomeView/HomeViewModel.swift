@@ -11,17 +11,17 @@ import RxSwift
 final class HomeViewModel: ViewModel {
     private let disposeBag = DisposeBag()
     
-    private let menus = Observable.just([
+    private let menus = [
         "전체",
         "데이트",
         "맛집",
         "기타"
-    ])
+    ]
     
     private var posts = PublishSubject<[Post]>()
     
     struct Input {
-        
+        let indexInput: BehaviorSubject<Int>
     }
     
     struct Output {
@@ -40,9 +40,16 @@ final class HomeViewModel: ViewModel {
             owner.posts.onNext(value.data)
         }
         .disposed(by: disposeBag)
+        
+        input.indexInput
+            .bind { index in
+                // 메뉴 선택시 로직 구현
+                print("\(self.menus[index]) 선택")
+            }
+            .disposed(by: disposeBag)
 
         
 
-        return Output(menuOutput: menus, postOutput: posts, errorOutput: errorOutput)
+        return Output(menuOutput: Observable.just(menus), postOutput: posts, errorOutput: errorOutput)
     }
 }

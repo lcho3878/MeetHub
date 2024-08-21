@@ -24,13 +24,23 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        homeView.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
     }
     
     private func bind() {
         
-        let input = HomeViewModel.Input()
+        let selectedIndex = BehaviorSubject(value: 0)
+        
+        let input = HomeViewModel.Input(indexInput: selectedIndex)
         let output = viewModel.transform(input: input)
-
+        
+        homeView.collectionView.rx.itemSelected
+            .bind { indexPath in
+                let item = indexPath.item
+                selectedIndex.onNext(item)
+            }
+            .disposed(by: disposeBag)
+        
         output.menuOutput
             .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in
                 cell.configureData(element)
