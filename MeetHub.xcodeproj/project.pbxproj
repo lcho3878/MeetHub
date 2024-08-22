@@ -49,6 +49,8 @@
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
 		54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849D2C75D21600C0C946 /* UIView+Extension.swift */; };
 		54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84A02C75DEA900C0C946 /* PostingViewController.swift */; };
+		54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84A22C76C33C00C0C946 /* PostingView.swift */; };
+		54EB84C42C76F8DA00C0C946 /* PostingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		54EB849D2C75D21600C0C946 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		54EB84A02C75DEA900C0C946 /* PostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
+		54EB84A22C76C33C00C0C946 /* PostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingView.swift; sourceTree = "<group>"; };
+		54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				54EB84A02C75DEA900C0C946 /* PostingViewController.swift */,
+				54EB84A22C76C33C00C0C946 /* PostingView.swift */,
+				54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */,
 				543489A12C6C74E800CD877D /* APIKey.swift */,
 			);
 			path = PostingView;
@@ -355,7 +361,9 @@
 				543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */,
 				543489E92C73231800CD877D /* HomeView.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
+				54EB84C42C76F8DA00C0C946 /* PostingCollectionViewCell.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
+				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
 				543489ED2C73250500CD877D /* Post.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
 				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
