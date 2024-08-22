@@ -38,16 +38,19 @@ final class PostingView: BaseView {
         return view
     }()
     
-    lazy var mapView = NMFNaverMapView(frame: frame)
+    lazy var mapView = {
+        let view = NMFNaverMapView(frame: frame)
+        view.showLocationButton = true
+        view.mapView.positionMode = .compass
+        view.mapView.touchDelegate = self
+        return view
+    }()
     
     override func setupViews() {
         addSubview(titleTextField)
         addSubview(contentTextField)
         addSubview(collectionView)
         addSubview(mapView)
-        
-        mapView.showLocationButton = true
-        mapView.mapView.positionMode = .compass
         
         titleTextField.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
@@ -70,8 +73,21 @@ final class PostingView: BaseView {
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(400)
         }
-        
-        
+
+    }
+    
+    var preMarker: NMFMarker?
+}
+
+extension PostingView: NMFMapViewTouchDelegate {
+    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+        if let preMarker {
+            preMarker.mapView = nil
+        }
+        let marker = NMFMarker()
+        preMarker = marker
+        marker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
+        marker.mapView = mapView
     }
 }
 
