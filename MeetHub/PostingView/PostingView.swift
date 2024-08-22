@@ -10,6 +10,11 @@ import SnapKit
 
 final class PostingView: BaseView {
     
+    private let scrollView = {
+        let view = UIScrollView()
+        return view
+    }()
+    
     let titleTextField = {
         let view = UITextField()
         view.placeholder = "제목을 입력해주세요."
@@ -32,10 +37,17 @@ final class PostingView: BaseView {
         return view
     }()
     
+    let mapView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     override func setupViews() {
         addSubview(titleTextField)
         addSubview(contentTextField)
         addSubview(collectionView)
+        addSubview(mapView)
         
         titleTextField.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
@@ -52,6 +64,14 @@ final class PostingView: BaseView {
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(100)
         }
+        
+        mapView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            $0.height.equalTo(400)
+        }
+        
+        
     }
 }
 

@@ -55,7 +55,7 @@ final class HomeViewController: BaseViewController {
         
         output.errorOutput
             .bind(with: self) { owner, error in
-                owner.showAlert(content: error.localizedDescription) {
+                owner.showAlert(content: "로그인 정보 만료") {
                     owner.changeToLoginViewController()
                 }
             }
