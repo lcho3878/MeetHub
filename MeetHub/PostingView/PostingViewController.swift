@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class PostingViewController: BaseViewController {
     
@@ -20,6 +21,7 @@ final class PostingViewController: BaseViewController {
         print("PostingVC Load")
         postingView.collectionView.delegate = self
         postingView.collectionView.dataSource = self
+        CLLocationManager().requestWhenInUseAuthorization()
     }
 }
 

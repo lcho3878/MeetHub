@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import NMapsMap
 
 final class PostingView: BaseView {
     
@@ -37,17 +38,16 @@ final class PostingView: BaseView {
         return view
     }()
     
-    let mapView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        return view
-    }()
+    lazy var mapView = NMFNaverMapView(frame: frame)
     
     override func setupViews() {
         addSubview(titleTextField)
         addSubview(contentTextField)
         addSubview(collectionView)
         addSubview(mapView)
+        
+        mapView.showLocationButton = true
+        mapView.mapView.positionMode = .compass
         
         titleTextField.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
