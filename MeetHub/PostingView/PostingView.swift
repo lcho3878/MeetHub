@@ -42,7 +42,6 @@ final class PostingView: BaseView {
         let view = NMFNaverMapView(frame: frame)
         view.showLocationButton = true
         view.mapView.positionMode = .compass
-        view.mapView.touchDelegate = self
         return view
     }()
     
@@ -75,19 +74,7 @@ final class PostingView: BaseView {
         }
 
     }
-    
-    var preMarker: NMFMarker?
 }
 
-extension PostingView: NMFMapViewTouchDelegate {
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        if let preMarker {
-            preMarker.mapView = nil
-        }
-        let marker = NMFMarker()
-        preMarker = marker
-        marker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
-        marker.mapView = mapView
-    }
-}
+
 

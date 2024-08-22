@@ -14,7 +14,6 @@
 		543489952C6C747000CD877D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543489942C6C747000CD877D /* Assets.xcassets */; };
 		543489982C6C747000CD877D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 543489972C6C747000CD877D /* Base */; };
 		543489A02C6C74CE00CD877D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5434899F2C6C74CE00CD877D /* .gitignore */; };
-		543489A22C6C74E800CD877D /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489A12C6C74E800CD877D /* APIKey.swift */; };
 		543489A62C6DD17F00CD877D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 543489A52C6DD17F00CD877D /* Alamofire */; };
 		543489A92C6DD18A00CD877D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 543489A82C6DD18A00CD877D /* SnapKit */; };
 		543489AC2C6DD19900CD877D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 543489AB2C6DD19900CD877D /* RxCocoa */; };
@@ -51,6 +50,8 @@
 		54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84A02C75DEA900C0C946 /* PostingViewController.swift */; };
 		54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84A22C76C33C00C0C946 /* PostingView.swift */; };
 		54EB84C42C76F8DA00C0C946 /* PostingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */; };
+		54EB84C62C77A6F300C0C946 /* PostingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84C52C77A6F300C0C946 /* PostingViewModel.swift */; };
+		54EB84C82C77A70D00C0C946 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84C72C77A70D00C0C946 /* APIKey.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +67,6 @@
 		543489972C6C747000CD877D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		543489992C6C747000CD877D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5434899F2C6C74CE00CD877D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		543489A12C6C74E800CD877D /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		543489AF2C6DD1EE00CD877D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		543489B12C6F1B1E00CD877D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		543489B42C6F1B3400CD877D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		54EB84A02C75DEA900C0C946 /* PostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 		54EB84A22C76C33C00C0C946 /* PostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingView.swift; sourceTree = "<group>"; };
 		54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCollectionViewCell.swift; sourceTree = "<group>"; };
+		54EB84C52C77A6F300C0C946 /* PostingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewModel.swift; sourceTree = "<group>"; };
+		54EB84C72C77A70D00C0C946 /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
 				543489992C6C747000CD877D /* Info.plist */,
+				54EB84C72C77A70D00C0C946 /* APIKey.swift */,
 			);
 			path = MeetHub;
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 				54EB84A02C75DEA900C0C946 /* PostingViewController.swift */,
 				54EB84A22C76C33C00C0C946 /* PostingView.swift */,
 				54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */,
-				543489A12C6C74E800CD877D /* APIKey.swift */,
+				54EB84C52C77A6F300C0C946 /* PostingViewModel.swift */,
 			);
 			path = PostingView;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */,
 				543489E72C73212600CD877D /* HomeViewController.swift in Sources */,
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
+				54EB84C62C77A6F300C0C946 /* PostingViewModel.swift in Sources */,
 				54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
@@ -434,7 +438,6 @@
 				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
 				543489ED2C73250500CD877D /* Post.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
-				543489A22C6C74E800CD877D /* APIKey.swift in Sources */,
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
 				5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
@@ -443,6 +446,7 @@
 				54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,
+				54EB84C82C77A70D00C0C946 /* APIKey.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
