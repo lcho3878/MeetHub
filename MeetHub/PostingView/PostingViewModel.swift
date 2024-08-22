@@ -15,6 +15,7 @@ final class PostingViewModel: ViewModel {
     
     struct Input {
         let markerInput: PublishSubject<Coord>
+//        let imageInput: PublishSubject<[Data]>
     }
     
     struct Output {
