@@ -20,6 +20,31 @@ final class PostDetailView: BaseView {
     
     private let contentView = UIView()
     
+    private let creatorNameLabel = {
+        let view = UILabel()
+        view.text = "닉네임 들어갈거"
+        return view
+    }()
+    
+    private let createAtLabel = {
+        let view = UILabel()
+        view.text = "2020년 12월 24일 게시됨"
+        return view
+    }()
+    
+    private let creatorProfileImageView = {
+        let view = UIImageView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
+    private let creatorStackView = {
+        let view = UIStackView()
+        view.distribution = .fillEqually
+        view.axis = .vertical
+        return view
+    }()
+    
     let titleTextField = {
         let view = UITextField()
         view.placeholder = "제목을 입력해주세요."
@@ -57,14 +82,25 @@ final class PostDetailView: BaseView {
         return view
     }()
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        creatorProfileImageView.layer.cornerRadius = creatorProfileImageView.frame.width / 2
+    }
+    
     override func setupViews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(titleTextField)
+        contentView.addSubview(creatorProfileImageView)
+        contentView.addSubview(creatorStackView)
+        creatorStackView.addArrangedSubview(creatorNameLabel)
+        creatorStackView.addArrangedSubview(createAtLabel)
         contentView.addSubview(contentTextField)
         contentView.addSubview(collectionView)
         contentView.addSubview(addButton)
         contentView.addSubview(mapView)
+        
+
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -77,9 +113,23 @@ final class PostDetailView: BaseView {
             $0.width.equalTo(scrollView.frameLayoutGuide)
         }
         
-        titleTextField.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(contentView)
+        creatorProfileImageView.snp.makeConstraints {
+            $0.top.equalTo(contentView)
+            $0.leading.equalTo(titleTextField).offset(8)
+            $0.size.equalTo(50)
         }
+        
+        creatorStackView.snp.makeConstraints {
+            $0.verticalEdges.equalTo(creatorProfileImageView)
+            $0.leading.equalTo(creatorProfileImageView.snp.trailing).offset(8)
+            $0.trailing.equalToSuperview()
+        }
+        
+        titleTextField.snp.makeConstraints {
+            $0.top.equalTo(creatorStackView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(contentView)
+        }
+
         
         contentTextField.snp.makeConstraints {
             $0.top.equalTo(titleTextField.snp.bottom).offset(8)
