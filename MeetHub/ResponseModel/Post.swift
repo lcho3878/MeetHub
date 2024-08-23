@@ -18,4 +18,5 @@ struct Post: Decodable {
     let content4: String?
     let content5: String?
     let createdAt: String
+    let files: [String]
 }

@@ -193,5 +193,26 @@ final class APIManager {
         }
     }
     
+    func requestImageData(image: String, completion: @escaping (Data) -> Void) {
+        let url = Router.refresh.baseURL + Router.image(image: image).path
+        let header: HTTPHeaders = [
+            Header.sesacKey.rawValue: Key.key,
+            Header.authorization.rawValue: UserDefaultsManager.shared.token
+        ]
+        
+        AF.request(url, headers: header)
+            .response { response in
+                switch response.result {
+                case .success(let data):
+                    if let data {
+                        completion(data)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        
+    }
+    
 }
 

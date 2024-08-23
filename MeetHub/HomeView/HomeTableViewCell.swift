@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class HomeTableViewCell: UITableViewCell {
     
@@ -72,9 +73,16 @@ final class HomeTableViewCell: UITableViewCell {
         }
     }
     
+    let disposeBag = DisposeBag()
+    
     func configureDate(_ data: Post) {
         titleLabel.text = data.title
         dateLabel.text = data.createdAt
         content1Label.text = data.content1
+        if let first = data.files.first {
+            APIManager.shared.requestImageData(image: first) { data in
+                self.mainImageView.image = UIImage(data: data)
+            }
+        }
     }
 }

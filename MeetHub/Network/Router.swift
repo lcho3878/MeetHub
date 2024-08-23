@@ -14,6 +14,7 @@ enum Router {
     case signUp(query: SignupQuery)
     case lookUpPost
     case uploadPost(query: PostQuery)
+    case image(image: String)
     case refresh
 }
 
@@ -26,7 +27,7 @@ extension Router: TargetType {
         switch self {
         case .login, .emailValidation, .signUp, .uploadPost:
             return .post
-        case .refresh, .lookUpPost:
+        case .refresh, .lookUpPost, .image:
             return .get
         }
     }
@@ -45,6 +46,8 @@ extension Router: TargetType {
             return "/posts"
         case .refresh:
             return "/auth/refresh"
+        case .image(let image):
+            return "/\(image)"
         }
     }
     
@@ -55,7 +58,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.contentType.rawValue: Header.json.rawValue
             ]
-        case .lookUpPost:
+        case .lookUpPost, .image:
             return [
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
