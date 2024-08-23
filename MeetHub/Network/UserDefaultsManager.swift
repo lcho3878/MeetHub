@@ -34,5 +34,10 @@ final class UserDefaultsManager {
         }
     }
     
+    func logout() {
+        UserDefaultsManager.shared.token = ""
+        UserDefaultsManager.shared.refreshToken = ""
+    }
+    
     
 }

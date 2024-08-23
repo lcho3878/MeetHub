@@ -64,6 +64,8 @@
 		54EB84E12C78B53400C0C946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84E02C78B53400C0C946 /* ProfileView.swift */; };
 		54EB84E32C78B7CC00C0C946 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84E22C78B7CC00C0C946 /* User.swift */; };
 		54EB84E52C78B83D00C0C946 /* ProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84E42C78B83D00C0C946 /* ProfileResponseModel.swift */; };
+		54EB84E72C78E06400C0C946 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84E62C78E06400C0C946 /* ProfileViewModel.swift */; };
+		54EB84E92C78E0D100C0C946 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84E82C78E0D100C0C946 /* ProfileTableViewCell.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +127,8 @@
 		54EB84E02C78B53400C0C946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		54EB84E22C78B7CC00C0C946 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		54EB84E42C78B83D00C0C946 /* ProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponseModel.swift; sourceTree = "<group>"; };
+		54EB84E62C78E06400C0C946 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		54EB84E82C78E0D100C0C946 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -315,7 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				54EB84DE2C78B41800C0C946 /* ProfileViewController.swift */,
+				54EB84E82C78E0D100C0C946 /* ProfileTableViewCell.swift */,
 				54EB84E02C78B53400C0C946 /* ProfileView.swift */,
+				54EB84E62C78E06400C0C946 /* ProfileViewModel.swift */,
 			);
 			name = ProfileView;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
 				54EB84DF2C78B41800C0C946 /* ProfileViewController.swift in Sources */,
+				54EB84E92C78E0D100C0C946 /* ProfileTableViewCell.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
 				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
@@ -493,6 +500,7 @@
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				54EB84C42C76F8DA00C0C946 /* PostingCollectionViewCell.swift in Sources */,
 				54EB84D12C786C6400C0C946 /* PostDetailViewController.swift in Sources */,
+				54EB84E72C78E06400C0C946 /* ProfileViewModel.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
 				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
 				543489ED2C73250500CD877D /* Post.swift in Sources */,

@@ -12,6 +12,8 @@ final class ProfileViewController: BaseViewController {
     
     private let profileView = ProfileView()
     
+    private let viewModel = ProfileViewModel()
+    
     private let disposeBag = DisposeBag()
     
     override func loadView() {
@@ -20,24 +22,45 @@ final class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("profileVC load")
-        profileView.myprofileButton.addTarget(self, action: #selector(click), for: .touchUpInside)
-        profileView.logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        bind()
     }
     
-    @objc func click() {
-        let a = APIManager.shared.callRequest(api: .myProfile, type: User.self)
-        a.asObservable()
-            .bind { [weak self] user in
-                dump(user)
-                self?.profileView.configureData(user)
+    private func bind() {
+
+        let menuInput = PublishSubject<ProfileViewModel.ProfileMenu>()
+        
+        let input = ProfileViewModel.Input(menuInput: menuInput)
+        let output = viewModel.transform(input: input)
+
+        profileView.menuTableView.rx.modelSelected(ProfileViewModel.ProfileMenu.self)
+            .bind { menu in
+                menuInput.onNext(menu)
             }
             .disposed(by: disposeBag)
-    }
-    
-    @objc func logout() {
-        UserDefaultsManager.shared.token = ""
-        UserDefaultsManager.shared.refreshToken = ""
-        changeToLoginViewController()
+        
+        output.menuOutput
+            .bind(to: profileView.menuTableView.rx.items(cellIdentifier: ProfileTableViewCell.id, cellType: ProfileTableViewCell.self)) { row, element, cell in
+                cell.configureData(element)
+            }
+            .disposed(by: disposeBag)
+        
+        output.inquiryOutput
+            .bind(with: self) { owner, user in
+                owner.profileView.configureData(user)
+            }
+            .disposed(by: disposeBag)
+        
+        output.editOutput
+            .bind(with: self) { owner, _ in
+                print("프로필 수정 view 로직")
+            }
+            .disposed(by: disposeBag)
+        
+        output.logoutOutput
+            .bind(with: self) { owner, _ in
+                UserDefaultsManager.shared.logout()
+                owner.changeToLoginViewController()
+            }
+            .disposed(by: disposeBag)
     }
 }

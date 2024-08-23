@@ -22,35 +22,17 @@ final class ProfileView: BaseView {
         return view
     }()
     
-    let myprofileButton = {
-        let view = UIButton()
-        view.setTitle("내 프로필 조회", for: .normal)
-        view.backgroundColor = .systemBlue
-        return view
-    }()
-    
-    let logoutButton = {
-        let view = UIButton()
-        view.setTitle("로그아웃", for: .normal)
-        view.backgroundColor = .systemRed
+    let menuTableView = {
+        let view = UITableView()
+        view.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.id)
+        view.rowHeight = 60
         return view
     }()
     
     override func setupViews() {
-        addSubview(myprofileButton)
-        addSubview(logoutButton)
-        
-        myprofileButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        logoutButton.snp.makeConstraints {
-            $0.top.equalTo(myprofileButton.snp.bottom).offset(8)
-            $0.centerX.equalTo(myprofileButton)
-        }
-        
         addSubview(profileImageView)
         addSubview(profileNameLabel)
+        addSubview(menuTableView)
         
         profileImageView.snp.makeConstraints {
             $0.top.leading.equalTo(safeAreaLayoutGuide).offset(8)
@@ -60,6 +42,11 @@ final class ProfileView: BaseView {
         profileNameLabel.snp.makeConstraints {
             $0.centerY.equalTo(profileImageView)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(8)
+        }
+        
+        menuTableView.snp.makeConstraints {
+            $0.top.equalTo(profileImageView.snp.bottom).offset(8)
+            $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
     
