@@ -18,6 +18,8 @@ final class PostingViewController: BaseViewController {
     
     let markerInput = PublishSubject<Coord>()
     
+    let uploadButton = UIBarButtonItem(title: "업로드", style: .plain, target: self, action: nil)
+    
     private let postingView = PostingView()
     
     private let viewModel = PostingViewModel()
@@ -36,13 +38,14 @@ final class PostingViewController: BaseViewController {
         print("PostingVC Load")
         CLLocationManager().requestWhenInUseAuthorization()
         postingView.mapView.mapView.touchDelegate = self
+        navigationItem.rightBarButtonItem = uploadButton
         bind()
     }
     
     private func bind() {
         let deleteTap = PublishSubject<Int>()
         
-        let input = PostingViewModel.Input(markerInput: markerInput, dataInput: dataInput, deleteTap: deleteTap)
+        let input = PostingViewModel.Input(markerInput: markerInput, dataInput: dataInput, deleteTap: deleteTap, uploadButtonTap: uploadButton.rx.tap)
         let output = viewModel.transform(input: input)
 
         output.datasOutput

@@ -19,6 +19,7 @@ final class PostingViewModel: ViewModel {
         let markerInput: PublishSubject<Coord>
         let dataInput: PublishSubject<Data>
         let deleteTap: PublishSubject<Int>
+        let uploadButtonTap: ControlEvent<Void>
     }
     
     struct Output {
@@ -48,7 +49,17 @@ final class PostingViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.uploadButtonTap
+            .bind(with: self, onNext: { owner, _ in
+                APIManager.shared.uploadFiles(datas: owner.datas)
+            })
+            .disposed(by: disposeBag)
+        
         return Output(datasOutput: datasOutput)
     }
     
+}
+
+struct FilesModel: Decodable {
+    let files: [String]
 }

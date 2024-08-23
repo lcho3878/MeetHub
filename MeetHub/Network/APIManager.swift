@@ -147,7 +147,7 @@ final class APIManager {
             let request = try Router.refresh.asURLRequest()
             AF.request(request)
                 .responseDecodable(of: RefreshModel.self) { response in
-                    print(response.response?.statusCode)
+//                    print(response.response?.statusCode)
                     switch response.result {
                     case .success(let success):
                         UserDefaultsManager.shared.token = success.accessToken
@@ -162,6 +162,32 @@ final class APIManager {
         }
         catch {
             print("error")
+        }
+    }
+    
+    func uploadFiles(datas: [Data]) {
+        let api = Router.uploadFiles(datas: datas)
+        let url = api.baseURL + "/posts/files"
+        let header: HTTPHeaders = [
+            Header.sesacKey.rawValue: Key.key,
+            Header.contentType.rawValue: Header.multipart.rawValue,
+            Header.authorization.rawValue: UserDefaultsManager.shared.token
+        ]
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            for (i, data) in datas.enumerated() {
+                multipartFormData.append(data, withName: "files", fileName: "\(i).png", mimeType: "image/png")
+            }
+            
+        }, to: url, headers: header)
+        .validate(statusCode: 200..<300)
+        .responseDecodable(of: FilesModel.self) { response in
+            switch response.result {
+            case .success(let value):
+                print(value.files)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

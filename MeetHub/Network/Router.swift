@@ -85,7 +85,7 @@ extension Router: TargetType {
             return try? JSONEncoder().encode(query)
         case .signUp(query: let query):
             return try? JSONEncoder().encode(query)
-        case .refresh, .lookUpPost:
+        default:
             return nil
         }
     }
