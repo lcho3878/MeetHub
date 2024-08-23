@@ -59,6 +59,9 @@
 		54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */; };
 		54EB84D82C7870BB00C0C946 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */; };
 		54EB84DA2C78789000C0C946 /* PostDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D92C78789000C0C946 /* PostDetailViewCell.swift */; };
+		54EB84DC2C78B21D00C0C946 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84DB2C78B21D00C0C946 /* TabBarController.swift */; };
+		54EB84DF2C78B41800C0C946 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84DE2C78B41800C0C946 /* ProfileViewController.swift */; };
+		54EB84E12C78B53400C0C946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84E02C78B53400C0C946 /* ProfileView.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +118,9 @@
 		54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstion.swift"; sourceTree = "<group>"; };
 		54EB84D92C78789000C0C946 /* PostDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewCell.swift; sourceTree = "<group>"; };
+		54EB84DB2C78B21D00C0C946 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		54EB84DE2C78B41800C0C946 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		54EB84E02C78B53400C0C946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,8 +175,9 @@
 				543489E52C73211B00CD877D /* HomeView */,
 				54EB849F2C75DE8900C0C946 /* PostingView */,
 				54EB84CF2C786C4C00C0C946 /* PostDetailView */,
-				543489942C6C747000CD877D /* Assets.xcassets */,
+				54EB84DD2C78B40700C0C946 /* ProfileView */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
+				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489992C6C747000CD877D /* Info.plist */,
 				54EB84C72C77A70D00C0C946 /* APIKey.swift */,
 			);
@@ -239,6 +246,7 @@
 				543489C62C6F528800CD877D /* BaseViewController.swift */,
 				543489CD2C70A10000CD877D /* BaseView.swift */,
 				543489D12C70A38C00CD877D /* RoundButton.swift */,
+				54EB84DB2C78B21D00C0C946 /* TabBarController.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -295,6 +303,15 @@
 			);
 			name = PostDetailView;
 			path = PostingView;
+			sourceTree = "<group>";
+		};
+		54EB84DD2C78B40700C0C946 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				54EB84DE2C78B41800C0C946 /* ProfileViewController.swift */,
+				54EB84E02C78B53400C0C946 /* ProfileView.swift */,
+			);
+			name = ProfileView;
 			sourceTree = "<group>";
 		};
 		8D793BBE8B49B3CB0F5EB2B9 /* Pods */ = {
@@ -445,8 +462,10 @@
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
 				54EB84C62C77A6F300C0C946 /* PostingViewModel.swift in Sources */,
 				54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */,
+				54EB84DC2C78B21D00C0C946 /* TabBarController.swift in Sources */,
 				54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
+				54EB84DF2C78B41800C0C946 /* ProfileViewController.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
 				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
@@ -478,6 +497,7 @@
 				54EB84DA2C78789000C0C946 /* PostDetailViewCell.swift in Sources */,
 				54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
+				54EB84E12C78B53400C0C946 /* ProfileView.swift in Sources */,
 				54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,

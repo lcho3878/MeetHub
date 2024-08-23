@@ -51,9 +51,8 @@ class LoginViewController: BaseViewController {
                 else {
                     //로그인후 화면전환 로직
 //                    owner.showAlert(content: "로그인 성공")
-                    let homeVC = HomeViewController()
-                    let homeNaVC = UINavigationController(rootViewController: homeVC)
-                    owner.changeRootViewController(homeNaVC)
+                    let tabbarVC = TabBarController()
+                    owner.changeRootViewController(tabbarVC)
                 }
             })
             .disposed(by: disposeBag)
