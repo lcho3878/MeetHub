@@ -24,5 +24,6 @@ struct Post: Decodable {
     struct Creator: Decodable {
         let user_id: String
         let nick: String
+        let profileImage: String?
     }
 }
