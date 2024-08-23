@@ -16,6 +16,12 @@ final class ProfileView: BaseView {
         return view
     }()
     
+    private let profileNameLabel = {
+        let view = UILabel()
+        view.text = "닉네임 들어갈 자리"
+        return view
+    }()
+    
     let myprofileButton = {
         let view = UIButton()
         view.setTitle("내 프로필 조회", for: .normal)
@@ -44,9 +50,25 @@ final class ProfileView: BaseView {
         }
         
         addSubview(profileImageView)
+        addSubview(profileNameLabel)
+        
         profileImageView.snp.makeConstraints {
             $0.top.leading.equalTo(safeAreaLayoutGuide).offset(8)
             $0.size.equalTo(50)
+        }
+        
+        profileNameLabel.snp.makeConstraints {
+            $0.centerY.equalTo(profileImageView)
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(8)
+        }
+    }
+    
+    func configureData(_ data: User) {
+        profileNameLabel.text = data.nick
+        if let profileImage = data.profileImage {
+            APIManager.shared.requestImageData(image: profileImage) { [weak self] data in
+                self?.profileImageView.image = UIImage(data: data)
+            }
         }
     }
 }

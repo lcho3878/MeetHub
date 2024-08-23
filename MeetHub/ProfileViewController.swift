@@ -28,8 +28,9 @@ final class ProfileViewController: BaseViewController {
     @objc func click() {
         let a = APIManager.shared.callRequest(api: .myProfile, type: User.self)
         a.asObservable()
-            .bind { user in
+            .bind { [weak self] user in
                 dump(user)
+                self?.profileView.configureData(user)
             }
             .disposed(by: disposeBag)
     }

@@ -166,5 +166,10 @@ final class PostDetailView: BaseView {
             marker.position = NMGLatLng(lat: coord.lat, lng: coord.lon)
             marker.mapView = mapView.mapView
         }
+        if let profileImage = data.creator.profileImage {
+            APIManager.shared.requestImageData(image: profileImage) { [weak self] data in
+                self?.creatorProfileImageView.image = UIImage(data: data)
+            }
+        }
     }
 }
