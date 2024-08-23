@@ -165,30 +165,33 @@ final class APIManager {
         }
     }
     
-    func uploadFiles(datas: [Data]) {
-        let api = Router.uploadFiles(datas: datas)
-        let url = api.baseURL + "/posts/files"
-        let header: HTTPHeaders = [
-            Header.sesacKey.rawValue: Key.key,
-            Header.contentType.rawValue: Header.multipart.rawValue,
-            Header.authorization.rawValue: UserDefaultsManager.shared.token
-        ]
-        
-        AF.upload(multipartFormData: { multipartFormData in
-            for (i, data) in datas.enumerated() {
-                multipartFormData.append(data, withName: "files", fileName: "\(i).png", mimeType: "image/png")
-            }
+    func uploadFiles(datas: [Data]) -> Single<FilesModel> {
+        return Single.create { single -> Disposable in
+            let url = Router.refresh.baseURL + "/posts/files"
+            let header: HTTPHeaders = [
+                Header.sesacKey.rawValue: Key.key,
+                Header.contentType.rawValue: Header.multipart.rawValue,
+                Header.authorization.rawValue: UserDefaultsManager.shared.token
+            ]
             
-        }, to: url, headers: header)
-        .validate(statusCode: 200..<300)
-        .responseDecodable(of: FilesModel.self) { response in
-            switch response.result {
-            case .success(let value):
-                print(value.files)
-            case .failure(let error):
-                print(error)
+            AF.upload(multipartFormData: { multipartFormData in
+                for (i, data) in datas.enumerated() {
+                    multipartFormData.append(data, withName: "files", fileName: "\(i).png", mimeType: "image/png")
+                }
+                
+            }, to: url, headers: header)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: FilesModel.self) { response in
+                switch response.result {
+                case .success(let value):
+                    single(.success(value))
+                case .failure(let error):
+                    single(.failure(error))
+                }
             }
+            return Disposables.create()
         }
     }
+    
 }
 

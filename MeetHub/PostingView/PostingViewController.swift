@@ -45,7 +45,13 @@ final class PostingViewController: BaseViewController {
     private func bind() {
         let deleteTap = PublishSubject<Int>()
         
-        let input = PostingViewModel.Input(markerInput: markerInput, dataInput: dataInput, deleteTap: deleteTap, uploadButtonTap: uploadButton.rx.tap)
+        let input = PostingViewModel.Input(
+            titleInput: postingView.titleTextField.rx.text.orEmpty,
+            contentInput: postingView.contentTextField.rx.text.orEmpty,
+            markerInput: markerInput,
+            dataInput: dataInput, deleteTap: deleteTap,
+            uploadButtonTap: uploadButton.rx.tap
+        )
         let output = viewModel.transform(input: input)
 
         output.datasOutput
@@ -111,4 +117,8 @@ extension PostingViewController: NMFMapViewTouchDelegate {
 struct Coord {
     let lat: Double
     let lon: Double
+    
+    func asString() -> String {
+        return "[\(self.lat), \(self.lon)]"
+    }
 }

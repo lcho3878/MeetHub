@@ -14,8 +14,10 @@ final class PostingViewModel: ViewModel {
     private let disposeBag = DisposeBag()
     
     private var datas = [Data]()
-    
+  
     struct Input {
+        let titleInput: ControlProperty<String>
+        let contentInput: ControlProperty<String>
         let markerInput: PublishSubject<Coord>
         let dataInput: PublishSubject<Data>
         let deleteTap: PublishSubject<Int>
@@ -28,11 +30,9 @@ final class PostingViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let datasOutput = PublishSubject<[Data]>()
-        input.markerInput
-            .bind(onNext: { coord in
-                print(coord.lat, coord.lon)
-            })
-            .disposed(by: disposeBag)
+        let files = PublishSubject<[String]>()
+        let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files)
+        
         
         input.dataInput
             .bind(with: self, onNext: { owner, data in
@@ -50,16 +50,57 @@ final class PostingViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         input.uploadButtonTap
-            .bind(with: self, onNext: { owner, _ in
-                APIManager.shared.uploadFiles(datas: owner.datas)
+            .flatMap { _ in
+                APIManager.shared.uploadFiles(datas: self.datas)
+                    .catch { error in
+                        return Single<FilesModel>.never()
+                    }
+            }
+            .bind(onNext: { value in
+                files.onNext(value.files)
             })
             .disposed(by: disposeBag)
+
+        files
+            .withLatestFrom(queryInput)
+            .map {
+                PostQuery(title: $0.0, content: $0.1, content1: $0.2.asString(), product_id: "MeetHub_meet", files: $0.3)
+            }
+            .flatMap {
+                APIManager.shared.callRequest(api: .uploadPost(query: $0), type: Post.self)
+                    .catch { error in
+                        print("error")
+                        return Single<Post>.never()
+                    }
+            }
+            .bind { post in
+                print("sucess")
+            }
+            .disposed(by: disposeBag)
+        
+//            .withLatestFrom(queryInput)
+//            .map {
+//                PostQuery(title: $0.0, content: $0.1, content1: $0.2.asString(), product_id: "MeetHub_meet", files: [])
+//            }
+//            .flatMap { query in
+//                APIManager.shared.callRequest(api: .uploadPost(query: query), type: Post.self)
+//                    .catch { error in
+//                        print("Fail")
+//                        return Single<Post>.never()
+//                    }
+//            }
+//            .bind { post in
+//                print("success")
+//            }
+//            .disposed(by: disposeBag)
+
+        
+            
+
         
         return Output(datasOutput: datasOutput)
     }
     
 }
 
-struct FilesModel: Decodable {
-    let files: [String]
-}
+
