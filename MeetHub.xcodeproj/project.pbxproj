@@ -54,6 +54,9 @@
 		54EB84C82C77A70D00C0C946 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84C72C77A70D00C0C946 /* APIKey.swift */; };
 		54EB84CA2C784F1000C0C946 /* PostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84C92C784F1000C0C946 /* PostQuery.swift */; };
 		54EB84CC2C78581100C0C946 /* FilesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84CB2C78581100C0C946 /* FilesModel.swift */; };
+		54EB84D12C786C6400C0C946 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D02C786C6400C0C946 /* PostDetailViewController.swift */; };
+		54EB84D32C786C7700C0C946 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D22C786C7700C0C946 /* PostDetailView.swift */; };
+		54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +108,9 @@
 		54EB84C72C77A70D00C0C946 /* APIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		54EB84C92C784F1000C0C946 /* PostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuery.swift; sourceTree = "<group>"; };
 		54EB84CB2C78581100C0C946 /* FilesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesModel.swift; sourceTree = "<group>"; };
+		54EB84D02C786C6400C0C946 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		54EB84D22C786C7700C0C946 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +164,7 @@
 				543489CA2C709F1000CD877D /* SignupView */,
 				543489E52C73211B00CD877D /* HomeView */,
 				54EB849F2C75DE8900C0C946 /* PostingView */,
+				54EB84CF2C786C4C00C0C946 /* PostDetailView */,
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
 				543489992C6C747000CD877D /* Info.plist */,
@@ -270,6 +277,17 @@
 				54EB84C32C76F8DA00C0C946 /* PostingCollectionViewCell.swift */,
 				54EB84C52C77A6F300C0C946 /* PostingViewModel.swift */,
 			);
+			path = PostingView;
+			sourceTree = "<group>";
+		};
+		54EB84CF2C786C4C00C0C946 /* PostDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				54EB84D02C786C6400C0C946 /* PostDetailViewController.swift */,
+				54EB84D22C786C7700C0C946 /* PostDetailView.swift */,
+				54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */,
+			);
+			name = PostDetailView;
 			path = PostingView;
 			sourceTree = "<group>";
 		};
@@ -420,6 +438,7 @@
 				543489E72C73212600CD877D /* HomeViewController.swift in Sources */,
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
 				54EB84C62C77A6F300C0C946 /* PostingViewModel.swift in Sources */,
+				54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */,
 				54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */,
 				543489D02C70A18300CD877D /* SignupView.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
@@ -440,6 +459,7 @@
 				543489E92C73231800CD877D /* HomeView.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				54EB84C42C76F8DA00C0C946 /* PostingCollectionViewCell.swift in Sources */,
+				54EB84D12C786C6400C0C946 /* PostDetailViewController.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
 				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
 				543489ED2C73250500CD877D /* Post.swift in Sources */,
@@ -454,6 +474,7 @@
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,
 				54EB84C82C77A70D00C0C946 /* APIKey.swift in Sources */,
+				54EB84D32C786C7700C0C946 /* PostDetailView.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
 				54EB84CC2C78581100C0C946 /* FilesModel.swift in Sources */,
 			);

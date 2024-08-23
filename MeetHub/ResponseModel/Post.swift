@@ -17,6 +17,12 @@ struct Post: Decodable {
     let content3: String?
     let content4: String?
     let content5: String?
+    let creator: Creator
     let createdAt: String
     let files: [String]
+    
+    struct Creator: Decodable {
+        let user_id: String
+        let nick: String
+    }
 }

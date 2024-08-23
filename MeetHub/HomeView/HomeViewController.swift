@@ -41,6 +41,14 @@ final class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        homeView.tableView.rx.modelSelected(Post.self)
+            .bind(with: self) { owner, post in
+               let detailVC = PostDetailViewController()
+                detailVC.post = post
+                owner.navigationController?.pushViewController(detailVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         output.menuOutput
             .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in
                 cell.configureData(element)
