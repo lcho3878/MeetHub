@@ -24,6 +24,9 @@ final class PostingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    private let dataInput = PublishSubject<Data>()
+ 
+    
     override func loadView() {
         view = postingView
     }
@@ -31,33 +34,33 @@ final class PostingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("PostingVC Load")
-        postingView.collectionView.delegate = self
-        postingView.collectionView.dataSource = self
         CLLocationManager().requestWhenInUseAuthorization()
         postingView.mapView.mapView.touchDelegate = self
         bind()
     }
     
     private func bind() {
-        let input = PostingViewModel.Input(markerInput: markerInput)
+        let deleteTap = PublishSubject<Int>()
+        
+        let input = PostingViewModel.Input(markerInput: markerInput, dataInput: dataInput, deleteTap: deleteTap)
         let output = viewModel.transform(input: input)
 
+        output.datasOutput
+            .bind(to: postingView.collectionView.rx.items(cellIdentifier: PostingCollectionViewCell.id, cellType: PostingCollectionViewCell.self)) { row, element, cell in
+                cell.mainImageView.image = UIImage(data: element)
+                cell.deleteButton.rx.tap
+                    .map { row }
+                    .bind(to: deleteTap)
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
+        
+        postingView.addButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.openGallery()
+            }
+            .disposed(by: disposeBag)
     }
-    
-    var images = [Data]()
-}
-
-extension PostingViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostingCollectionViewCell.id, for: indexPath) as? PostingCollectionViewCell else { return UICollectionViewCell() }
-        cell.mainImageView.image = UIImage(data: images[indexPath.item])
-        return cell
-    }
-
     
     private func openGallery() {
         var configuration = PHPickerConfiguration()
@@ -80,8 +83,7 @@ extension PostingViewController: PHPickerViewControllerDelegate {
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         guard let data = image.pngData() else { return }
-                        self?.images.append(data)
-                        self?.postingView.collectionView.reloadData()
+                        self?.dataInput.onNext(data)
                     }
                 }
             }
@@ -91,7 +93,6 @@ extension PostingViewController: PHPickerViewControllerDelegate {
 
 extension PostingViewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        openGallery()
         if let preMarker {
             preMarker.mapView = nil
         }

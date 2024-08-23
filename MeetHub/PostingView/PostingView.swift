@@ -38,6 +38,14 @@ final class PostingView: BaseView {
         return view
     }()
     
+    let addButton = {
+        let view = UIButton()
+        view.setTitle("갤러리에서 추가하기", for: .normal)
+        view.setTitleColor(.systemBlue, for: .normal)
+        view.backgroundColor = .white
+        return view
+    }()
+    
     lazy var mapView = {
         let view = NMFNaverMapView(frame: frame)
         view.showLocationButton = true
@@ -49,6 +57,7 @@ final class PostingView: BaseView {
         addSubview(titleTextField)
         addSubview(contentTextField)
         addSubview(collectionView)
+        addSubview(addButton)
         addSubview(mapView)
         
         titleTextField.snp.makeConstraints {
@@ -67,8 +76,14 @@ final class PostingView: BaseView {
             $0.height.equalTo(100)
         }
         
-        mapView.snp.makeConstraints {
+        addButton.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
+        }
+        
+        
+        mapView.snp.makeConstraints {
+            $0.top.equalTo(addButton.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(400)
         }
