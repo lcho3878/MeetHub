@@ -69,6 +69,7 @@
 		54EB84EC2C78E76100C0C946 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84EB2C78E76100C0C946 /* ProfileEditViewController.swift */; };
 		54EB84EE2C78E77700C0C946 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84ED2C78E77700C0C946 /* ProfileEditView.swift */; };
 		54EB84F02C78E7C200C0C946 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84EF2C78E7C200C0C946 /* ProfileEditViewModel.swift */; };
+		54EB84F22C78EF2C00C0C946 /* ProfileEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84F12C78EF2C00C0C946 /* ProfileEditQuery.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		54EB84EB2C78E76100C0C946 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		54EB84ED2C78E77700C0C946 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		54EB84EF2C78E7C200C0C946 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		54EB84F12C78EF2C00C0C946 /* ProfileEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditQuery.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				543489C02C6F260F00CD877D /* LoginQuery.swift */,
+				54EB84F12C78EF2C00C0C946 /* ProfileEditQuery.swift */,
 				543489D32C70A64400CD877D /* EmailQuery.swift */,
 				543489D92C71F72500CD877D /* SignupQuery.swift */,
 				54EB84C92C784F1000C0C946 /* PostQuery.swift */,
@@ -524,6 +527,7 @@
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
 				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
 				543489ED2C73250500CD877D /* Post.swift in Sources */,
+				54EB84F22C78EF2C00C0C946 /* ProfileEditQuery.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
 				54EB84CA2C784F1000C0C946 /* PostQuery.swift in Sources */,
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,

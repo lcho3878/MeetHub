@@ -28,14 +28,25 @@ final class ProfileEditViewController: BaseViewController {
     }
     
     private func bind() {
-        let input = ProfileEditViewModel.Input()
+        let imageDataInput = PublishSubject<Data?>()
+        
+        let input = ProfileEditViewModel.Input(
+            nicknameInput: profileEditView.nicknameTextField.rx.text.orEmpty,
+            imageDataInput: imageDataInput,
+            editButtonTap: profileEditView.editButton.rx.tap
+        )
+        
         let output = viewModel.transform(input: input)
         
         output.userOutput
             .bind(with: self) { owner, user in
                 owner.profileEditView.configureData(user)
+                imageDataInput.onNext(owner.profileEditView.profileImageView.image?.pngData())
             }
             .disposed(by: disposeBag)
+
+
+    
     }
     
 }

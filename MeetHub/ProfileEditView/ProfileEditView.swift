@@ -10,19 +10,21 @@ import SnapKit
 
 final class ProfileEditView: BaseView {
     
-    private let profileImageView = {
+    let profileImageView = {
         let view = UIImageView()
         view.backgroundColor = .lightGray
         view.clipsToBounds = true
         return view
     }()
     
-    private let nicknameTextField: UITextField = {
+    let nicknameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "닉네임"
         textField.borderStyle = .roundedRect
         return textField
     }()
+    
+    let editButton = RoundButton(title: "수정하기")
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -32,6 +34,7 @@ final class ProfileEditView: BaseView {
     override func setupViews() {
         addSubview(profileImageView)
         addSubview(nicknameTextField)
+        addSubview(editButton)
         
         profileImageView.snp.makeConstraints {
             $0.size.equalTo(100)
@@ -42,6 +45,12 @@ final class ProfileEditView: BaseView {
         nicknameTextField.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.bottom).offset(8)
             $0.leading.trailing.equalTo(safeAreaLayoutGuide).inset(20)
+            $0.height.equalTo(44)
+        }
+        
+        editButton.snp.makeConstraints {
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(nicknameTextField)
             $0.height.equalTo(44)
         }
     }

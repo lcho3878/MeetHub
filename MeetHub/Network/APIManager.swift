@@ -214,5 +214,25 @@ final class APIManager {
         
     }
     
+    func profileEdit(query: ProfileEditQuery) {
+        let api = Router.editProfile(query: query)
+        do {
+            let request = try api.asURLRequest()
+            AF.upload(multipartFormData: api.multipart!, with: request)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: User.self) { response in
+                    switch response.result {
+                    case .success(let user):
+                        print(user)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+        }
+        catch {
+            print("Error")
+        }
+    }
+    
 }
 
