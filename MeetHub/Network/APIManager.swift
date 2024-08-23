@@ -223,7 +223,8 @@ final class APIManager {
                 .responseDecodable(of: User.self) { response in
                     switch response.result {
                     case .success(let user):
-                        print(user)
+//                        print(user)
+                        print("success")
                     case .failure(let error):
                         print(error)
                     }

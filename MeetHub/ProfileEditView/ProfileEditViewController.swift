@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import RxGesture
+import PhotosUI
 
 final class ProfileEditViewController: BaseViewController {
     
@@ -18,6 +20,8 @@ final class ProfileEditViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    private let imageDataInput = BehaviorSubject<Data?>(value: nil)
+    
     override func loadView() {
         view = profileEditView
     }
@@ -28,7 +32,7 @@ final class ProfileEditViewController: BaseViewController {
     }
     
     private func bind() {
-        let imageDataInput = PublishSubject<Data?>()
+
         
         let input = ProfileEditViewModel.Input(
             nicknameInput: profileEditView.nicknameTextField.rx.text.orEmpty,
@@ -41,12 +45,44 @@ final class ProfileEditViewController: BaseViewController {
         output.userOutput
             .bind(with: self) { owner, user in
                 owner.profileEditView.configureData(user)
-                imageDataInput.onNext(owner.profileEditView.profileImageView.image?.pngData())
             }
             .disposed(by: disposeBag)
 
-
+        profileEditView.profileImageView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self, onNext: { owner, _ in
+                owner.openGallery()
+            })
+            .disposed(by: disposeBag)
     
     }
     
+}
+
+extension ProfileEditViewController: PHPickerViewControllerDelegate {
+    private func openGallery() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        for (index, result) in results.enumerated() {
+            guard index < 1 else { break }
+            
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
+                if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        guard let data = image.pngData() else { return }
+                        self?.imageDataInput.onNext(data)
+                    }
+                }
+            }
+        }
+    }
 }

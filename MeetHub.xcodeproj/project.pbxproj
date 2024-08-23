@@ -70,6 +70,8 @@
 		54EB84EE2C78E77700C0C946 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84ED2C78E77700C0C946 /* ProfileEditView.swift */; };
 		54EB84F02C78E7C200C0C946 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84EF2C78E7C200C0C946 /* ProfileEditViewModel.swift */; };
 		54EB84F22C78EF2C00C0C946 /* ProfileEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84F12C78EF2C00C0C946 /* ProfileEditQuery.swift */; };
+		54EB84F42C78FDBB00C0C946 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 54EB84F32C78FDBB00C0C946 /* RxRelay */; };
+		54EB84F72C78FE0E00C0C946 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 54EB84F62C78FE0E00C0C946 /* RxGesture */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,11 +147,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54EB84F42C78FDBB00C0C946 /* RxRelay in Frameworks */,
 				543489AC2C6DD19900CD877D /* RxCocoa in Frameworks */,
 				543489A62C6DD17F00CD877D /* Alamofire in Frameworks */,
 				543489AE2C6DD19900CD877D /* RxSwift in Frameworks */,
 				543489A92C6DD18A00CD877D /* SnapKit in Frameworks */,
 				BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */,
+				54EB84F72C78FE0E00C0C946 /* RxGesture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +390,8 @@
 				543489A82C6DD18A00CD877D /* SnapKit */,
 				543489AB2C6DD19900CD877D /* RxCocoa */,
 				543489AD2C6DD19900CD877D /* RxSwift */,
+				54EB84F32C78FDBB00C0C946 /* RxRelay */,
+				54EB84F62C78FE0E00C0C946 /* RxGesture */,
 			);
 			productName = MeetHub;
 			productReference = 543489882C6C746E00CD877D /* MeetHub.app */;
@@ -419,6 +425,7 @@
 				543489A42C6DD17F00CD877D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				543489A72C6DD18A00CD877D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				543489AA2C6DD19900CD877D /* XCRemoteSwiftPackageReference "RxSwift" */,
+				54EB84F52C78FE0E00C0C946 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 543489892C6C746E00CD877D /* Products */;
 			projectDirPath = "";
@@ -795,6 +802,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		54EB84F52C78FE0E00C0C946 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -817,6 +832,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 543489AA2C6DD19900CD877D /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		54EB84F32C78FDBB00C0C946 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 543489AA2C6DD19900CD877D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		54EB84F62C78FE0E00C0C946 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54EB84F52C78FE0E00C0C946 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
