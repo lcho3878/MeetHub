@@ -57,6 +57,7 @@
 		54EB84D12C786C6400C0C946 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D02C786C6400C0C946 /* PostDetailViewController.swift */; };
 		54EB84D32C786C7700C0C946 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D22C786C7700C0C946 /* PostDetailView.swift */; };
 		54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */; };
+		54EB84D82C7870BB00C0C946 /* String+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,7 @@
 		54EB84D02C786C6400C0C946 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		54EB84D22C786C7700C0C946 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		54EB84D42C786DBF00C0C946 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extenstion.swift"; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				54EB849D2C75D21600C0C946 /* UIView+Extension.swift */,
+				54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
 				54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
+				54EB84D82C7870BB00C0C946 /* String+Extenstion.swift in Sources */,
 				543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */,
 				543489E92C73231800CD877D /* HomeView.swift in Sources */,
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,

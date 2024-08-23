@@ -89,4 +89,14 @@ final class PostDetailView: BaseView {
         }
 
     }
+    
+    func configureData(_ data: Post) {
+        titleTextField.text = data.title
+        contentTextField.text = data.content
+        if let coord = data.content1?.asCoord() {
+            let marker = NMFMarker()
+            marker.position = NMGLatLng(lat: coord.lat, lng: coord.lon)
+            marker.mapView = mapView.mapView
+        }
+    }
 }

@@ -19,6 +19,8 @@ final class PostDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("디테일VC 로드")
+        if let post {
+            postDetailView.configureData(post)
+        }
     }
 }
