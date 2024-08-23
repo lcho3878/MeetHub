@@ -26,7 +26,6 @@ final class ProfileViewController: BaseViewController {
     }
     
     private func bind() {
-
         let menuInput = PublishSubject<ProfileViewModel.ProfileMenu>()
         
         let input = ProfileViewModel.Input(menuInput: menuInput)
@@ -52,7 +51,8 @@ final class ProfileViewController: BaseViewController {
         
         output.editOutput
             .bind(with: self) { owner, _ in
-                print("프로필 수정 view 로직")
+                let profileEditVC = ProfileEditViewController()
+                owner.navigationController?.pushViewController(profileEditVC, animated: true)
             }
             .disposed(by: disposeBag)
         

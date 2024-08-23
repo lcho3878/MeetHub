@@ -85,7 +85,6 @@ final class HomeTableViewCell: UITableViewCell {
         if let first = data.files.first {
             APIManager.shared.requestImageData(image: first) { [weak self] data in
                 self?.mainImageView.image = UIImage(data: data)
-                print("이미지 update")
             }
         }
     }
