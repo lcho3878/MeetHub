@@ -44,7 +44,7 @@ final class HomeViewController: BaseViewController {
         homeView.tableView.rx.modelSelected(Post.self)
             .bind(with: self) { owner, post in
                let detailVC = PostDetailViewController()
-                detailVC.post = post
+                detailVC.postID = post.post_id
                 owner.navigationController?.pushViewController(detailVC, animated: true)
             }
             .disposed(by: disposeBag)
