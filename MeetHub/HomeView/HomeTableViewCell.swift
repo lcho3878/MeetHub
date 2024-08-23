@@ -46,6 +46,11 @@ final class HomeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        mainImageView.image = nil
+    }
+    
     private func setupViews() {
         contentView.addSubview(mainImageView)
         contentView.addSubview(titleLabel)
@@ -72,16 +77,15 @@ final class HomeTableViewCell: UITableViewCell {
             $0.leading.equalTo(titleLabel)
         }
     }
-    
-    let disposeBag = DisposeBag()
-    
+
     func configureDate(_ data: Post) {
         titleLabel.text = data.title
         dateLabel.text = data.createdAt
         content1Label.text = data.content1
         if let first = data.files.first {
-            APIManager.shared.requestImageData(image: first) { data in
-                self.mainImageView.image = UIImage(data: data)
+            APIManager.shared.requestImageData(image: first) { [weak self] data in
+                self?.mainImageView.image = UIImage(data: data)
+                print("이미지 update")
             }
         }
     }
