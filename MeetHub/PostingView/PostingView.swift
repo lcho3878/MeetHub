@@ -12,9 +12,13 @@ import NMapsMap
 final class PostingView: BaseView {
     
     private let scrollView = {
-        let view = UIScrollView()
-        return view
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
     }()
+    
+    private let contentView = UIView()
     
     let titleTextField = {
         let view = UITextField()
@@ -54,14 +58,27 @@ final class PostingView: BaseView {
     }()
     
     override func setupViews() {
-        addSubview(titleTextField)
-        addSubview(contentTextField)
-        addSubview(collectionView)
-        addSubview(addButton)
-        addSubview(mapView)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(titleTextField)
+        contentView.addSubview(contentTextField)
+        contentView.addSubview(collectionView)
+        contentView.addSubview(addButton)
+        contentView.addSubview(mapView)
+        
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(self)
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+        }
         
         titleTextField.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            $0.top.horizontalEdges.equalTo(contentView)
         }
         
         contentTextField.snp.makeConstraints {
@@ -86,6 +103,7 @@ final class PostingView: BaseView {
             $0.top.equalTo(addButton.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(400)
+            $0.bottom.equalTo(contentView).inset(100)
         }
 
     }
