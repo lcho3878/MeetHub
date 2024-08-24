@@ -1,15 +1,15 @@
 //
-//  PostDetailView.swift
+//  PostEditView.swift
 //  MeetHub
 //
-//  Created by 이찬호 on 8/23/24.
+//  Created by 이찬호 on 8/24/24.
 //
 
 import UIKit
 import SnapKit
 import NMapsMap
 
-final class PostDetailView: BaseView {
+final class PostEditView: BaseView {
     
     private let scrollView = {
         let scrollView = UIScrollView()
@@ -49,14 +49,12 @@ final class PostDetailView: BaseView {
     let titleTextField = {
         let view = UITextField()
         view.placeholder = "제목을 입력해주세요."
-        view.isEnabled = false
         return view
     }()
     
     let contentTextField = {
         let view = UITextField()
         view.placeholder = "내용을 입력해주세요"
-        view.isEnabled = false
         return view
     }()
     
@@ -66,7 +64,7 @@ final class PostDetailView: BaseView {
         layout.minimumLineSpacing = 4
         layout.itemSize = CGSize(width: 100, height: 100)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.register(PostDetailViewCell.self, forCellWithReuseIdentifier: PostDetailViewCell.id)
+        view.register(PostingCollectionViewCell.self, forCellWithReuseIdentifier: PostingCollectionViewCell.id)
         return view
     }()
     
@@ -163,15 +161,6 @@ final class PostDetailView: BaseView {
         titleTextField.text = data.title
         contentTextField.text = data.content
         creatorNameLabel.text = data.creator.nick
-        if let coord = data.content1?.asCoord() {
-            let marker = NMFMarker()
-            let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
-            marker.position = position
-            marker.mapView = mapView.mapView
-            
-            let cameraUpdate = NMFCameraUpdate(scrollTo: position)
-            mapView.mapView.moveCamera(cameraUpdate)
-        }
         if let profileImage = data.creator.profileImage {
             APIManager.shared.requestImageData(image: profileImage) { [weak self] data in
                 self?.creatorProfileImageView.image = UIImage(data: data)

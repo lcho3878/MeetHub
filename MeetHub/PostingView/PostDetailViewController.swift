@@ -36,6 +36,13 @@ final class PostDetailViewController: BaseViewController {
         let input = PostDetailViewModel.Input(postIDInput: Observable.just(postID))
         let output = viewModel.transform(input: input)
         
+        modifyButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let editVC = PostEditViewController()
+                editVC.postID = postID
+                 owner.navigationController?.pushViewController(editVC, animated: true)
+            }
+            .disposed(by: disposeBag)
         
         output.postOutput
             .bind(with: self) { owner, post in

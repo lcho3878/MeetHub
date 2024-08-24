@@ -79,7 +79,8 @@ final class HomeViewController: BaseViewController {
         
         homeView.postingButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(PostingViewController(), animated: true)
+                let postingVC = PostingViewController()
+                owner.navigationController?.pushViewController(postingVC, animated: true)
             }
             .disposed(by: disposeBag)
     }

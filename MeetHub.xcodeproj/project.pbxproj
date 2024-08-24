@@ -72,6 +72,10 @@
 		54EB84F22C78EF2C00C0C946 /* ProfileEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84F12C78EF2C00C0C946 /* ProfileEditQuery.swift */; };
 		54EB84F42C78FDBB00C0C946 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 54EB84F32C78FDBB00C0C946 /* RxRelay */; };
 		54EB84F72C78FE0E00C0C946 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 54EB84F62C78FE0E00C0C946 /* RxGesture */; };
+		54EB84FA2C79C39700C0C946 /* PostEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84F92C79C39700C0C946 /* PostEditViewController.swift */; };
+		54EB84FC2C79C3A000C0C946 /* PostEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FB2C79C3A000C0C946 /* PostEditView.swift */; };
+		54EB84FE2C79C3A800C0C946 /* PostEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */; };
+		54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +143,10 @@
 		54EB84ED2C78E77700C0C946 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		54EB84EF2C78E7C200C0C946 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		54EB84F12C78EF2C00C0C946 /* ProfileEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditQuery.swift; sourceTree = "<group>"; };
+		54EB84F92C79C39700C0C946 /* PostEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewController.swift; sourceTree = "<group>"; };
+		54EB84FB2C79C3A000C0C946 /* PostEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditView.swift; sourceTree = "<group>"; };
+		54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewModel.swift; sourceTree = "<group>"; };
+		54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditQuery.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -195,6 +203,7 @@
 				543489E52C73211B00CD877D /* HomeView */,
 				54EB849F2C75DE8900C0C946 /* PostingView */,
 				54EB84CF2C786C4C00C0C946 /* PostDetailView */,
+				54EB84F82C79C38400C0C946 /* PostEditView */,
 				54EB84DD2C78B40700C0C946 /* ProfileView */,
 				54EB84EA2C78E74E00C0C946 /* ProfileEditView */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
@@ -244,6 +253,7 @@
 				543489D32C70A64400CD877D /* EmailQuery.swift */,
 				543489D92C71F72500CD877D /* SignupQuery.swift */,
 				54EB84C92C784F1000C0C946 /* PostQuery.swift */,
+				54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -348,6 +358,16 @@
 				54EB84EF2C78E7C200C0C946 /* ProfileEditViewModel.swift */,
 			);
 			path = ProfileEditView;
+			sourceTree = "<group>";
+		};
+		54EB84F82C79C38400C0C946 /* PostEditView */ = {
+			isa = PBXGroup;
+			children = (
+				54EB84F92C79C39700C0C946 /* PostEditViewController.swift */,
+				54EB84FB2C79C3A000C0C946 /* PostEditView.swift */,
+				54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */,
+			);
+			path = PostEditView;
 			sourceTree = "<group>";
 		};
 		8D793BBE8B49B3CB0F5EB2B9 /* Pods */ = {
@@ -510,6 +530,7 @@
 				54EB84EC2C78E76100C0C946 /* ProfileEditViewController.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
+				54EB84FA2C79C39700C0C946 /* PostEditViewController.swift in Sources */,
 				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
 				543489D22C70A38C00CD877D /* RoundButton.swift in Sources */,
 				543489CE2C70A10000CD877D /* BaseView.swift in Sources */,
@@ -523,6 +544,7 @@
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
 				54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
+				54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */,
 				54EB84D82C7870BB00C0C946 /* String+Extenstion.swift in Sources */,
 				543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */,
 				54EB84EE2C78E77700C0C946 /* ProfileEditView.swift in Sources */,
@@ -530,6 +552,7 @@
 				543489B22C6F1B1E00CD877D /* LoginViewModel.swift in Sources */,
 				54EB84C42C76F8DA00C0C946 /* PostingCollectionViewCell.swift in Sources */,
 				54EB84D12C786C6400C0C946 /* PostDetailViewController.swift in Sources */,
+				54EB84FE2C79C3A800C0C946 /* PostEditViewModel.swift in Sources */,
 				54EB84E72C78E06400C0C946 /* ProfileViewModel.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
 				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
@@ -549,6 +572,7 @@
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,
 				54EB84C82C77A70D00C0C946 /* APIKey.swift in Sources */,
+				54EB84FC2C79C3A000C0C946 /* PostEditView.swift in Sources */,
 				54EB84D32C786C7700C0C946 /* PostDetailView.swift in Sources */,
 				5434898E2C6C746E00CD877D /* SceneDelegate.swift in Sources */,
 				54EB84CC2C78581100C0C946 /* FilesModel.swift in Sources */,

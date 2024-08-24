@@ -70,7 +70,10 @@ final class PostingViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-    
+
+}
+
+extension PostingViewController: PHPickerViewControllerDelegate {
     private func openGallery() {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 5
@@ -80,9 +83,7 @@ final class PostingViewController: BaseViewController {
         picker.delegate = self
         present(picker, animated: true)
     }
-}
-
-extension PostingViewController: PHPickerViewControllerDelegate {
+    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
         for (index, result) in results.enumerated() {

@@ -21,6 +21,7 @@ enum Router {
     case editProfile(query: ProfileEditQuery)
     case uploadFiles(files: [Data]?)
     case hashTag(next: String?, hashTag: String?)
+    case editPost(query: PostEditQuery)
 }
 
 extension Router: TargetType {
@@ -34,7 +35,7 @@ extension Router: TargetType {
             return .post
         case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag:
             return .get
-        case .editProfile:
+        case .editProfile, .editPost:
             return .put
         }
     }
@@ -63,6 +64,8 @@ extension Router: TargetType {
             return "/posts/files"
         case .hashTag:
             return "/posts/hashtags"
+        case .editPost(let query):
+            return "/posts/\(query.postID)"
         }
     }
     
@@ -78,7 +81,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
             ]
-        case .uploadPost:
+        case .uploadPost, .editPost:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.contentType.rawValue: Header.json.rawValue,
@@ -130,6 +133,8 @@ extension Router: TargetType {
             return try? JSONEncoder().encode(query)
         case .uploadPost(let query):
             return try? JSONEncoder().encode(query)
+        case .editPost(let query):
+            return try? JSONEncoder().encode(query.query)
         default:
             return nil
         }
