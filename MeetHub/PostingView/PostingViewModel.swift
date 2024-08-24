@@ -80,27 +80,7 @@ final class PostingViewModel: ViewModel {
                 print("게시글 업로드 성공")
             }
             .disposed(by: disposeBag)
-        
-//            .withLatestFrom(queryInput)
-//            .map {
-//                PostQuery(title: $0.0, content: $0.1, content1: $0.2.asString(), product_id: "MeetHub_meet", files: [])
-//            }
-//            .flatMap { query in
-//                APIManager.shared.callRequest(api: .uploadPost(query: query), type: Post.self)
-//                    .catch { error in
-//                        print("Fail")
-//                        return Single<Post>.never()
-//                    }
-//            }
-//            .bind { post in
-//                print("success")
-//            }
-//            .disposed(by: disposeBag)
 
-        
-            
-
-        
         return Output(datasOutput: datasOutput)
     }
     

@@ -34,6 +34,7 @@ final class PostDetailView: BaseView {
     
     private let creatorProfileImageView = {
         let view = UIImageView()
+        view.clipsToBounds = true
         view.backgroundColor = .lightGray
         return view
     }()
@@ -84,7 +85,7 @@ final class PostDetailView: BaseView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        creatorProfileImageView.layer.cornerRadius = creatorProfileImageView.frame.width / 2
+        creatorProfileImageView.makeRound()
     }
     
     override func setupViews() {

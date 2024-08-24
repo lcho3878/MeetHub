@@ -18,10 +18,15 @@ final class HomeViewModel: ViewModel {
         "기타"
     ]
     
-    private var posts = PublishSubject<[Post]>()
+    private var next: String?
+    
+    private var posts = [Post]()
+    
+    private var postsOutput = PublishSubject<[Post]>()
     
     struct Input {
         let indexInput: BehaviorSubject<Int>
+        let indexPathInput: PublishSubject<[IndexPath]>
     }
     
     struct Output {
@@ -32,14 +37,26 @@ final class HomeViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let errorOutput = PublishSubject<Error>()
-        APIManager.shared.callRequest(api: .lookUpPost, type: PostsResponseModel.self) { error in
-            errorOutput.onNext(error)
+        
+        func fetchPost(next: String?) {
+            APIManager.shared.callRequest(api: .lookUpPost(next: next), type: PostsResponseModel.self) { error in
+                errorOutput.onNext(error)
+            }
+            .asObservable()
+            .bind(with: self) { owner, value in
+                if next == nil {
+                    owner.posts = value.data
+                }
+                else {
+                    owner.posts.append(contentsOf: value.data)
+                }
+                owner.postsOutput.onNext(owner.posts)
+                owner.next = value.next_cursor
+            }
+            .disposed(by: disposeBag)
         }
-        .asObservable()
-        .bind(with: self) { owner, value in
-            owner.posts.onNext(value.data)
-        }
-        .disposed(by: disposeBag)
+        
+        fetchPost(next: next)
         
         input.indexInput
             .bind { index in
@@ -47,7 +64,17 @@ final class HomeViewModel: ViewModel {
                 print("\(self.menus[index]) 선택")
             }
             .disposed(by: disposeBag)
+        
+        input.indexPathInput
+            .bind(with: self) { owner, indexPaths in
+                for indexPath in indexPaths {
+                    if indexPath.item == owner.posts.count - 4 && owner.next != "0" {
+                        fetchPost(next: owner.next)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
 
-        return Output(menuOutput: Observable.just(menus), postOutput: posts, errorOutput: errorOutput)
+        return Output(menuOutput: Observable.just(menus), postOutput: postsOutput, errorOutput: errorOutput)
     }
 }

@@ -30,8 +30,9 @@ final class HomeViewController: BaseViewController {
     private func bind() {
         
         let selectedIndex = BehaviorSubject(value: 0)
+        let indexPathInput = PublishSubject<[IndexPath]>()
         
-        let input = HomeViewModel.Input(indexInput: selectedIndex)
+        let input = HomeViewModel.Input(indexInput: selectedIndex, indexPathInput: indexPathInput)
         let output = viewModel.transform(input: input)
         
         homeView.collectionView.rx.itemSelected
@@ -48,6 +49,13 @@ final class HomeViewController: BaseViewController {
                 owner.navigationController?.pushViewController(detailVC, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        homeView.tableView.rx.prefetchRows
+            .bind(onNext: { indexPaths in
+                indexPathInput.onNext(indexPaths)
+            })
+            .disposed(by: disposeBag)
+            
         
         output.menuOutput
             .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in

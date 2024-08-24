@@ -12,7 +12,7 @@ enum Router {
     case login(query: LoginQuery)
     case emailValidation(query: EmailQuery)
     case signUp(query: SignupQuery)
-    case lookUpPost
+    case lookUpPost(next: String?)
     case detailPost(postID: String)
     case uploadPost(query: PostQuery)
     case image(image: String)
@@ -99,10 +99,11 @@ extension Router: TargetType {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case .lookUpPost: 
+        case .lookUpPost(let next):
             return [
                 URLQueryItem(name: "product_id", value: "MeetHub_meet"),
-                URLQueryItem(name: "limit", value: "10")
+                URLQueryItem(name: "limit", value: "10"),
+                URLQueryItem(name: "next", value: next)
             ]
         default: return nil
         }
