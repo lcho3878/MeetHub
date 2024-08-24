@@ -76,6 +76,7 @@
 		54EB84FC2C79C3A000C0C946 /* PostEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FB2C79C3A000C0C946 /* PostEditView.swift */; };
 		54EB84FE2C79C3A800C0C946 /* PostEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */; };
 		54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */; };
+		54EB85022C79F2D600C0C946 /* PostDeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85012C79F2D600C0C946 /* PostDeleteResponse.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +148,7 @@
 		54EB84FB2C79C3A000C0C946 /* PostEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditView.swift; sourceTree = "<group>"; };
 		54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewModel.swift; sourceTree = "<group>"; };
 		54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditQuery.swift; sourceTree = "<group>"; };
+		54EB85012C79F2D600C0C946 /* PostDeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteResponse.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -270,6 +272,7 @@
 				54EB84CB2C78581100C0C946 /* FilesModel.swift */,
 				54EB84E22C78B7CC00C0C946 /* User.swift */,
 				54EB84E42C78B83D00C0C946 /* ProfileResponseModel.swift */,
+				54EB85012C79F2D600C0C946 /* PostDeleteResponse.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
 				54EB84E12C78B53400C0C946 /* ProfileView.swift in Sources */,
 				54EB84E32C78B7CC00C0C946 /* User.swift in Sources */,
+				54EB85022C79F2D600C0C946 /* PostDeleteResponse.swift in Sources */,
 				54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,

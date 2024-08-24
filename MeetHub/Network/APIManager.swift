@@ -81,6 +81,7 @@ final class APIManager {
         }
     }
     
+    
     func refreshToken(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             let request = try Router.refresh.asURLRequest()
@@ -123,6 +124,21 @@ final class APIManager {
                 }
             }
         
+    }
+    
+    func deletePost(postID: String) {
+        let api = Router.deletePost(postID: postID)
+        do {
+            let request = try api.asURLRequest()
+            AF.request(request)
+                .validate(statusCode: 200..<300)
+                .response { response in
+                    print(response.response?.statusCode)
+                }
+        }
+        catch {
+            print("error")
+        }
     }
         
 }

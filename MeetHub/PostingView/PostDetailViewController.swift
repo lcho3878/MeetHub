@@ -20,13 +20,17 @@ final class PostDetailViewController: BaseViewController {
     
     private lazy var modifyButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
     
+    private lazy var deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: nil)
+    
+    
+    
     override func loadView() {
         view = postDetailView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = modifyButton
+        navigationItem.rightBarButtonItems = [modifyButton, deleteButton]
         bind()
     }
     
@@ -44,6 +48,12 @@ final class PostDetailViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        deleteButton.rx.tap
+            .bind(with: self) { owner, _ in
+                APIManager.shared.deleteTest(postID: postID)
+            }
+            .disposed(by: disposeBag)
+        
         output.postOutput
             .bind(with: self) { owner, post in
                 owner.postDetailView.configureData(post)
@@ -56,5 +66,7 @@ final class PostDetailViewController: BaseViewController {
                 cell.mainImageView.image = UIImage(data: element)
             }
             .disposed(by: disposeBag)
+        
+
     }
 }
