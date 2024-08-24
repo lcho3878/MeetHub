@@ -19,6 +19,7 @@ enum Router {
     case refresh
     case myProfile
     case editProfile(query: ProfileEditQuery)
+    case uploadFiles(files: [Data?])
 }
 
 extension Router: TargetType {
@@ -28,7 +29,7 @@ extension Router: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .login, .emailValidation, .signUp, .uploadPost:
+        case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles:
             return .post
         case .refresh, .lookUpPost, .image, .detailPost, .myProfile:
             return .get
@@ -57,6 +58,8 @@ extension Router: TargetType {
             return "/posts/\(postID)"
         case .myProfile, .editProfile:
             return "/users/me/profile"
+        case .uploadFiles:
+            return "/posts/files"
         }
     }
     
@@ -85,7 +88,7 @@ extension Router: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.refresh.rawValue: UserDefaultsManager.shared.refreshToken
             ]
-        case .editProfile:
+        case .editProfile, .uploadFiles:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.contentType.rawValue: Header.multipart.rawValue,
@@ -128,6 +131,13 @@ extension Router: TargetType {
             let image = query.profile ?? Data()
             multipart.append(nick, withName: "nick")
             multipart.append(image, withName: "profile", fileName: "Image.png", mimeType: "image/png")
+            return multipart
+        case .uploadFiles(let files):
+            let multipart = MultipartFormData()
+            for (i, file) in files.enumerated() {
+                guard let file else { continue }
+                multipart.append(file, withName: "files", fileName: "\(i).png", mimeType: "image/png")
+            }
             return multipart
         default: return nil
         }

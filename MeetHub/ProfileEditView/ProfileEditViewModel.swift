@@ -40,8 +40,15 @@ final class ProfileEditViewModel: ViewModel {
             .map {
                 ProfileEditQuery(nick: $0.0, profile: $0.1)
             }
-            .bind(onNext: { query in
-                APIManager.shared.profileEdit(query: query)
+            .flatMap { query in
+                APIManager.shared.callRequest(api: .editProfile(query: query), type: User.self)
+                    .catch { error in
+                        return Single<User>.never()
+                    }
+            }
+            .bind(onNext: { user in
+                dump(user)
+                
             })
             .disposed(by: disposeBag)
         

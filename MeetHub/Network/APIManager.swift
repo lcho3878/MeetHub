@@ -14,28 +14,6 @@ final class APIManager {
     
     private init() {}
     
-    func createLogin(query: LoginQuery) -> Single<LoginModel> {
-        return Single.create { single -> Disposable in
-            do {
-                let request = try Router.login(query: query).asURLRequest()
-                AF.request(request)
-                    .validate(statusCode: 200..<300)
-                    .responseDecodable(of: LoginModel.self) { response in
-                        switch response.result {
-                        case .success(let v):
-                            single(.success(v))
-                        case .failure(let e):
-                            single(.failure(e))
-                        }
-                    }
-            }
-            catch {
-              print("Error")
-            }
-            return Disposables.create()
-        }
-    }
-    
     func createEmailValidation(query: EmailQuery) -> Single<EmailValidationModel> {
         return Single.create { single -> Disposable in
             do {
@@ -58,58 +36,19 @@ final class APIManager {
         }
     }
     
-    func createSignUp(query: SignupQuery) -> Single<SignupModel> {
-        return Single.create { single -> Disposable in
-            do {
-                let request = try Router.signUp(query: query).asURLRequest()
-                AF.request(request)
-                    .validate(statusCode: 200..<300)
-                    .responseDecodable(of: SignupModel.self) { response in
-                        switch response.result {
-                        case .success(let v):
-                            single(.success(v))
-                        case .failure(let e):
-                            single(.failure(e))
-                        }
-                    }
-            }
-            catch {
-                print("error")
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func lookupPosts() -> Single<PostsResponseModel> {
-        return Single.create { single -> Disposable in
-            do {
-                let request = try Router.lookUpPost.asURLRequest()
-                AF.request(request)
-                    .validate(statusCode: 200..<300)
-                    .responseString{ response in
-                        switch response.result {
-                        case .success(let v):
-//                            single(.success(v))
-                            print(v)
-                        case .failure(let e):
-//                            single(.failure(e))
-                            print(e)
-                        }
-                    }
-            }
-            catch {
-                print("error")
-            }
-            return Disposables.create()
-        }
-    }
-    
     func callRequest<T:Decodable>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
         return Single.create { single -> Disposable in
             func loop() {
                 do {
                     let request = try api.asURLRequest()
-                    AF.request(request)
+                    let method: DataRequest
+                    if let multipart = api.multipart {
+                        method = AF.upload(multipartFormData: multipart, with: request)
+                    }
+                    else {
+                        method = AF.request(request)
+                    }
+                    method
                         .validate(statusCode: 200..<300)
                         .responseDecodable(of: T.self) { response in
                             if response.response?.statusCode == 419 {
@@ -165,34 +104,6 @@ final class APIManager {
         }
     }
     
-    func uploadFiles(datas: [Data]) -> Single<FilesModel> {
-        return Single.create { single -> Disposable in
-            let url = Router.refresh.baseURL + "/posts/files"
-            let header: HTTPHeaders = [
-                Header.sesacKey.rawValue: Key.key,
-                Header.contentType.rawValue: Header.multipart.rawValue,
-                Header.authorization.rawValue: UserDefaultsManager.shared.token
-            ]
-            
-            AF.upload(multipartFormData: { multipartFormData in
-                for (i, data) in datas.enumerated() {
-                    multipartFormData.append(data, withName: "files", fileName: "\(i).png", mimeType: "image/png")
-                }
-                
-            }, to: url, headers: header)
-            .validate(statusCode: 200..<300)
-            .responseDecodable(of: FilesModel.self) { response in
-                switch response.result {
-                case .success(let value):
-                    single(.success(value))
-                case .failure(let error):
-                    single(.failure(error))
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
     func requestImageData(image: String, completion: @escaping (Data) -> Void) {
         let url = Router.refresh.baseURL + Router.image(image: image).path
         let header: HTTPHeaders = [
@@ -213,27 +124,6 @@ final class APIManager {
             }
         
     }
-    
-    func profileEdit(query: ProfileEditQuery) {
-        let api = Router.editProfile(query: query)
-        do {
-            let request = try api.asURLRequest()
-            AF.upload(multipartFormData: api.multipart!, with: request)
-                .validate(statusCode: 200..<300)
-                .responseDecodable(of: User.self) { response in
-                    switch response.result {
-                    case .success(let user):
-//                        print(user)
-                        print("success")
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-        }
-        catch {
-            print("Error")
-        }
-    }
-    
+        
 }
 

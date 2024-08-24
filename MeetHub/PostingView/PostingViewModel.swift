@@ -51,10 +51,14 @@ final class PostingViewModel: ViewModel {
         
         input.uploadButtonTap
             .flatMap { _ in
-                APIManager.shared.uploadFiles(datas: self.datas)
+                APIManager.shared.callRequest(api: .uploadFiles(files: self.datas), type: FilesModel.self)
                     .catch { error in
                         return Single<FilesModel>.never()
                     }
+//                APIManager.shared.uploadFiles(datas: self.datas)
+//                    .catch { error in
+//                        return Single<FilesModel>.never()
+//                    }
             }
             .bind(onNext: { value in
                 files.onNext(value.files)
