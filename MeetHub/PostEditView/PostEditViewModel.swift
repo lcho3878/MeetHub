@@ -53,8 +53,8 @@ final class PostEditViewModel: ViewModel {
                         imageDataOutput.onNext(owner.imageDatas)
                         print("데이터추가")
                     }
+ 
                 }
-                print("데이터 전달 \(owner.imageDatas.count)")
                 
             })
             .disposed(by: disposeBag)
@@ -94,6 +94,7 @@ final class PostEditViewModel: ViewModel {
             .withLatestFrom(queryInput)
             .map {
                 let postQuery = PostQuery(title: $0.0, content: $0.1, content1: $0.2?.asString(), product_id: "MeetHub_meet", files: $0.3)
+                dump(postQuery)
                 let editQuery = PostEditQuery(postID: $0.4, query: postQuery)
                 return editQuery
             }

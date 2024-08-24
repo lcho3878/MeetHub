@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import PhotosUI
 import NMapsMap
+import RxRelay
 
 final class PostEditViewController: BaseViewController {
     
@@ -25,6 +26,7 @@ final class PostEditViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     private let dataInput = PublishSubject<Data>()
+    let titleInput = PublishSubject<String>()
     
     private lazy var modifyButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
     
@@ -68,6 +70,8 @@ final class PostEditViewController: BaseViewController {
         output.postOutput
             .bind(with: self) { owner, post in
                 owner.postEditView.configureData(post)
+                owner.postEditView.titleTextField.sendActions(for: .editingChanged)
+                owner.postEditView.contentTextField.sendActions(for: .editingChanged)
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
                 if let coord = post.content1?.asCoord() {
                     let marker = NMFMarker()
@@ -92,6 +96,7 @@ final class PostEditViewController: BaseViewController {
                 owner.openGallery()
             }
             .disposed(by: disposeBag)
+        
     }
 }
 
