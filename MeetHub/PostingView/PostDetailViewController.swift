@@ -50,7 +50,7 @@ final class PostDetailViewController: BaseViewController {
         
         deleteButton.rx.tap
             .bind(with: self) { owner, _ in
-                APIManager.shared.deleteTest(postID: postID)
+                APIManager.shared.deletePost(postID: postID)
             }
             .disposed(by: disposeBag)
         
