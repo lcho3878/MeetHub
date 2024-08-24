@@ -49,12 +49,14 @@ final class PostDetailView: BaseView {
     let titleTextField = {
         let view = UITextField()
         view.placeholder = "제목을 입력해주세요."
+        view.isEnabled = false
         return view
     }()
     
     let contentTextField = {
         let view = UITextField()
         view.placeholder = "내용을 입력해주세요"
+        view.isEnabled = false
         return view
     }()
     

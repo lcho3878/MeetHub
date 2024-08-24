@@ -43,8 +43,7 @@ final class LoginViewModel: ViewModel {
                     }
             }
             .bind(onNext: { value in
-                UserDefaultsManager.shared.token = value.accessToken
-                UserDefaultsManager.shared.refreshToken = value.refreshToken
+                UserDefaultsManager.shared.login(value)
                 loginModelOutput.onNext(value)
             })
             .disposed(by: disposeBag)

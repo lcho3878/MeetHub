@@ -20,6 +20,7 @@ enum Router {
     case myProfile
     case editProfile(query: ProfileEditQuery)
     case uploadFiles(files: [Data]?)
+    case hashTag(next: String?, hashTag: String?)
 }
 
 extension Router: TargetType {
@@ -31,7 +32,7 @@ extension Router: TargetType {
         switch self {
         case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles:
             return .post
-        case .refresh, .lookUpPost, .image, .detailPost, .myProfile:
+        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag:
             return .get
         case .editProfile:
             return .put
@@ -60,6 +61,8 @@ extension Router: TargetType {
             return "/users/me/profile"
         case .uploadFiles:
             return "/posts/files"
+        case .hashTag:
+            return "/posts/hashtags"
         }
     }
     
@@ -70,7 +73,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.contentType.rawValue: Header.json.rawValue
             ]
-        case .lookUpPost, .image, .detailPost, .myProfile:
+        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag:
             return [
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
@@ -104,6 +107,14 @@ extension Router: TargetType {
                 URLQueryItem(name: "product_id", value: "MeetHub_meet"),
                 URLQueryItem(name: "limit", value: "10"),
                 URLQueryItem(name: "next", value: next)
+            ]
+            
+        case .hashTag(let next, let hashTag):
+            return [
+                URLQueryItem(name: "product_id", value: "MeetHub_meet"),
+                URLQueryItem(name: "limit", value: "10"),
+                URLQueryItem(name: "next", value: next),
+                URLQueryItem(name: "hashTag", value: hashTag)
             ]
         default: return nil
         }

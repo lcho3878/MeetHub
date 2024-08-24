@@ -26,4 +26,8 @@ struct Post: Decodable {
         let nick: String
         let profileImage: String?
     }
+    
+    var isMyPost: Bool {
+        return creator.user_id == UserDefaultsManager.shared.userID
+    }
 }

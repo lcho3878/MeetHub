@@ -18,12 +18,15 @@ final class PostDetailViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    private lazy var modifyButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
+    
     override func loadView() {
         view = postDetailView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = modifyButton
         bind()
     }
     
@@ -33,9 +36,11 @@ final class PostDetailViewController: BaseViewController {
         let input = PostDetailViewModel.Input(postIDInput: Observable.just(postID))
         let output = viewModel.transform(input: input)
         
+        
         output.postOutput
             .bind(with: self) { owner, post in
                 owner.postDetailView.configureData(post)
+                owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
             }
             .disposed(by: disposeBag)
         
