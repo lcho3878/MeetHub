@@ -164,8 +164,12 @@ final class PostDetailView: BaseView {
         creatorNameLabel.text = data.creator.nick
         if let coord = data.content1?.asCoord() {
             let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: coord.lat, lng: coord.lon)
+            let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
+            marker.position = position
             marker.mapView = mapView.mapView
+            
+            let cameraUpdate = NMFCameraUpdate(scrollTo: position)
+            mapView.mapView.moveCamera(cameraUpdate)
         }
         if let profileImage = data.creator.profileImage {
             APIManager.shared.requestImageData(image: profileImage) { [weak self] data in
