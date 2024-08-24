@@ -16,7 +16,7 @@ final class PostingViewController: BaseViewController {
     
     var preMarker: NMFMarker?
     
-    let markerInput = PublishSubject<Coord>()
+    let markerInput = BehaviorSubject<Coord?>(value: nil)
     
     let uploadButton = UIBarButtonItem(title: "업로드", style: .plain, target: self, action: nil)
     

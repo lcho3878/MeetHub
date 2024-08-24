@@ -18,7 +18,7 @@ final class PostingViewModel: ViewModel {
     struct Input {
         let titleInput: ControlProperty<String>
         let contentInput: ControlProperty<String>
-        let markerInput: PublishSubject<Coord>
+        let markerInput: BehaviorSubject<Coord?>
         let dataInput: PublishSubject<Data>
         let deleteTap: PublishSubject<Int>
         let uploadButtonTap: ControlEvent<Void>
@@ -50,15 +50,15 @@ final class PostingViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         input.uploadButtonTap
-            .flatMap { _ in
-                APIManager.shared.callRequest(api: .uploadFiles(files: self.datas), type: FilesModel.self)
+            .flatMap { [weak self] _ in
+                guard let self, !self.datas.isEmpty else {
+                    files.onNext([])
+                    return Single<FilesModel>.never()
+                }
+                return APIManager.shared.callRequest(api: .uploadFiles(files: self.datas), type: FilesModel.self)
                     .catch { error in
                         return Single<FilesModel>.never()
                     }
-//                APIManager.shared.uploadFiles(datas: self.datas)
-//                    .catch { error in
-//                        return Single<FilesModel>.never()
-//                    }
             }
             .bind(onNext: { value in
                 files.onNext(value.files)
@@ -68,17 +68,16 @@ final class PostingViewModel: ViewModel {
         files
             .withLatestFrom(queryInput)
             .map {
-                PostQuery(title: $0.0, content: $0.1, content1: $0.2.asString(), product_id: "MeetHub_meet", files: $0.3)
+                PostQuery(title: $0.0, content: $0.1, content1: $0.2?.asString(), product_id: "MeetHub_meet", files: $0.3)
             }
             .flatMap {
-                APIManager.shared.callRequest(api: .uploadPost(query: $0), type: Post.self)
+                return APIManager.shared.callRequest(api: .uploadPost(query: $0), type: Post.self)
                     .catch { error in
-                        print("error")
                         return Single<Post>.never()
                     }
             }
             .bind { post in
-                print("sucess")
+                print("게시글 업로드 성공")
             }
             .disposed(by: disposeBag)
         

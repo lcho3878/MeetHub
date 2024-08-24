@@ -19,7 +19,7 @@ enum Router {
     case refresh
     case myProfile
     case editProfile(query: ProfileEditQuery)
-    case uploadFiles(files: [Data?])
+    case uploadFiles(files: [Data]?)
 }
 
 extension Router: TargetType {
@@ -134,8 +134,9 @@ extension Router: TargetType {
             return multipart
         case .uploadFiles(let files):
             let multipart = MultipartFormData()
+            guard let files else { return multipart }
             for (i, file) in files.enumerated() {
-                guard let file else { continue }
+//                guard let file else { continue }
                 multipart.append(file, withName: "files", fileName: "\(i).png", mimeType: "image/png")
             }
             return multipart
