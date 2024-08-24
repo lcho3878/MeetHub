@@ -22,6 +22,7 @@ enum Router {
     case uploadFiles(files: [Data]?)
     case hashTag(next: String?, hashTag: String?)
     case editPost(query: PostEditQuery)
+    case deletePost(postID: String)
 }
 
 extension Router: TargetType {
@@ -37,6 +38,8 @@ extension Router: TargetType {
             return .get
         case .editProfile, .editPost:
             return .put
+        case .deletePost:
+            return .delete
         }
     }
     
@@ -56,7 +59,7 @@ extension Router: TargetType {
             return "/auth/refresh"
         case .image(let image):
             return "/\(image)"
-        case .detailPost(let postID):
+        case .detailPost(let postID), .deletePost(let postID):
             return "/posts/\(postID)"
         case .myProfile, .editProfile:
             return "/users/me/profile"
@@ -76,7 +79,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.contentType.rawValue: Header.json.rawValue
             ]
-        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag:
+        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .deletePost:
             return [
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
