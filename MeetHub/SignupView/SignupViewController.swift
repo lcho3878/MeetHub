@@ -57,13 +57,16 @@ final class SignupViewController: BaseViewController {
         
         output.signupModelOutput
             .bind(with: self) { owner, value in
-                dump(value)
-                if value.responseCode != nil {
-                    owner.showAlert(content: value.errorMessage)
-                }
-                else {
-                    owner.showAlert(content: "회원가입 완료")
-                }
+                
+                owner.showAlert(content: "회원가입 완료")
+                
+            }
+            .disposed(by: disposeBag)
+        
+        output.errorOutput
+            .bind(with: self) { owner, error in
+                guard let error else { return }
+                owner.showAlert(content: error.errorMessage)
             }
             .disposed(by: disposeBag)
     }

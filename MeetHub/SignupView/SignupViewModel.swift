@@ -26,6 +26,7 @@ final class SignupViewModel: ViewModel {
         let validationButtonEnabled: BehaviorSubject<Bool>
         let signupButtonEnabled: BehaviorSubject<Bool>
         let signupModelOutput: PublishSubject<SignupModel>
+        let errorOutput: PublishSubject<SignupModel.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
@@ -33,6 +34,7 @@ final class SignupViewModel: ViewModel {
         let validationButtonEnabled = BehaviorSubject(value: false)
         let signupButtonEnabled = BehaviorSubject(value: false)
         let signupModelOutput = PublishSubject<SignupModel>()
+        let errorOutput = PublishSubject<SignupModel.ErrorModel?>()
         
         let emailInput = input.emailInput.share()
         
@@ -76,9 +78,9 @@ final class SignupViewModel: ViewModel {
                 SignupQuery(email: $0.0, password: $0.1, nick: $0.2)
             }
             .flatMap {
-                APIManager.shared.callRequest(api: .signUp(query: $0), type: SignupModel.self)
+                APIManager.shared.callRequestTest(api: .signUp(query: $0), type: SignupModel.self)
                     .catch { error in
-                        signupModelOutput.onNext(SignupModel.errorModel(responseCode: error.asAFError?.responseCode))
+                        errorOutput.onNext(error as? SignupModel.ErrorModel)
                         return Single<SignupModel>.never()
                     }
             }
@@ -87,6 +89,6 @@ final class SignupViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
-        return Output(validationOutput: validationOutput, validationButtonEnabled: validationButtonEnabled, signupButtonEnabled: signupButtonEnabled, signupModelOutput: signupModelOutput)
+        return Output(validationOutput: validationOutput, validationButtonEnabled: validationButtonEnabled, signupButtonEnabled: signupButtonEnabled, signupModelOutput: signupModelOutput, errorOutput: errorOutput)
     }
 }

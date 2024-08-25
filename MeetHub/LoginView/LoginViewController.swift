@@ -44,17 +44,16 @@ class LoginViewController: BaseViewController {
         
         output.loginModelOutput
             .bind(with: self, onNext: { owner, value in
-                if value.responseCode != nil {
-                    //에러. 팝업
-                    owner.showAlert(content: value.errorMessage)
-                }
-                else {
-                    //로그인후 화면전환 로직
-//                    owner.showAlert(content: "로그인 성공")
-                    let tabbarVC = TabBarController()
-                    owner.changeRootViewController(tabbarVC)
-                }
+                let tabbarVC = TabBarController()
+                owner.changeRootViewController(tabbarVC)
             })
+            .disposed(by: disposeBag)
+        
+        output.errorOutput
+            .bind(with: self) { owner, error in
+                guard let error else { return }
+                owner.showAlert(content: error.errorMessage)
+            }
             .disposed(by: disposeBag)
     }
 

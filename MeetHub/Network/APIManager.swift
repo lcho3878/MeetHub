@@ -140,6 +140,53 @@ final class APIManager {
             print("error")
         }
     }
+    
+    func callRequestTest<T:ResponseModelTest>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
+        return Single.create { single -> Disposable in
+            func loop() {
+                do {
+                    let request = try api.asURLRequest()
+                    let method: DataRequest
+                    if let multipart = api.multipart {
+                        method = AF.upload(multipartFormData: multipart, with: request)
+                    }
+                    else {
+                        method = AF.request(request)
+                    }
+                    method
+                        .validate(statusCode: 200..<300)
+                        .responseDecodable(of: T.self) { response in
+                            let statusCode = response.response?.statusCode
+                            if statusCode == 419 {
+                                print("토큰갱신 필요")
+                                self.refreshToken { result in
+                                    switch result {
+                                    case .success(_):
+                                        loop()
+                                    case .failure(let failure):
+                                        hander?(failure)
+                                    }
+                                }
+                            }
+                            else {
+                                switch response.result {
+                                case .success(let v):
+                                    single(.success(v))
+                                case .failure(let e):
+//                                    single(.failure(response.response?.statusCode))
+                                    single(.failure(T.ErrorModel(responseCode: statusCode)))
+                                }
+                            }
+                        }
+                }
+                catch {
+                    print("error")
+                }
+            }
+            loop()
+            return Disposables.create()
+        }
+    }
         
 }
 

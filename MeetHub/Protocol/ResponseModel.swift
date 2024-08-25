@@ -12,3 +12,14 @@ protocol ResponseModel {
     
     var errorMessage: String { get }
 }
+
+protocol ResponseModelTest: Decodable {
+    associatedtype ErrorModel: ResponseError
+}
+
+protocol ResponseError: Error {
+    var responseCode: Int? { get }
+    var errorMessage: String { get }
+    
+    init(responseCode: Int?)
+}

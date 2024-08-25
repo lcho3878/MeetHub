@@ -24,21 +24,24 @@ final class LoginViewModel: ViewModel {
         let loginButtonTap: ControlEvent<Void>
         let signButtonTap: ControlEvent<Void>
         let loginModelOutput: PublishSubject<LoginModel>
+        let errorOutput: PublishSubject<LoginModel.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
         let queryInput = Observable.combineLatest(input.emailInput, input.passwordInput)
-        
         let loginModelOutput = PublishSubject<LoginModel>()
+        let errorOutput = PublishSubject<LoginModel.ErrorModel?>()
+        
+        
         input.loginButtonTap
             .withLatestFrom(queryInput)
             .map {
                 LoginQuery(email: $0.0, password: $0.1)
             }
             .flatMap {
-                APIManager.shared.callRequest(api: .login(query: $0), type: LoginModel.self)
+                APIManager.shared.callRequestTest(api: .login(query: $0), type: LoginModel.self)
                     .catch { error in
-                        loginModelOutput.onNext(LoginModel.errorModel(responseCode: error.asAFError?.responseCode))
+                        errorOutput.onNext(error as? LoginModel.ErrorModel)
                         return Single<LoginModel>.never()
                     }
             }
@@ -50,6 +53,6 @@ final class LoginViewModel: ViewModel {
         
         
         
-        return Output(loginButtonTap: input.loginButtonTap, signButtonTap: input.signButtonTap, loginModelOutput: loginModelOutput)
+        return Output(loginButtonTap: input.loginButtonTap, signButtonTap: input.signButtonTap, loginModelOutput: loginModelOutput, errorOutput: errorOutput)
     }
 }
