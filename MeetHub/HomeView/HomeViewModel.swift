@@ -32,15 +32,15 @@ final class HomeViewModel: ViewModel {
     struct Output {
         let menuOutput: Observable<[String]>
         let postOutput: PublishSubject<[Post]>
-        let errorOutput: PublishSubject<Error>
+        let errorOutput: PublishSubject<PostsResponseModel.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
-        let errorOutput = PublishSubject<Error>()
+        let errorOutput = PublishSubject<PostsResponseModel.ErrorModel?>()
         
         func fetchPost(next: String?) {
-            APIManager.shared.callRequest(api: .lookUpPost(next: next), type: PostsResponseModel.self) { error in
-                errorOutput.onNext(error)
+            APIManager.shared.callRequestTest(api: .lookUpPost(next: next), type: PostsResponseModel.self) { error in
+                errorOutput.onNext(error as? PostsResponseModel.ErrorModel)
             }
             .asObservable()
             .bind(with: self) { owner, value in
