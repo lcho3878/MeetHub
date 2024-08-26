@@ -25,6 +25,8 @@ final class ProfileTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
+        contentView.backgroundColor = AppColor.beige
+        
         contentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints {

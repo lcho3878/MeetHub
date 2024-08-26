@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 
+
+
 final class ProfileViewController: BaseViewController {
     
     private let profileView = ProfileView()
@@ -15,6 +17,8 @@ final class ProfileViewController: BaseViewController {
     private let viewModel = ProfileViewModel()
     
     private let disposeBag = DisposeBag()
+    
+    private let requestInput = PublishSubject<Void>()
     
     override func loadView() {
         view = profileView
@@ -28,8 +32,10 @@ final class ProfileViewController: BaseViewController {
     private func bind() {
         let menuInput = PublishSubject<ProfileViewModel.ProfileMenu>()
         
-        let input = ProfileViewModel.Input(menuInput: menuInput)
+        let input = ProfileViewModel.Input(menuInput: menuInput, requestInput: requestInput)
         let output = viewModel.transform(input: input)
+        
+        requestInput.onNext(())
 
         profileView.menuTableView.rx.modelSelected(ProfileViewModel.ProfileMenu.self)
             .bind { menu in
@@ -52,6 +58,7 @@ final class ProfileViewController: BaseViewController {
         output.editOutput
             .bind(with: self) { owner, _ in
                 let profileEditVC = ProfileEditViewController()
+                profileEditVC.delegate = owner
                 owner.navigationController?.pushViewController(profileEditVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -62,5 +69,11 @@ final class ProfileViewController: BaseViewController {
                 owner.changeToLoginViewController()
             }
             .disposed(by: disposeBag)
+    }
+}
+
+extension ProfileViewController: ProfileEditViewControllerDelegate {
+    func reloadRequest() {
+        requestInput.onNext(())
     }
 }

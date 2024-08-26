@@ -11,14 +11,14 @@ import RxSwift
 final class ProfileViewModel: ViewModel {
     
     enum ProfileMenu {
-        case profileInquiry
+//        case profileInquiry
         case profileEdit
         case logout
         
         var title: String {
             switch self {
-            case .profileInquiry:
-                return "내 프로필 조회"
+//            case .profileInquiry:
+//                return "내 프로필 조회"
             case .profileEdit:
                 return  "내 프로필 수정"
             case .logout:
@@ -27,10 +27,11 @@ final class ProfileViewModel: ViewModel {
         }
     }
     
-    private let menus: [ProfileMenu] = [.profileInquiry, .profileEdit, .logout]
+    private let menus: [ProfileMenu] = [.profileEdit, .logout]
     
     struct Input {
         let menuInput: PublishSubject<ProfileMenu>
+        let requestInput: PublishSubject<Void>
     }
     struct Output {
         let menuOutput: Observable<[ProfileMenu]>
@@ -48,18 +49,27 @@ final class ProfileViewModel: ViewModel {
         input.menuInput
             .bind(with: self) { owner, menu in
                 switch menu {
-                case .profileInquiry:
-                    APIManager.shared.callRequest(api: .myProfile, type: User.self)
-                        .asObservable()
-                        .bind { user in
-                            inquiryOutput.onNext(user)
-                        }
-                        .disposed(by: owner.disposeBag)
+//                case .profileInquiry:
+//                    APIManager.shared.callRequest(api: .myProfile, type: User.self)
+//                        .asObservable()
+//                        .bind { user in
+//                            inquiryOutput.onNext(user)
+//                        }
+//                        .disposed(by: owner.disposeBag)
                 case .profileEdit:
                     editOutput.onNext(())
                 case .logout:
                     logoutOutput.onNext(())
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        input.requestInput
+            .flatMap {
+                APIManager.shared.callRequest(api: .myProfile, type: User.self)
+            }
+            .bind(with: self) { owner, user in
+                inquiryOutput.onNext(user)
             }
             .disposed(by: disposeBag)
         

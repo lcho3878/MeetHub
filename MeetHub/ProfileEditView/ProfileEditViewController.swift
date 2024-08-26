@@ -10,9 +10,15 @@ import RxSwift
 import RxGesture
 import PhotosUI
 
+protocol ProfileEditViewControllerDelegate: AnyObject {
+    func reloadRequest()
+}
+
 final class ProfileEditViewController: BaseViewController {
     
     var user: User?
+    
+    weak var delegate: ProfileEditViewControllerDelegate?
     
     private let profileEditView = ProfileEditView()
     
@@ -48,6 +54,13 @@ final class ProfileEditViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+        output.successOutput
+            .bind(with: self) { owner, _ in
+                owner.delegate?.reloadRequest()
+                owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+
         profileEditView.profileImageView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self, onNext: { owner, _ in
@@ -78,7 +91,9 @@ extension ProfileEditViewController: PHPickerViewControllerDelegate {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
+                        self?.profileEditView.profileImageView.image = image
                         guard let data = image.pngData() else { return }
+                      
                         self?.imageDataInput.onNext(data)
                     }
                 }

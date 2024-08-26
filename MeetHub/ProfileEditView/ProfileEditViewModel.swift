@@ -16,17 +16,20 @@ final class ProfileEditViewModel: ViewModel {
     struct Input {
         let nicknameInput: ControlProperty<String>
         let imageDataInput: BehaviorSubject<Data?>
+
         let editButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         let userOutput: PublishSubject<User>
+        let successOutput: PublishSubject<Void>
     }
     
     func transform(input: Input) -> Output {
         
         let queryInput = Observable.combineLatest(input.nicknameInput, input.imageDataInput)
         let userOutput = PublishSubject<User>()
+        let successOutput = PublishSubject<Void>()
         
         APIManager.shared.callRequest(api: .myProfile, type: User.self)
             .asObservable()
@@ -48,11 +51,11 @@ final class ProfileEditViewModel: ViewModel {
             }
             .bind(onNext: { user in
                 dump(user)
-                
+                successOutput.onNext(())
             })
             .disposed(by: disposeBag)
         
-        return Output(userOutput: userOutput)
+        return Output(userOutput: userOutput, successOutput: successOutput)
     }
 }
 
