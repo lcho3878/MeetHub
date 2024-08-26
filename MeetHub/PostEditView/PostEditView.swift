@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import NMapsMap
 
-final class PostEditView: BaseView {
+final class PostEditView: UsingTextView {
     
     private let scrollView = {
         let scrollView = UIScrollView()
@@ -20,41 +20,16 @@ final class PostEditView: BaseView {
     
     private let contentView = UIView()
     
-    private let creatorNameLabel = {
-        let view = UILabel()
-        view.text = "닉네임 들어갈거"
-        return view
-    }()
-    
-    private let createAtLabel = {
-        let view = UILabel()
-        view.text = "2020년 12월 24일 게시됨"
-        return view
-    }()
-    
-     let creatorProfileImageView = {
-        let view = UIImageView()
-        view.clipsToBounds = true
-        view.backgroundColor = .lightGray
-        return view
-    }()
-    
-     let creatorStackView = {
-        let view = UIStackView()
-        view.distribution = .fillEqually
-        view.axis = .vertical
-        return view
-    }()
-    
     let titleTextField = {
         let view = UITextField()
         view.placeholder = "제목을 입력해주세요."
         return view
     }()
     
-    let contentTextField = {
-        let view = UITextField()
-        view.placeholder = "내용을 입력해주세요"
+    lazy var contentTextView = {
+        placeholder = "컨텐츠 내용 입력하세요"
+        let view = TextView(placeholder: placeholder)
+        view.delegate = self
         return view
     }()
     
@@ -67,14 +42,6 @@ final class PostEditView: BaseView {
         return view
     }()
     
-    let addButton = {
-        let view = UIButton()
-        view.setTitle("갤러리에서 추가하기", for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
-        view.backgroundColor = .white
-        return view
-    }()
-    
     lazy var mapView = {
         let view = NMFNaverMapView(frame: frame)
         view.showLocationButton = true
@@ -82,22 +49,12 @@ final class PostEditView: BaseView {
         return view
     }()
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        creatorProfileImageView.makeRound()
-    }
-    
     override func setupViews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(titleTextField)
-        contentView.addSubview(creatorProfileImageView)
-        contentView.addSubview(creatorStackView)
-        creatorStackView.addArrangedSubview(creatorNameLabel)
-        creatorStackView.addArrangedSubview(createAtLabel)
-        contentView.addSubview(contentTextField)
+        contentView.addSubview(contentTextView)
         contentView.addSubview(collectionView)
-        contentView.addSubview(addButton)
         contentView.addSubview(mapView)
         
         scrollView.snp.makeConstraints {
@@ -111,46 +68,28 @@ final class PostEditView: BaseView {
             $0.width.equalTo(scrollView.frameLayoutGuide)
         }
         
-        creatorProfileImageView.snp.makeConstraints {
-            $0.top.equalTo(contentView)
-            $0.leading.equalTo(titleTextField).offset(8)
-            $0.size.equalTo(50)
-        }
-        
-        creatorStackView.snp.makeConstraints {
-            $0.verticalEdges.equalTo(creatorProfileImageView)
-            $0.leading.equalTo(creatorProfileImageView.snp.trailing).offset(8)
-            $0.trailing.equalToSuperview()
-        }
-        
         titleTextField.snp.makeConstraints {
-            $0.top.equalTo(creatorStackView.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(contentView)
+            $0.top.equalTo(contentView)
+            $0.horizontalEdges.equalTo(contentView).inset(24)
+            $0.height.equalTo(44)
         }
-
         
-        contentTextField.snp.makeConstraints {
+        contentTextView.snp.makeConstraints {
             $0.top.equalTo(titleTextField.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(titleTextField)
-            $0.height.equalTo(100)
+            $0.height.equalTo(300)
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(contentTextField.snp.bottom).offset(8)
+            $0.top.equalTo(contentTextView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(100)
         }
         
-        addButton.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-        }
-        
-        
         mapView.snp.makeConstraints {
-            $0.top.equalTo(addButton.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            $0.height.equalTo(400)
+            $0.top.equalTo(collectionView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(mapView.snp.width)
             $0.bottom.equalTo(contentView).inset(100)
         }
 
@@ -158,12 +97,7 @@ final class PostEditView: BaseView {
     
     func configureData(_ data: Post) {
         titleTextField.text = data.title
-        contentTextField.text = data.content
-        creatorNameLabel.text = data.creator.nick
-        if let profileImage = data.creator.profileImage {
-            APIManager.shared.requestImageData(image: profileImage) { [weak self] data in
-                self?.creatorProfileImageView.image = UIImage(data: data)
-            }
-        }
+        contentTextView.text = data.content.isEmpty ? placeholder : data.content
+        contentTextView.textColor = data.content.isEmpty ? .lightGray : .black
     }
 }

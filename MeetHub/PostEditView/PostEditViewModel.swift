@@ -13,7 +13,7 @@ final class PostEditViewModel: ViewModel {
     
     private let disposeBag = DisposeBag()
     
-    private var imageDatas = [Data]()
+    private var imageDatas = [Data()]
     
     struct Input {
         let postIDInput: Observable<String>
@@ -27,13 +27,13 @@ final class PostEditViewModel: ViewModel {
     
     struct Output {
         let postOutput: PublishSubject<Post>
-        let imageDataOutput: PublishSubject<[Data]>
+        let imageDataOutput: BehaviorSubject<[Data]>
         let successOutput: PublishSubject<Void>
     }
     
     func transform(input: Input) -> Output {
         let postOutput = PublishSubject<Post>()
-        let imageDataOutput = PublishSubject<[Data]>()
+        let imageDataOutput = BehaviorSubject<[Data]>(value: imageDatas)
         let files = PublishSubject<[String]>()
         let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files, input.postIDInput)
         
@@ -64,7 +64,7 @@ final class PostEditViewModel: ViewModel {
         
         input.dataInput
             .bind(with: self, onNext: { owner, data in
-                guard owner.imageDatas.count < 5 else { return }
+                guard owner.imageDatas.count < 6 else { return }
                 owner.imageDatas.append(data)
                 imageDataOutput.onNext(owner.imageDatas)
             })
@@ -79,11 +79,11 @@ final class PostEditViewModel: ViewModel {
         
         input.modifyButtonTap
             .flatMap { [weak self] _ in
-                guard let self, !self.imageDatas.isEmpty else {
+                guard let self, !(self.imageDatas.count == 1) else {
                     files.onNext([])
                     return Single<FilesModel>.never()
                 }
-                return APIManager.shared.callRequest(api: .uploadFiles(files: self.imageDatas), type: FilesModel.self)
+                return APIManager.shared.callRequest(api: .uploadFiles(files: self.imageDatas.filter { !$0.isEmpty}), type: FilesModel.self)
                     .catch { error in
                         return Single<FilesModel>.never()
                     }

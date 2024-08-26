@@ -52,7 +52,7 @@ final class PostEditViewController: BaseViewController {
         let input = PostEditViewModel.Input(
             postIDInput: Observable.just(postID),
             titleInput: postEditView.titleTextField.rx.text.orEmpty,
-            contentInput: postEditView.contentTextField.rx.text.orEmpty,
+            contentInput: postEditView.contentTextView.rx.text.orEmpty,
             markerInput: markerInput,
             dataInput: dataInput, 
             deleteTap: deleteTap,
@@ -62,7 +62,11 @@ final class PostEditViewController: BaseViewController {
         
         output.imageDataOutput
             .bind(to: postEditView.collectionView.rx.items(cellIdentifier: PostingCollectionViewCell.id, cellType: PostingCollectionViewCell.self)) { row, element, cell in
-                cell.mainImageView.image = UIImage(data: element)
+                let total = try? output.imageDataOutput.value().count
+                if row == 0 {
+                    cell.updateDataCount(total)
+                }
+                cell.configureData(element)
                 cell.deleteButton.rx.tap
                     .map { row }
                     .bind(to: deleteTap)
@@ -74,7 +78,8 @@ final class PostEditViewController: BaseViewController {
             .bind(with: self) { owner, post in
                 owner.postEditView.configureData(post)
                 owner.postEditView.titleTextField.sendActions(for: .editingChanged)
-                owner.postEditView.contentTextField.sendActions(for: .editingChanged)
+                
+//                owner.postEditView.contentTextView.sendActions(for: .editingChanged)
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
                 if let coord = post.content1?.asCoord() {
                     let marker = NMFMarker()
@@ -95,8 +100,9 @@ final class PostEditViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        postEditView.addButton.rx.tap
-            .bind(with: self) { owner, _ in
+        postEditView.collectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                guard indexPath.item == 0 else { return }
                 owner.openGallery()
             }
             .disposed(by: disposeBag)

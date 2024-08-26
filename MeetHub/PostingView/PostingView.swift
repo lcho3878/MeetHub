@@ -22,7 +22,7 @@ final class PostingView: UsingTextView {
     
     let titleTextField = RoundTextField(placeholder: "제목을 입력해주세요")
     
-    lazy var contentTextField = {
+    lazy var contentTextView = {
         placeholder = "컨텐츠 내용 입력하세요"
         let view = TextView(placeholder: placeholder)
         view.delegate = self
@@ -49,7 +49,7 @@ final class PostingView: UsingTextView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(titleTextField)
-        contentView.addSubview(contentTextField)
+        contentView.addSubview(contentTextView)
         contentView.addSubview(collectionView)
         contentView.addSubview(mapView)
         
@@ -70,14 +70,14 @@ final class PostingView: UsingTextView {
             $0.height.equalTo(44)
         }
         
-        contentTextField.snp.makeConstraints {
+        contentTextView.snp.makeConstraints {
             $0.top.equalTo(titleTextField.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(titleTextField)
             $0.height.equalTo(300)
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(contentTextField.snp.bottom).offset(8)
+            $0.top.equalTo(contentTextView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(100)
         }

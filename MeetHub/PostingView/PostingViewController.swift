@@ -49,7 +49,7 @@ final class PostingViewController: BaseViewController {
         
         let input = PostingViewModel.Input(
             titleInput: postingView.titleTextField.rx.text.orEmpty,
-            contentInput: postingView.contentTextField.rx.text.orEmpty,
+            contentInput: postingView.contentTextView.rx.text.orEmpty,
             markerInput: markerInput,
             dataInput: dataInput, deleteTap: deleteTap,
             uploadButtonTap: uploadButton.rx.tap
