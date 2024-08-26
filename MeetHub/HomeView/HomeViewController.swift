@@ -25,7 +25,6 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         bind()
         navigationItem.title = AppTitle.main.rawValue
-
         homeView.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
     }
     

@@ -10,6 +10,11 @@ import UIKit
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureBaseView()
+    }
+    
+    private func configureBaseView() {
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func showAlert(content: String?, handler: (() -> Void)? = nil) {
