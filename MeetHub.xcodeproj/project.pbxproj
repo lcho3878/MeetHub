@@ -82,6 +82,9 @@
 		54EB850F2C7C475500C0C946 /* AppTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB850E2C7C475500C0C946 /* AppTitle.swift */; };
 		54EB85112C7C4D8000C0C946 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85102C7C4D8000C0C946 /* Date+Extension.swift */; };
 		54EB85132C7C4FC300C0C946 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85122C7C4FC300C0C946 /* AppFont.swift */; };
+		54EB85152C7C57B600C0C946 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85142C7C57B600C0C946 /* RoundTextField.swift */; };
+		54EB85192C7C629A00C0C946 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85182C7C629A00C0C946 /* TextView.swift */; };
+		54EB851B2C7C69A500C0C946 /* UsingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB851A2C7C69A500C0C946 /* UsingTextView.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +162,9 @@
 		54EB850E2C7C475500C0C946 /* AppTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTitle.swift; sourceTree = "<group>"; };
 		54EB85102C7C4D8000C0C946 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		54EB85122C7C4FC300C0C946 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		54EB85142C7C57B600C0C946 /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
+		54EB85182C7C629A00C0C946 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		54EB851A2C7C69A500C0C946 /* UsingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingTextView.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -293,8 +299,11 @@
 			children = (
 				543489C62C6F528800CD877D /* BaseViewController.swift */,
 				543489CD2C70A10000CD877D /* BaseView.swift */,
+				54EB851A2C7C69A500C0C946 /* UsingTextView.swift */,
 				543489D12C70A38C00CD877D /* RoundButton.swift */,
+				54EB85142C7C57B600C0C946 /* RoundTextField.swift */,
 				54EB84DB2C78B21D00C0C946 /* TabBarController.swift */,
+				54EB85182C7C629A00C0C946 /* TextView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -577,6 +586,7 @@
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */,
 				54EB84D82C7870BB00C0C946 /* String+Extenstion.swift in Sources */,
+				54EB851B2C7C69A500C0C946 /* UsingTextView.swift in Sources */,
 				543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */,
 				54EB84EE2C78E77700C0C946 /* ProfileEditView.swift in Sources */,
 				543489E92C73231800CD877D /* HomeView.swift in Sources */,
@@ -587,6 +597,7 @@
 				54EB84E72C78E06400C0C946 /* ProfileViewModel.swift in Sources */,
 				543489C42C6F381500CD877D /* LoginModel.swift in Sources */,
 				54EB84A32C76C33C00C0C946 /* PostingView.swift in Sources */,
+				54EB85192C7C629A00C0C946 /* TextView.swift in Sources */,
 				543489ED2C73250500CD877D /* Post.swift in Sources */,
 				54EB84F22C78EF2C00C0C946 /* ProfileEditQuery.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
@@ -601,6 +612,7 @@
 				54EB84E32C78B7CC00C0C946 /* User.swift in Sources */,
 				54EB85022C79F2D600C0C946 /* PostDeleteResponse.swift in Sources */,
 				54EB849E2C75D21600C0C946 /* UIView+Extension.swift in Sources */,
+				54EB85152C7C57B600C0C946 /* RoundTextField.swift in Sources */,
 				543489D42C70A64400CD877D /* EmailQuery.swift in Sources */,
 				543489C92C709E2B00CD877D /* ResponseModel.swift in Sources */,
 				54EB84C82C77A70D00C0C946 /* APIKey.swift in Sources */,

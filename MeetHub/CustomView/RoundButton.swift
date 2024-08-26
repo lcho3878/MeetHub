@@ -19,7 +19,7 @@ class RoundButton: UIButton {
         super.init(frame: .zero)
 //        let button = UIButton(type: .system)
         setTitle(title, for: .normal)
-        backgroundColor = .systemBlue
+        backgroundColor = AppColor.mint
         setTitleColor(.white, for: .normal)
         layer.cornerRadius = 5
     }

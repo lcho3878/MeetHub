@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         if !UserDefaultsManager.shared.token.isEmpty {
-//            window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
             window?.rootViewController = TabBarController()
+//            window?.rootViewController = UINavigationController(rootViewController: PostingViewController())
         }
         else {
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())

@@ -53,10 +53,14 @@ final class PostingViewController: BaseViewController {
             uploadButtonTap: uploadButton.rx.tap
         )
         let output = viewModel.transform(input: input)
-
+        
         output.datasOutput
             .bind(to: postingView.collectionView.rx.items(cellIdentifier: PostingCollectionViewCell.id, cellType: PostingCollectionViewCell.self)) { row, element, cell in
-                cell.mainImageView.image = UIImage(data: element)
+                let total = try? output.datasOutput.value().count
+                if row == 0 {
+                    cell.updateDataCount(total)
+                }
+                cell.configureData(element)
                 cell.deleteButton.rx.tap
                     .map { row }
                     .bind(to: deleteTap)
@@ -64,11 +68,19 @@ final class PostingViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        postingView.addButton.rx.tap
-            .bind(with: self) { owner, _ in
+        output.datasOutput
+            .bind(with: self) { owner, datas in
+                
+            }
+            .disposed(by: disposeBag)
+        
+        postingView.collectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                guard indexPath.item == 0 else { return }
                 owner.openGallery()
             }
             .disposed(by: disposeBag)
+    
     }
 
 }

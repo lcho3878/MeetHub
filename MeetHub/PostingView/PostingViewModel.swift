@@ -13,7 +13,7 @@ final class PostingViewModel: ViewModel {
     
     private let disposeBag = DisposeBag()
     
-    private var datas = [Data]()
+    private var datas: [Data] = [Data()]
   
     struct Input {
         let titleInput: ControlProperty<String>
@@ -25,18 +25,18 @@ final class PostingViewModel: ViewModel {
     }
     
     struct Output {
-        let datasOutput: PublishSubject<[Data]>
+        let datasOutput: BehaviorSubject<[Data]>
     }
     
     func transform(input: Input) -> Output {
-        let datasOutput = PublishSubject<[Data]>()
+        let datasOutput = BehaviorSubject(value: datas)
         let files = PublishSubject<[String]>()
         let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files)
         
         
         input.dataInput
             .bind(with: self, onNext: { owner, data in
-                guard owner.datas.count < 5 else { return }
+                guard owner.datas.count < 6 else { return }
                 owner.datas.append(data)
                 datasOutput.onNext(owner.datas)
             })
@@ -51,11 +51,11 @@ final class PostingViewModel: ViewModel {
         
         input.uploadButtonTap
             .flatMap { [weak self] _ in
-                guard let self, !self.datas.isEmpty else {
+                guard let self, !(self.datas.count == 1) else {
                     files.onNext([])
                     return Single<FilesModel>.never()
                 }
-                return APIManager.shared.callRequest(api: .uploadFiles(files: self.datas), type: FilesModel.self)
+                return APIManager.shared.callRequest(api: .uploadFiles(files: self.datas.filter { !$0.isEmpty }), type: FilesModel.self)
                     .catch { error in
                         return Single<FilesModel>.never()
                     }

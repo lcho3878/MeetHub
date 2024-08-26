@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import NMapsMap
 
-final class PostingView: BaseView {
+final class PostingView: UsingTextView {
     
     private let scrollView = {
         let scrollView = UIScrollView()
@@ -20,15 +20,12 @@ final class PostingView: BaseView {
     
     private let contentView = UIView()
     
-    let titleTextField = {
-        let view = UITextField()
-        view.placeholder = "제목을 입력해주세요."
-        return view
-    }()
+    let titleTextField = RoundTextField(placeholder: "제목을 입력해주세요")
     
-    let contentTextField = {
-        let view = UITextField()
-        view.placeholder = "내용을 입력해주세요"
+    lazy var contentTextField = {
+        placeholder = "컨텐츠 내용 입력하세요"
+        let view = TextView(placeholder: placeholder)
+        view.delegate = self
         return view
     }()
     
@@ -37,16 +34,10 @@ final class PostingView: BaseView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 4
         layout.itemSize = CGSize(width: 100, height: 100)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PostingCollectionViewCell.self, forCellWithReuseIdentifier: PostingCollectionViewCell.id)
-        return view
-    }()
-    
-    let addButton = {
-        let view = UIButton()
-        view.setTitle("갤러리에서 추가하기", for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -63,7 +54,6 @@ final class PostingView: BaseView {
         contentView.addSubview(titleTextField)
         contentView.addSubview(contentTextField)
         contentView.addSubview(collectionView)
-        contentView.addSubview(addButton)
         contentView.addSubview(mapView)
         
         scrollView.snp.makeConstraints {
@@ -78,13 +68,15 @@ final class PostingView: BaseView {
         }
         
         titleTextField.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(contentView)
+            $0.top.equalTo(contentView)
+            $0.horizontalEdges.equalTo(contentView).inset(24)
+            $0.height.equalTo(44)
         }
         
         contentTextField.snp.makeConstraints {
             $0.top.equalTo(titleTextField.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(titleTextField)
-            $0.height.equalTo(100)
+            $0.height.equalTo(300)
         }
         
         collectionView.snp.makeConstraints {
@@ -93,21 +85,31 @@ final class PostingView: BaseView {
             $0.height.equalTo(100)
         }
         
-        addButton.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-        }
-        
-        
         mapView.snp.makeConstraints {
-            $0.top.equalTo(addButton.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            $0.height.equalTo(400)
+            $0.top.equalTo(collectionView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(mapView.snp.width)
             $0.bottom.equalTo(contentView).inset(100)
         }
 
     }
 }
+
+//extension PostingView: UITextViewDelegate {
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if textView.textColor == UIColor.lightGray {
+//            textView.text = nil
+//            textView.textColor = .black
+//        }
+//    }
+//    
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if textView.text.isEmpty {
+//            textView.text = "내용 입력"
+//            textView.textColor = .lightGray
+//        }
+//    }
+//}
 
 
 
