@@ -72,7 +72,7 @@ final class PostDetailView: BaseView {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PostDetailViewCell.self, forCellWithReuseIdentifier: PostDetailViewCell.id)
         view.isPagingEnabled = true
-        view.backgroundColor = .clear
+        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -115,6 +115,7 @@ final class PostDetailView: BaseView {
         collectionView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(contentView)
             $0.height.lessThanOrEqualTo(height)
+            print("collectionview 레이아웃")
         }
         
         creatorProfileImageView.snp.makeConstraints {
@@ -144,7 +145,7 @@ final class PostDetailView: BaseView {
         
         mapView.snp.makeConstraints {
             $0.top.equalTo(contentTextView.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
             $0.height.equalTo(200)
             $0.bottom.equalTo(contentView).inset(100)
         }
@@ -152,6 +153,15 @@ final class PostDetailView: BaseView {
     }
     
     func configureData(_ data: Post) {
+        let height: CGFloat = data.files.isEmpty ? 0 : height
+
+        collectionView.snp.remakeConstraints {
+            $0.top.horizontalEdges.equalTo(contentView)
+            $0.height.equalTo(height)
+        }
+        
+       
+        
         titleTextField.text = data.title
         contentTextView.text = data.content
         creatorNameLabel.text = data.creator.nick
@@ -159,6 +169,7 @@ final class PostDetailView: BaseView {
             preMarker.mapView = nil
         }
         if let coord = data.content1?.asCoord() {
+            mapView.isHidden = false
             let marker = NMFMarker()
             let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
             marker.position = position
@@ -167,12 +178,15 @@ final class PostDetailView: BaseView {
             let cameraUpdate = NMFCameraUpdate(scrollTo: position)
             mapView.mapView.moveCamera(cameraUpdate)
         }
+        else {
+            mapView.isHidden = true
+        }
+        
         if let profileImage = data.creator.profileImage {
             APIManager.shared.requestImageData(image: profileImage) { [weak self] data in
                 self?.creatorProfileImageView.image = UIImage(data: data)
             }
         }
-        
-        collectionView.isHidden = data.files.isEmpty
+       
     }
 }
