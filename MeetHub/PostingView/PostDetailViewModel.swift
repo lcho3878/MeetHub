@@ -30,20 +30,20 @@ final class PostDetailViewModel: ViewModel {
                 APIManager.shared.callRequest(api: .detailPost(postID: $0), type: Post.self)
             }
             .bind(onNext: { post in
+                print("post response")
                 postOutput.onNext(post)
             })
             .disposed(by: disposeBag)
         
         postOutput
             .bind(with: self, onNext: { owner, post in
+                owner.imageDatas = []
                 for file in post.files {
                     APIManager.shared.requestImageData(image: file) { data in
                         owner.imageDatas.append(data)
                         imageDataOutput.onNext(owner.imageDatas)
-                        print("데이터추가")
                     }
                 }
-                print("데이터 전달 \(owner.imageDatas.count)")
                 
             })
             .disposed(by: disposeBag)

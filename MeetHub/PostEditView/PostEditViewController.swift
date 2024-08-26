@@ -13,6 +13,8 @@ import RxRelay
 
 final class PostEditViewController: BaseViewController {
     
+    weak var delegate: PostDetailViewControllerDelegate?
+    
     var preMarker: NMFMarker?
     
     var postID: String?
@@ -86,11 +88,12 @@ final class PostEditViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-//        output.imageDataOutput
-//            .bind(to: postEditView.collectionView.rx.items(cellIdentifier: PostDetailViewCell.id, cellType: PostDetailViewCell.self)) { row, element, cell in
-//                cell.mainImageView.image = UIImage(data: element)
-//            }
-//            .disposed(by: disposeBag)
+        output.successOutput
+            .bind(with: self) { owner, _ in
+                owner.delegate?.reloadRequest()
+                owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
         
         postEditView.addButton.rx.tap
             .bind(with: self) { owner, _ in

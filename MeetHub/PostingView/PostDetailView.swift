@@ -11,6 +11,8 @@ import NMapsMap
 
 final class PostDetailView: BaseView {
     
+    private var preMarker: NMFMarker?
+    
     private let scrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
@@ -163,12 +165,15 @@ final class PostDetailView: BaseView {
         titleTextField.text = data.title
         contentTextField.text = data.content
         creatorNameLabel.text = data.creator.nick
+        if let preMarker {
+            preMarker.mapView = nil
+        }
         if let coord = data.content1?.asCoord() {
             let marker = NMFMarker()
             let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
             marker.position = position
             marker.mapView = mapView.mapView
-            
+            preMarker = marker
             let cameraUpdate = NMFCameraUpdate(scrollTo: position)
             mapView.mapView.moveCamera(cameraUpdate)
         }

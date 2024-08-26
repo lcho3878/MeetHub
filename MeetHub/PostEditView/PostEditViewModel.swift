@@ -28,6 +28,7 @@ final class PostEditViewModel: ViewModel {
     struct Output {
         let postOutput: PublishSubject<Post>
         let imageDataOutput: PublishSubject<[Data]>
+        let successOutput: PublishSubject<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -35,6 +36,8 @@ final class PostEditViewModel: ViewModel {
         let imageDataOutput = PublishSubject<[Data]>()
         let files = PublishSubject<[String]>()
         let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files, input.postIDInput)
+        
+        let successOutput = PublishSubject<Void>()
         
         input.postIDInput
             .flatMap {
@@ -94,7 +97,6 @@ final class PostEditViewModel: ViewModel {
             .withLatestFrom(queryInput)
             .map {
                 let postQuery = PostQuery(title: $0.0, content: $0.1, content1: $0.2?.asString(), product_id: "MeetHub_meet", files: $0.3)
-                dump(postQuery)
                 let editQuery = PostEditQuery(postID: $0.4, query: postQuery)
                 return editQuery
             }
@@ -106,9 +108,14 @@ final class PostEditViewModel: ViewModel {
             }
             .bind { post in
                 print("게시글 수정 성공")
+                successOutput.onNext(())
             }
             .disposed(by: disposeBag)
         
-        return Output(postOutput: postOutput, imageDataOutput: imageDataOutput)
+        return Output(
+            postOutput: postOutput,
+            imageDataOutput: imageDataOutput,
+            successOutput: successOutput
+        )
     }
 }
