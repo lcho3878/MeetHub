@@ -13,12 +13,13 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         let homeVC = HomeViewController()
         let homeNaVC = UINavigationController(rootViewController: homeVC)
-        homeNaVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage.checkmark, tag: 0)
+        homeNaVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
         
         let profileVC = ProfileViewController()
         let profileNaVC = UINavigationController(rootViewController: profileVC)
-        profileNaVC.tabBarItem = UITabBarItem(title: "프로필", image: UIImage.checkmark, tag: 1)
+        profileNaVC.tabBarItem = UITabBarItem(title: "프로필", image: UIImage(systemName: "person.circle.fill"), tag: 1)
     
+        tabBar.tintColor = AppColor.mint
         setViewControllers([homeNaVC, profileNaVC], animated: true)
     }
     

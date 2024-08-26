@@ -77,6 +77,11 @@
 		54EB84FE2C79C3A800C0C946 /* PostEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */; };
 		54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */; };
 		54EB85022C79F2D600C0C946 /* PostDeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85012C79F2D600C0C946 /* PostDeleteResponse.swift */; };
+		54EB850B2C7C456F00C0C946 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB850A2C7C456F00C0C946 /* AppColor.swift */; };
+		54EB850D2C7C458900C0C946 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB850C2C7C458900C0C946 /* UIColor+Extension.swift */; };
+		54EB850F2C7C475500C0C946 /* AppTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB850E2C7C475500C0C946 /* AppTitle.swift */; };
+		54EB85112C7C4D8000C0C946 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85102C7C4D8000C0C946 /* Date+Extension.swift */; };
+		54EB85132C7C4FC300C0C946 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85122C7C4FC300C0C946 /* AppFont.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +154,11 @@
 		54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewModel.swift; sourceTree = "<group>"; };
 		54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditQuery.swift; sourceTree = "<group>"; };
 		54EB85012C79F2D600C0C946 /* PostDeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteResponse.swift; sourceTree = "<group>"; };
+		54EB850A2C7C456F00C0C946 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		54EB850C2C7C458900C0C946 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		54EB850E2C7C475500C0C946 /* AppTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTitle.swift; sourceTree = "<group>"; };
+		54EB85102C7C4D8000C0C946 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		54EB85122C7C4FC300C0C946 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,6 +202,7 @@
 		5434898A2C6C746E00CD877D /* MeetHub */ = {
 			isa = PBXGroup;
 			children = (
+				54EB85092C7C456400C0C946 /* Constant */,
 				54EB849C2C75D21100C0C946 /* Extension */,
 				543489C52C6F527F00CD877D /* CustomView */,
 				543489C22C6F380B00CD877D /* ResponseModel */,
@@ -314,7 +325,9 @@
 			isa = PBXGroup;
 			children = (
 				54EB849D2C75D21600C0C946 /* UIView+Extension.swift */,
+				54EB850C2C7C458900C0C946 /* UIColor+Extension.swift */,
 				54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */,
+				54EB85102C7C4D8000C0C946 /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -371,6 +384,16 @@
 				54EB84FD2C79C3A800C0C946 /* PostEditViewModel.swift */,
 			);
 			path = PostEditView;
+			sourceTree = "<group>";
+		};
+		54EB85092C7C456400C0C946 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				54EB850A2C7C456F00C0C946 /* AppColor.swift */,
+				54EB850E2C7C475500C0C946 /* AppTitle.swift */,
+				54EB85122C7C4FC300C0C946 /* AppFont.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 		8D793BBE8B49B3CB0F5EB2B9 /* Pods */ = {
@@ -531,8 +554,10 @@
 				54EB84DF2C78B41800C0C946 /* ProfileViewController.swift in Sources */,
 				54EB84E92C78E0D100C0C946 /* ProfileTableViewCell.swift in Sources */,
 				54EB84EC2C78E76100C0C946 /* ProfileEditViewController.swift in Sources */,
+				54EB850F2C7C475500C0C946 /* AppTitle.swift in Sources */,
 				543489B82C6F201000CD877D /* APIManager.swift in Sources */,
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
+				54EB85112C7C4D8000C0C946 /* Date+Extension.swift in Sources */,
 				54EB84FA2C79C39700C0C946 /* PostEditViewController.swift in Sources */,
 				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
 				543489D22C70A38C00CD877D /* RoundButton.swift in Sources */,
@@ -540,7 +565,10 @@
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
 				54EB84E52C78B83D00C0C946 /* ProfileResponseModel.swift in Sources */,
+				54EB850D2C7C458900C0C946 /* UIColor+Extension.swift in Sources */,
+				54EB850B2C7C456F00C0C946 /* AppColor.swift in Sources */,
 				543489C72C6F528800CD877D /* BaseViewController.swift in Sources */,
+				54EB85132C7C4FC300C0C946 /* AppFont.swift in Sources */,
 				54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */,
 				543489BE2C6F250100CD877D /* Header.swift in Sources */,
 				543489DC2C71F75900CD877D /* SignupModel.swift in Sources */,

@@ -16,6 +16,7 @@ final class HomeView: BaseView {
         layout.itemSize = CGSize(width: 100, height: 50)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.id)
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -23,18 +24,24 @@ final class HomeView: BaseView {
         let view = UITableView()
         view.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.id)
         view.rowHeight = 120
+        view.backgroundColor = .clear
         return view
     }()
     
     let postingButton = {
         let view = UIButton()
         view.setImage(UIImage(systemName: "plus"), for: .normal)
-        view.backgroundColor = .lightGray
+        view.setTitle("글쓰기", for: .normal)
+        view.tintColor = .white
+        view.backgroundColor = AppColor.orange
         view.layer.cornerRadius = 25
         return view
     }()
     
+    
     override func setupViews() {
+        backgroundColor = AppColor.beige
+        
         addSubview(collectionView)
         addSubview(tableView)
         addSubview(postingButton)
@@ -45,12 +52,14 @@ final class HomeView: BaseView {
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom)
+            $0.top.equalTo(collectionView.snp.bottom).offset(8)
             $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
         
         postingButton.snp.makeConstraints {
-            $0.size.equalTo(50)
+//            $0.size.equalTo(50)
+            $0.width.equalTo(100)
+            $0.height.equalTo(50)
             $0.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(16)
         }
     }

@@ -14,18 +14,21 @@ final class HomeTableViewCell: UITableViewCell {
     let mainImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .lightGray
+        imageView.layer.cornerRadius = 4
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "테스ㅡㅌ"
+        label.font = .boldSystemFont(ofSize: 18)
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "컨텐츠"
+        label.font = .systemFont(ofSize: 14)
         label.textColor = .lightGray
         return label
     }()
@@ -33,7 +36,7 @@ final class HomeTableViewCell: UITableViewCell {
     let content1Label :UILabel = {
         let view = UILabel()
         view.text = "컨텐츠1"
-        view.textColor = .lightGray
+        view.font = .systemFont(ofSize: 16)
         return view
     }()
     
@@ -52,6 +55,8 @@ final class HomeTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
+        contentView.backgroundColor = AppColor.beige
+        
         contentView.addSubview(mainImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
@@ -80,8 +85,8 @@ final class HomeTableViewCell: UITableViewCell {
 
     func configureDate(_ data: Post) {
         titleLabel.text = data.title
-        dateLabel.text = data.createdAt
-        content1Label.text = data.content1
+        dateLabel.text = "\(data.createdAt.isoStringToDate()!.dateToString(format: "yyyy일 MM월 dd일"))"
+        content1Label.text = data.content
         if let first = data.files.first {
             APIManager.shared.requestImageData(image: first) { [weak self] data in
                 self?.mainImageView.image = UIImage(data: data)

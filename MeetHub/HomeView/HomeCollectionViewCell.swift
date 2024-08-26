@@ -12,7 +12,7 @@ final class HomeCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            buttonLabel.backgroundColor = isSelected ? .lightGray : .white
+            buttonLabel.backgroundColor = isSelected ? AppColor.mint : .clear
             buttonLabel.textColor = isSelected ? .white : .black
         }
     }
@@ -23,8 +23,14 @@ final class HomeCollectionViewCell: UICollectionViewCell {
         view.textAlignment = .center
         view.layer.borderWidth = 0.2
         view.layer.borderColor = UIColor.black.cgColor
+        view.clipsToBounds = true
         return view
     }()
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        buttonLabel.makeRound()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
