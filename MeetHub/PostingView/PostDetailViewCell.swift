@@ -13,9 +13,15 @@ final class PostDetailViewCell: UICollectionViewCell {
     let mainImageView = {
         let view = UIImageView()
         view.backgroundColor = .lightGray
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
+    private let fakeView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.beige
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,9 +34,16 @@ final class PostDetailViewCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(mainImageView)
+        mainImageView.addSubview(fakeView)
         
         mainImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        fakeView.snp.makeConstraints {
+            $0.height.equalTo(8)
+            $0.bottom.horizontalEdges.equalToSuperview()
+        }
+        
     }
 }

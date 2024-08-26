@@ -71,6 +71,7 @@ final class PostDetailViewController: BaseViewController {
             .bind(with: self) { owner, post in
                 owner.postDetailView.configureData(post)
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
+                owner.deleteButton.rx.isHidden.onNext(!post.isMyPost)
             }
             .disposed(by: disposeBag)
         

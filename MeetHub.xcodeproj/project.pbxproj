@@ -85,6 +85,7 @@
 		54EB85152C7C57B600C0C946 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85142C7C57B600C0C946 /* RoundTextField.swift */; };
 		54EB85192C7C629A00C0C946 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85182C7C629A00C0C946 /* TextView.swift */; };
 		54EB851B2C7C69A500C0C946 /* UsingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB851A2C7C69A500C0C946 /* UsingTextView.swift */; };
+		54EB851D2C7C971B00C0C946 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 		54EB85142C7C57B600C0C946 /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		54EB85182C7C629A00C0C946 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		54EB851A2C7C69A500C0C946 /* UsingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingTextView.swift; sourceTree = "<group>"; };
+		54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -337,6 +339,7 @@
 				54EB850C2C7C458900C0C946 /* UIColor+Extension.swift */,
 				54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */,
 				54EB85102C7C4D8000C0C946 /* Date+Extension.swift */,
+				54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				54EB84F22C78EF2C00C0C946 /* ProfileEditQuery.swift in Sources */,
 				543489CC2C709F2000CD877D /* SignupViewController.swift in Sources */,
 				54EB84CA2C784F1000C0C946 /* PostQuery.swift in Sources */,
+				54EB851D2C7C971B00C0C946 /* UICollectionView+Extension.swift in Sources */,
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
 				5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,

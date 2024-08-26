@@ -11,6 +11,8 @@ import NMapsMap
 
 final class PostDetailView: BaseView {
     
+    private let height: CGFloat = 250
+    
     private var preMarker: NMFMarker?
     
     private let scrollView = {
@@ -55,30 +57,25 @@ final class PostDetailView: BaseView {
         return view
     }()
     
-    let contentTextField = {
-        let view = UITextField()
-        view.placeholder = "내용을 입력해주세요"
-        view.isEnabled = false
+    let contentTextView = {
+        let view = UITextView()
+        view.backgroundColor = .clear
+        view.isEditable = false
+        view.isSelectable = false
+        view.isScrollEnabled = false
         return view
     }()
     
-    let collectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 4
-        layout.itemSize = CGSize(width: 100, height: 100)
+    lazy var collectionView = {
+        let size = CGSize(width: UIScreen.main.bounds.width, height: height)
+        let layout = UICollectionView.appCollectionViewLayoutWithNoInset(size: size)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(PostDetailViewCell.self, forCellWithReuseIdentifier: PostDetailViewCell.id)
+        view.isPagingEnabled = true
+        view.backgroundColor = .clear
         return view
     }()
     
-    let addButton = {
-        let view = UIButton()
-        view.setTitle("갤러리에서 추가하기", for: .normal)
-        view.setTitleColor(.systemBlue, for: .normal)
-        view.backgroundColor = .white
-        return view
-    }()
     
     lazy var mapView = {
         let view = NMFNaverMapView(frame: frame)
@@ -100,9 +97,8 @@ final class PostDetailView: BaseView {
         contentView.addSubview(creatorStackView)
         creatorStackView.addArrangedSubview(creatorNameLabel)
         creatorStackView.addArrangedSubview(createAtLabel)
-        contentView.addSubview(contentTextField)
+        contentView.addSubview(contentTextView)
         contentView.addSubview(collectionView)
-        contentView.addSubview(addButton)
         contentView.addSubview(mapView)
         
         scrollView.snp.makeConstraints {
@@ -116,9 +112,14 @@ final class PostDetailView: BaseView {
             $0.width.equalTo(scrollView.frameLayoutGuide)
         }
         
+        collectionView.snp.makeConstraints {
+            $0.top.horizontalEdges.equalTo(contentView)
+            $0.height.lessThanOrEqualTo(height)
+        }
+        
         creatorProfileImageView.snp.makeConstraints {
-            $0.top.equalTo(contentView)
-            $0.leading.equalTo(titleTextField).offset(8)
+            $0.top.equalTo(collectionView.snp.bottom).offset(8)
+            $0.leading.equalTo(contentView).offset(8)
             $0.size.equalTo(50)
         }
         
@@ -134,28 +135,17 @@ final class PostDetailView: BaseView {
         }
 
         
-        contentTextField.snp.makeConstraints {
+        contentTextView.snp.makeConstraints {
             $0.top.equalTo(titleTextField.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(titleTextField)
-            $0.height.equalTo(100)
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(contentTextField.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            $0.height.equalTo(100)
-        }
-        
-        addButton.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            $0.height.greaterThanOrEqualTo(40)
         }
         
         
         mapView.snp.makeConstraints {
-            $0.top.equalTo(addButton.snp.bottom).offset(8)
+            $0.top.equalTo(contentTextView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            $0.height.equalTo(400)
+            $0.height.equalTo(200)
             $0.bottom.equalTo(contentView).inset(100)
         }
 
@@ -163,7 +153,7 @@ final class PostDetailView: BaseView {
     
     func configureData(_ data: Post) {
         titleTextField.text = data.title
-        contentTextField.text = data.content
+        contentTextView.text = data.content
         creatorNameLabel.text = data.creator.nick
         if let preMarker {
             preMarker.mapView = nil
@@ -182,5 +172,7 @@ final class PostDetailView: BaseView {
                 self?.creatorProfileImageView.image = UIImage(data: data)
             }
         }
+        
+        collectionView.isHidden = data.files.isEmpty
     }
 }
