@@ -14,6 +14,8 @@ import PhotosUI
 
 final class PostingViewController: BaseViewController {
     
+    weak var delegate: HomeViewControllerDelegate?
+    
     var preMarker: NMFMarker?
     
     let markerInput = BehaviorSubject<Coord?>(value: nil)
@@ -68,9 +70,10 @@ final class PostingViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.datasOutput
-            .bind(with: self) { owner, datas in
-                
+        output.successOutput
+            .bind(with: self) { owner, _ in
+                owner.delegate?.reloadRequest()
+                owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
         

@@ -9,6 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol HomeViewControllerDelegate: AnyObject {
+    func reloadRequest() 
+}
+
 final class HomeViewController: BaseViewController {
     
     private let homeView = HomeView()
@@ -16,6 +20,8 @@ final class HomeViewController: BaseViewController {
     private let viewModel = HomeViewModel()
     
     private let disposeBag = DisposeBag()
+    
+    let reloadInput = PublishSubject<Void>()
     
     override func loadView() {
         view = homeView
@@ -33,7 +39,12 @@ final class HomeViewController: BaseViewController {
         let selectedIndex = BehaviorSubject(value: 0)
         let indexPathInput = PublishSubject<[IndexPath]>()
         
-        let input = HomeViewModel.Input(indexInput: selectedIndex, indexPathInput: indexPathInput)
+        
+        let input = HomeViewModel.Input(
+            indexInput: selectedIndex,
+            indexPathInput: indexPathInput,
+            reloadInput: reloadInput
+        )
         let output = viewModel.transform(input: input)
         
         homeView.collectionView.rx.itemSelected
@@ -47,6 +58,7 @@ final class HomeViewController: BaseViewController {
             .bind(with: self) { owner, post in
                let detailVC = PostDetailViewController()
                 detailVC.postID = post.post_id
+                detailVC.delegate = owner
                 owner.navigationController?.pushViewController(detailVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -82,9 +94,16 @@ final class HomeViewController: BaseViewController {
         homeView.postingButton.rx.tap
             .bind(with: self) { owner, _ in
                 let postingVC = PostingViewController()
+                postingVC.delegate = owner
                 owner.navigationController?.pushViewController(postingVC, animated: true)
             }
             .disposed(by: disposeBag)
     }
     
+}
+
+extension HomeViewController: HomeViewControllerDelegate {
+    func reloadRequest() {
+        reloadInput.onNext(())
+    }
 }

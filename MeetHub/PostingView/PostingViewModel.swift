@@ -26,10 +26,13 @@ final class PostingViewModel: ViewModel {
     
     struct Output {
         let datasOutput: BehaviorSubject<[Data]>
+        let successOutput: PublishSubject<Void>
     }
     
     func transform(input: Input) -> Output {
         let datasOutput = BehaviorSubject(value: datas)
+        let successOutput = PublishSubject<Void>()
+        
         let files = PublishSubject<[String]>()
         let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files)
         
@@ -78,10 +81,14 @@ final class PostingViewModel: ViewModel {
             }
             .bind { post in
                 print("게시글 업로드 성공")
+                successOutput.onNext(())
             }
             .disposed(by: disposeBag)
 
-        return Output(datasOutput: datasOutput)
+        return Output(
+            datasOutput: datasOutput,
+            successOutput: successOutput
+        )
     }
     
 }

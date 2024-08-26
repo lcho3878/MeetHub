@@ -12,6 +12,8 @@ final class PostDetailViewController: BaseViewController {
     
     var postID: String?
     
+    weak var delegate: HomeViewControllerDelegate?
+    
     private let postDetailView = PostDetailView()
     
     private let viewModel = PostDetailViewModel()
@@ -51,6 +53,8 @@ final class PostDetailViewController: BaseViewController {
         deleteButton.rx.tap
             .bind(with: self) { owner, _ in
                 APIManager.shared.deletePost(postID: postID)
+                owner.delegate?.reloadRequest()
+                owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
         
