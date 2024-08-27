@@ -148,9 +148,10 @@ extension Router: TargetType {
         case .editProfile(let query):
             let multipart = MultipartFormData()
             let nick = query.nick.data(using: .utf8) ?? Data()
-            let image = query.profile ?? Data()
             multipart.append(nick, withName: "nick")
-            multipart.append(image, withName: "profile", fileName: "Image.png", mimeType: "image/png")
+            if let image = query.profile {
+                multipart.append(image, withName: "profile", fileName: "Image.png", mimeType: "image/png")
+            }
             return multipart
         case .uploadFiles(let files):
             let multipart = MultipartFormData()
