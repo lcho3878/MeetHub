@@ -229,8 +229,8 @@
 				54EB84F82C79C38400C0C946 /* PostEditView */,
 				54EB84DD2C78B40700C0C946 /* ProfileView */,
 				54EB84EA2C78E74E00C0C946 /* ProfileEditView */,
+				54EB85342C7E110900C0C946 /* MapView */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
-				54EB85322C7DBD4F00C0C946 /* MapviewController.swift */,
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489992C6C747000CD877D /* Info.plist */,
 				54EB84C72C77A70D00C0C946 /* APIKey.swift */,
@@ -409,6 +409,14 @@
 				54EB85122C7C4FC300C0C946 /* AppFont.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		54EB85342C7E110900C0C946 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				54EB85322C7DBD4F00C0C946 /* MapviewController.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		8D793BBE8B49B3CB0F5EB2B9 /* Pods */ = {

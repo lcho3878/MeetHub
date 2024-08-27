@@ -10,17 +10,20 @@ import CoreLocation
 import NMapsMap
 import RxSwift
 import RxCocoa
+//import RxGesture
 import PhotosUI
+
+protocol MarkerUpdateDelegate: AnyObject {
+    func updateMarker(_ coord: Coord?)
+}
 
 final class PostingViewController: BaseViewController {
     
     weak var delegate: HomeViewControllerDelegate?
-    
-    var preMarker: NMFMarker?
-    
+        
     let markerInput = BehaviorSubject<Coord?>(value: nil)
     
-    let uploadButton = UIBarButtonItem(title: "업로드", style: .plain, target: self, action: nil)
+    lazy var uploadButton = UIBarButtonItem(title: "업로드", style: .plain, target: self, action: nil)
     
     private let postingView = PostingView()
     
@@ -39,7 +42,7 @@ final class PostingViewController: BaseViewController {
         super.viewDidLoad()
         print("PostingVC Load")
         CLLocationManager().requestWhenInUseAuthorization()
-        postingView.mapView.mapView.touchDelegate = self
+//        postingView.mapView.mapView.touchDelegate = self
         navigationItem.rightBarButtonItem = uploadButton
         bind()
     }
@@ -83,6 +86,16 @@ final class PostingViewController: BaseViewController {
                 owner.openGallery()
             }
             .disposed(by: disposeBag)
+        
+        postingView.mapButton.rx.tap
+            .bind(with: self, onNext: { owner, _ in
+                let mapVC = MapviewController()
+                mapVC.viewType = .other
+                mapVC.delegate = owner
+                mapVC.coord = try? owner.markerInput.value()
+                owner.navigationController?.pushViewController(mapVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     
     }
 
@@ -116,19 +129,31 @@ extension PostingViewController: PHPickerViewControllerDelegate {
     }
 }
 
-extension PostingViewController: NMFMapViewTouchDelegate {
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        if let preMarker {
-            preMarker.mapView = nil
-        }
-        let marker = NMFMarker()
-        preMarker = marker
-        marker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
-        let coord = Coord(lat: latlng.lat, lon: latlng.lng)
+extension PostingViewController: MarkerUpdateDelegate {
+    func updateMarker(_ coord: Coord?) {
         markerInput.onNext(coord)
-        marker.mapView = mapView
+        if let coord {
+            postingView.mapButton.rx.title()
+                .onNext("지도 수정하기")
+        }
     }
+    
+    
 }
+
+//extension PostingViewController: NMFMapViewTouchDelegate {
+//    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+//        if let preMarker {
+//            preMarker.mapView = nil
+//        }
+//        let marker = NMFMarker()
+//        preMarker = marker
+//        marker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
+//        let coord = Coord(lat: latlng.lat, lon: latlng.lng)
+//        markerInput.onNext(coord)
+//        marker.mapView = mapView
+//    }
+//}
 
 struct Coord {
     let lat: Double

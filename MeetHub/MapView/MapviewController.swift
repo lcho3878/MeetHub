@@ -16,11 +16,22 @@ final class MapviewController: BaseViewController {
         case other
     }
     
+    weak var delegate: MarkerUpdateDelegate?
+    
     var coord: Coord?
     
     var viewType: ViewType?
     
-    let mapView = NMFNaverMapView()
+    var preMarker: NMFMarker?
+    
+    let mapView = {
+        let view = NMFNaverMapView()
+        view.showLocationButton = true
+        view.mapView.positionMode = .compass
+        return view
+    }()
+    
+    private lazy var rightBarButton = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(rightBarButtonTap))
     
     private let disposeBag = DisposeBag()
     
@@ -36,21 +47,29 @@ final class MapviewController: BaseViewController {
             $0.edges.equalToSuperview()
         }
         configureMapView(coord)
-        
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
+}
+
+extension MapviewController {
+    @objc
+    private func rightBarButtonTap() {
+        delegate?.updateMarker(coord)
+        navigationController?.popViewController(animated: true)
     }
 }
 
 extension MapviewController: NMFMapViewTouchDelegate {
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-//        if let preMarker {
-//            preMarker.mapView = nil
-//        }
-//        let marker = NMFMarker()
-//        preMarker = marker
-//        marker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
-//        let coord = Coord(lat: latlng.lat, lon: latlng.lng)
-//        markerInput.onNext(coord)
-//        marker.mapView = mapView
+        if let preMarker {
+            preMarker.mapView = nil
+        }
+        let marker = NMFMarker()
+        preMarker = marker
+        let coord = Coord(lat: latlng.lat, lon: latlng.lng)
+        self.coord = coord
+        marker.position = NMGLatLng(lat: coord.lat, lng: coord.lon)
+        marker.mapView = mapView
         
         print("수정 이벤트")
     }
@@ -61,9 +80,12 @@ extension MapviewController: NMFMapViewTouchDelegate {
             let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
             marker.position = position
             marker.mapView = mapView.mapView
-//            preMarker = marker
+            preMarker = marker
             let cameraUpdate = NMFCameraUpdate(scrollTo: position)
             mapView.mapView.moveCamera(cameraUpdate)
+        }
+        else {
+            
         }
     }
 }
