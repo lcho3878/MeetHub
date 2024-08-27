@@ -50,10 +50,8 @@ final class PostDetailView: BaseView {
         return view
     }()
     
-    let titleTextField = {
-        let view = UITextField()
-        view.placeholder = "제목을 입력해주세요."
-        view.isEnabled = false
+    let titleLabel = {
+        let view = UILabel()
         return view
     }()
     
@@ -92,7 +90,7 @@ final class PostDetailView: BaseView {
     override func setupViews() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(titleTextField)
+        contentView.addSubview(titleLabel)
         contentView.addSubview(creatorProfileImageView)
         contentView.addSubview(creatorStackView)
         creatorStackView.addArrangedSubview(creatorNameLabel)
@@ -130,15 +128,15 @@ final class PostDetailView: BaseView {
             $0.trailing.equalToSuperview()
         }
         
-        titleTextField.snp.makeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.top.equalTo(creatorStackView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(contentView)
         }
 
         
         contentTextView.snp.makeConstraints {
-            $0.top.equalTo(titleTextField.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(titleTextField)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(titleLabel)
             $0.height.greaterThanOrEqualTo(40)
         }
         
@@ -162,7 +160,7 @@ final class PostDetailView: BaseView {
         
        
         
-        titleTextField.text = data.title
+        titleLabel.text = data.title
         contentTextView.text = data.content
         creatorNameLabel.text = data.creator.nick
         if let preMarker {
