@@ -52,6 +52,7 @@ final class PostDetailView: BaseView {
     
     let titleLabel = {
         let view = UILabel()
+        view.font = .boldSystemFont(ofSize: 20)
         return view
     }()
     
@@ -77,8 +78,10 @@ final class PostDetailView: BaseView {
     
     lazy var mapView = {
         let view = NMFNaverMapView(frame: frame)
-        view.showLocationButton = true
+//        view.showLocationButton = true
+        view.showZoomControls = false
         view.mapView.positionMode = .compass
+        view.layer.cornerRadius = 8
         return view
     }()
     
@@ -130,7 +133,8 @@ final class PostDetailView: BaseView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(creatorStackView.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(contentView)
+            $0.leading.equalTo(creatorProfileImageView).offset(8)
+            $0.trailing.equalTo(contentView)
         }
 
         
@@ -144,7 +148,7 @@ final class PostDetailView: BaseView {
         mapView.snp.makeConstraints {
             $0.top.equalTo(contentTextView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
-            $0.height.equalTo(200)
+            $0.height.equalTo(100)
             $0.bottom.equalTo(contentView).inset(100)
         }
 
@@ -158,11 +162,12 @@ final class PostDetailView: BaseView {
             $0.height.equalTo(height)
         }
         
-       
-        
         titleLabel.text = data.title
         contentTextView.text = data.content
         creatorNameLabel.text = data.creator.nick
+        if let date = data.dateLabelText {
+            createAtLabel.text = date + " 게시됨"
+        }
         if let preMarker {
             preMarker.mapView = nil
         }

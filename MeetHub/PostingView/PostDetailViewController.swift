@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxGesture
 
 protocol PostDetailViewControllerDelegate: AnyObject {
     func reloadRequest()
@@ -15,6 +16,8 @@ protocol PostDetailViewControllerDelegate: AnyObject {
 final class PostDetailViewController: BaseViewController {
     
     var postID: String?
+    
+    var coord: Coord?
     
     weak var delegate: HomeViewControllerDelegate?
     
@@ -50,6 +53,16 @@ final class PostDetailViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         postIDInput.onNext(postID)
         
+        postDetailView.mapView.mapView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self, onNext: { owner, _ in
+                let mapVC = MapviewController()
+                mapVC.coord = owner.coord
+                mapVC.viewType = .detail
+                owner.navigationController?.pushViewController(mapVC, animated: true)
+            })
+        .disposed(by: disposeBag)
+        
         modifyButton.rx.tap
             .bind(with: self) { owner, _ in
                 let editVC = PostEditViewController()
@@ -72,6 +85,7 @@ final class PostDetailViewController: BaseViewController {
                 owner.postDetailView.configureData(post)
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
                 owner.deleteButton.rx.isHidden.onNext(!post.isMyPost)
+                owner.coord = post.content1?.asCoord()
             }
             .disposed(by: disposeBag)
         
@@ -92,3 +106,4 @@ extension PostDetailViewController: PostDetailViewControllerDelegate {
         delegate?.reloadRequest()
     }
 }
+

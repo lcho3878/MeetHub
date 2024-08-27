@@ -86,6 +86,7 @@
 		54EB85192C7C629A00C0C946 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85182C7C629A00C0C946 /* TextView.swift */; };
 		54EB851B2C7C69A500C0C946 /* UsingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB851A2C7C69A500C0C946 /* UsingTextView.swift */; };
 		54EB851D2C7C971B00C0C946 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */; };
+		54EB85332C7DBD4F00C0C946 /* MapviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85322C7DBD4F00C0C946 /* MapviewController.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +168,7 @@
 		54EB85182C7C629A00C0C946 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		54EB851A2C7C69A500C0C946 /* UsingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingTextView.swift; sourceTree = "<group>"; };
 		54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		54EB85322C7DBD4F00C0C946 /* MapviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapviewController.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -228,6 +230,7 @@
 				54EB84DD2C78B40700C0C946 /* ProfileView */,
 				54EB84EA2C78E74E00C0C946 /* ProfileEditView */,
 				543489962C6C747000CD877D /* LaunchScreen.storyboard */,
+				54EB85322C7DBD4F00C0C946 /* MapviewController.swift */,
 				543489942C6C747000CD877D /* Assets.xcassets */,
 				543489992C6C747000CD877D /* Info.plist */,
 				54EB84C72C77A70D00C0C946 /* APIKey.swift */,
@@ -585,6 +588,7 @@
 				543489BE2C6F250100CD877D /* Header.swift in Sources */,
 				543489DC2C71F75900CD877D /* SignupModel.swift in Sources */,
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
+				54EB85332C7DBD4F00C0C946 /* MapviewController.swift in Sources */,
 				54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */,

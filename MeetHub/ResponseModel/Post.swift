@@ -30,4 +30,8 @@ struct Post: Decodable {
     var isMyPost: Bool {
         return creator.user_id == UserDefaultsManager.shared.userID
     }
+    
+    var dateLabelText: String? {
+        return createdAt.isoStringToDate()?.dateToString(format: "yyyy일 MM월 dd일")
+    }
 }

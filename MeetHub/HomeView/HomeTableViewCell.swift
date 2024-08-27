@@ -85,7 +85,7 @@ final class HomeTableViewCell: UITableViewCell {
 
     func configureDate(_ data: Post) {
         titleLabel.text = data.title
-        dateLabel.text = "\(data.createdAt.isoStringToDate()!.dateToString(format: "yyyy일 MM월 dd일"))"
+        dateLabel.text = data.dateLabelText
         content1Label.text = data.content
         if let first = data.files.first {
             APIManager.shared.requestImageData(image: first) { [weak self] data in
