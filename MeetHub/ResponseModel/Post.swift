@@ -20,6 +20,7 @@ struct Post: Decodable {
     let creator: Creator
     let createdAt: String
     let files: [String]
+    let likes: [String]
     
     struct Creator: Decodable {
         let user_id: String
@@ -33,5 +34,9 @@ struct Post: Decodable {
     
     var dateLabelText: String? {
         return createdAt.isoStringToDate()?.dateToString(format: "yyyy일 MM월 dd일")
+    }
+    
+    var isLiked: Bool {
+        return likes.contains(UserDefaultsManager.shared.userID)
     }
 }

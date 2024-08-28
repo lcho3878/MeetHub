@@ -78,10 +78,14 @@ final class PostDetailView: BaseView {
     
     lazy var mapView = {
         let view = NMFNaverMapView(frame: frame)
-//        view.showLocationButton = true
         view.showZoomControls = false
         view.mapView.positionMode = .compass
         view.layer.cornerRadius = 8
+        return view
+    }()
+    
+    let likeButton = {
+        let view = UIButton()
         return view
     }()
     
@@ -101,6 +105,7 @@ final class PostDetailView: BaseView {
         contentView.addSubview(contentTextView)
         contentView.addSubview(collectionView)
         contentView.addSubview(mapView)
+        contentView.addSubview(likeButton)
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -151,7 +156,11 @@ final class PostDetailView: BaseView {
             $0.height.equalTo(100)
             $0.bottom.equalTo(contentView).inset(100)
         }
-
+        
+        likeButton.snp.makeConstraints {
+            $0.top.equalTo(mapView.snp.bottom).offset(8)
+            $0.size.equalTo(20)
+        }
     }
     
     func configureData(_ data: Post) {
@@ -190,6 +199,12 @@ final class PostDetailView: BaseView {
                 self?.creatorProfileImageView.image = UIImage(data: data)
             }
         }
-       
+        updateLikeButton(data.isLiked)
+    }
+    
+    func updateLikeButton(_ isLiked: Bool) {
+        let imageName = isLiked ? "heart.fill" : "heart"
+        let image = UIImage(systemName: imageName)
+        likeButton.setImage(image, for: .normal)
     }
 }

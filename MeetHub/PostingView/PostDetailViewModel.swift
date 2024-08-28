@@ -15,24 +15,43 @@ final class PostDetailViewModel: ViewModel {
     
     struct Input {
         let postIDInput: Observable<String>
+        let likeButtonTap: PublishSubject<Bool>
     }
     
     struct Output {
         let postOutput: PublishSubject<Post>
         let imageDataOutput: PublishSubject<[Data]>
+        let likeStatusOutput: PublishSubject<Bool>
     }
     
     func transform(input: Input) -> Output {
         let postOutput = PublishSubject<Post>()
         let imageDataOutput = PublishSubject<[Data]>()
-        input.postIDInput
+        let likeStatusOutput = PublishSubject<Bool>()
+        
+        let postIDInput = input.postIDInput.share()
+        
+        postIDInput
             .flatMap {
                 APIManager.shared.callRequest(api: .detailPost(postID: $0), type: Post.self)
             }
-            .bind(onNext: { post in
-                print("post response")
+            .bind(with: self, onNext: { owner, post in
                 postOutput.onNext(post)
+                likeStatusOutput.onNext(post.isLiked)
             })
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(postIDInput, input.likeButtonTap)
+            .map { postID, isLike in
+                LikeQuery(postID: postID, body: LikeQuery.Body(like_status: isLike))
+            }
+            .flatMap {
+                APIManager.shared.callRequest(api: .likePost(query: $0), type: LikeQuery.Body.self)
+            }
+            .bind(onNext: { value in
+                likeStatusOutput.onNext(value.like_status)
+            })
+            
             .disposed(by: disposeBag)
         
         postOutput
@@ -48,6 +67,10 @@ final class PostDetailViewModel: ViewModel {
             })
             .disposed(by: disposeBag)
         
-        return Output(postOutput: postOutput, imageDataOutput: imageDataOutput)
+        return Output(
+            postOutput: postOutput, 
+            imageDataOutput: imageDataOutput,
+            likeStatusOutput: likeStatusOutput
+        )
     }
 }

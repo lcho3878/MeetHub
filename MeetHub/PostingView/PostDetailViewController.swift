@@ -28,7 +28,7 @@ final class PostDetailViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     private let postIDInput = PublishSubject<String>()
-    
+        
     private lazy var modifyButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
     
     private lazy var deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: nil)
@@ -47,9 +47,9 @@ final class PostDetailViewController: BaseViewController {
     
     private func bind() {
         guard let postID else { return }
+        let likeButtonTap = PublishSubject<Bool>()
         
-        
-        let input = PostDetailViewModel.Input(postIDInput: postIDInput)
+        let input = PostDetailViewModel.Input(postIDInput: postIDInput, likeButtonTap: likeButtonTap)
         let output = viewModel.transform(input: input)
         postIDInput.onNext(postID)
         
@@ -86,6 +86,8 @@ final class PostDetailViewController: BaseViewController {
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
                 owner.deleteButton.rx.isHidden.onNext(!post.isMyPost)
                 owner.coord = post.content1?.asCoord()
+                print(post.post_id)
+                print(post.isLiked)
             }
             .disposed(by: disposeBag)
         
@@ -95,7 +97,19 @@ final class PostDetailViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-
+        output.likeStatusOutput
+            .bind(with: self) { owner, isLike in
+                owner.postDetailView.updateLikeButton(isLike)
+            }
+            .disposed(by: disposeBag)
+        
+        postDetailView.likeButton.rx.tap
+            .withLatestFrom(output.likeStatusOutput)
+            .bind(onNext: { isLike in
+                print("좋아요 값 변경")
+                likeButtonTap.onNext(isLike ? false : true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
