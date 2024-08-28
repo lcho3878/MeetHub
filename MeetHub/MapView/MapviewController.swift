@@ -76,6 +76,7 @@ extension MapviewController: NMFMapViewTouchDelegate {
     
     private func configureMapView(_ coord: Coord?) {
         if let coord {
+        print("잘 넘어옴")
             let marker = NMFMarker()
             let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
             marker.position = position

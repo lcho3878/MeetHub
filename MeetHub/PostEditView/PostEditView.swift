@@ -42,10 +42,12 @@ final class PostEditView: UsingTextView {
         return view
     }()
     
-    lazy var mapView = {
-        let view = NMFNaverMapView(frame: frame)
-        view.showLocationButton = true
-        view.mapView.positionMode = .compass
+    lazy var mapButton = {
+        let view = RoundButton(title: "지도 추가하기")
+        view.backgroundColor = .clear
+        view.setTitleColor(AppColor.mint, for: .normal)
+        view.layer.borderColor = AppColor.sage.cgColor
+        view.layer.borderWidth = 1
         return view
     }()
     
@@ -55,7 +57,7 @@ final class PostEditView: UsingTextView {
         contentView.addSubview(titleTextField)
         contentView.addSubview(contentTextView)
         contentView.addSubview(collectionView)
-        contentView.addSubview(mapView)
+        contentView.addSubview(mapButton)
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -86,10 +88,10 @@ final class PostEditView: UsingTextView {
             $0.height.equalTo(100)
         }
         
-        mapView.snp.makeConstraints {
+        mapButton.snp.makeConstraints {
             $0.top.equalTo(collectionView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
-            $0.height.equalTo(mapView.snp.width)
+            $0.height.equalTo(50)
             $0.bottom.equalTo(contentView).inset(100)
         }
 

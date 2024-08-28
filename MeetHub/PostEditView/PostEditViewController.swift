@@ -40,7 +40,6 @@ final class PostEditViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CLLocationManager().requestWhenInUseAuthorization()
-        postEditView.mapView.mapView.touchDelegate = self
         navigationItem.rightBarButtonItem = modifyButton
         bind()
     }
@@ -54,7 +53,7 @@ final class PostEditViewController: BaseViewController {
             titleInput: postEditView.titleTextField.rx.text.orEmpty,
             contentInput: postEditView.contentTextView.rx.text.orEmpty,
             markerInput: markerInput,
-            dataInput: dataInput, 
+            dataInput: dataInput,
             deleteTap: deleteTap,
             modifyButtonTap: modifyButton.rx.tap
         )
@@ -78,18 +77,8 @@ final class PostEditViewController: BaseViewController {
             .bind(with: self) { owner, post in
                 owner.postEditView.configureData(post)
                 owner.postEditView.titleTextField.sendActions(for: .editingChanged)
-                
-//                owner.postEditView.contentTextView.sendActions(for: .editingChanged)
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
-                if let coord = post.content1?.asCoord() {
-                    let marker = NMFMarker()
-                    let position = NMGLatLng(lat: coord.lat, lng: coord.lon)
-                    marker.position = position
-                    marker.mapView = owner.postEditView.mapView.mapView
-                    owner.preMarker = marker
-                    let cameraUpdate = NMFCameraUpdate(scrollTo: position)
-                    owner.postEditView.mapView.mapView.moveCamera(cameraUpdate)
-                }
+                owner.markerInput.onNext(post.content1?.asCoord())
             }
             .disposed(by: disposeBag)
         
@@ -107,6 +96,15 @@ final class PostEditViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        postEditView.mapButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let mapVC = MapviewController()
+                mapVC.viewType = .other
+                mapVC.delegate = owner
+                mapVC.coord = try? owner.markerInput.value()
+                owner.navigationController?.pushViewController(mapVC, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -138,16 +136,14 @@ extension PostEditViewController: PHPickerViewControllerDelegate {
     }
 }
 
-extension PostEditViewController: NMFMapViewTouchDelegate {
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        if let preMarker {
-            preMarker.mapView = nil
-        }
-        let marker = NMFMarker()
-        preMarker = marker
-        marker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
-        let coord = Coord(lat: latlng.lat, lon: latlng.lng)
+extension PostEditViewController: MarkerUpdateDelegate {
+    func updateMarker(_ coord: Coord?) {
         markerInput.onNext(coord)
-        marker.mapView = mapView
+//        if let coord {
+//            postEditView.mapButton.rx.title()
+//                .onNext("지도 업데이트 완료")
+//        }
     }
+    
+    
 }
