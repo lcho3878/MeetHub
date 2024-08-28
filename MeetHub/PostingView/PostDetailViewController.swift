@@ -33,8 +33,6 @@ final class PostDetailViewController: BaseViewController {
     
     private lazy var deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: nil)
     
-    
-    
     override func loadView() {
         view = postDetailView
     }

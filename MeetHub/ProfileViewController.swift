@@ -24,6 +24,11 @@ final class ProfileViewController: BaseViewController {
         view = profileView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()

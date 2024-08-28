@@ -13,6 +13,11 @@ class BaseViewController: UIViewController {
         configureBaseView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     private func configureBaseView() {
         navigationItem.backButtonDisplayMode = .minimal
     }

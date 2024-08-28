@@ -62,6 +62,7 @@ final class PostDetailView: BaseView {
         view.isEditable = false
         view.isSelectable = false
         view.isScrollEnabled = false
+        view.font = .systemFont(ofSize: 17)
         return view
     }()
     
@@ -86,6 +87,17 @@ final class PostDetailView: BaseView {
     
     let likeButton = {
         let view = UIButton()
+        view.backgroundColor = AppColor.orange
+        view.layer.cornerRadius = 4
+        return view
+    }()
+    
+    let recommendButton = {
+        let view = RoundButton(title: "도움이 되었어요!")
+        view.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+        #warning("좋아요 2로 추천 기능 구현")
+        view.backgroundColor = AppColor.orange
+        view.setTitleColor(.white, for: .normal)
         return view
     }()
     
@@ -105,7 +117,8 @@ final class PostDetailView: BaseView {
         contentView.addSubview(contentTextView)
         contentView.addSubview(collectionView)
         contentView.addSubview(mapView)
-        contentView.addSubview(likeButton)
+        addSubview(likeButton)
+        addSubview(recommendButton)
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -121,7 +134,6 @@ final class PostDetailView: BaseView {
         collectionView.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(contentView)
             $0.height.lessThanOrEqualTo(height)
-            print("collectionview 레이아웃")
         }
         
         creatorProfileImageView.snp.makeConstraints {
@@ -141,7 +153,6 @@ final class PostDetailView: BaseView {
             $0.leading.equalTo(creatorProfileImageView).offset(8)
             $0.trailing.equalTo(contentView)
         }
-
         
         contentTextView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
@@ -153,14 +164,23 @@ final class PostDetailView: BaseView {
         mapView.snp.makeConstraints {
             $0.top.equalTo(contentTextView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
-            $0.height.equalTo(100)
+            $0.height.equalTo(200)
             $0.bottom.equalTo(contentView).inset(100)
         }
         
         likeButton.snp.makeConstraints {
-            $0.top.equalTo(mapView.snp.bottom).offset(8)
-            $0.size.equalTo(20)
+            $0.size.equalTo(50)
+            $0.leading.equalTo(mapView)
+            $0.bottom.equalTo(self).inset(32)
         }
+        
+        recommendButton.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.leading.equalTo(likeButton.snp.trailing).offset(8)
+            $0.trailing.equalTo(mapView)
+            $0.centerY.equalTo(likeButton)
+        }
+        
     }
     
     func configureData(_ data: Post) {

@@ -95,7 +95,7 @@ final class APIManager {
                         completion(.success(()))
                         
                     case .failure(let error):
-//                        print("Error발생: \(response.response?.statusCode)")
+                        print("토큰 갱신 Error발생: \(response.response?.statusCode)")
                         completion(.failure(error))
                     }
                 }
