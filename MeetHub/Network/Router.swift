@@ -24,18 +24,24 @@ enum Router {
     case editPost(query: PostEditQuery)
     case deletePost(postID: String)
     case likePost(query: LikeQuery)
+    case search(query: String)
 }
 
 extension Router: TargetType {
     var baseURL: String {
-        return Key.baseURL + "v1"
+        switch self {
+        case .search:
+            return NaverSearchAPI.baseURL
+        default: return Key.baseURL + "v1"
+        }
+        
     }
     
     var method: Alamofire.HTTPMethod {
         switch self {
         case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost:
             return .post
-        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag:
+        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search:
             return .get
         case .editProfile, .editPost:
             return .put
@@ -72,6 +78,8 @@ extension Router: TargetType {
             return "/posts/\(query.postID)"
         case .likePost(let query):
             return "/posts/\(query.postID)/like"
+        case .search:
+            return "v1/search/local.json"
         }
     }
     
@@ -106,6 +114,11 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.multipart.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
+        case .search:
+            return [
+                Header.naverClientID.rawValue: NaverSearchAPI.clientID,
+                Header.naverClientSecret.rawValue: NaverSearchAPI.secret
+            ]
         }
     }
     
@@ -124,6 +137,11 @@ extension Router: TargetType {
                 URLQueryItem(name: "limit", value: "10"),
                 URLQueryItem(name: "next", value: next),
                 URLQueryItem(name: "hashTag", value: hashTag)
+            ]
+        case .search(let query):
+            return [
+                URLQueryItem(name: "query", value: query),
+                URLQueryItem(name: "display", value: "5")
             ]
         default: return nil
         }

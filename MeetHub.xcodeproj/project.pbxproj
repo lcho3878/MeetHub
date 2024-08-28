@@ -88,6 +88,9 @@
 		54EB851D2C7C971B00C0C946 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */; };
 		54EB85332C7DBD4F00C0C946 /* MapviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85322C7DBD4F00C0C946 /* MapviewController.swift */; };
 		54EB853F2C7EEF9E00C0C946 /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB853E2C7EEF9E00C0C946 /* LikeQuery.swift */; };
+		54EB85672C7F82A900C0C946 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85662C7F82A900C0C946 /* SearchViewController.swift */; };
+		54EB85692C7F83C100C0C946 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB85682C7F83C100C0C946 /* SearchView.swift */; };
+		54EB856B2C7F84A000C0C946 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB856A2C7F84A000C0C946 /* SearchViewModel.swift */; };
 		BEF412F26C76BEC86E0B3A7B /* Pods_MeetHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -171,6 +174,9 @@
 		54EB851C2C7C971B00C0C946 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		54EB85322C7DBD4F00C0C946 /* MapviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapviewController.swift; sourceTree = "<group>"; };
 		54EB853E2C7EEF9E00C0C946 /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
+		54EB85662C7F82A900C0C946 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		54EB85682C7F83C100C0C946 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		54EB856A2C7F84A000C0C946 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7C82C58C24396B4D00CC0965 /* Pods_MeetHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -418,6 +424,9 @@
 			isa = PBXGroup;
 			children = (
 				54EB85322C7DBD4F00C0C946 /* MapviewController.swift */,
+				54EB85662C7F82A900C0C946 /* SearchViewController.swift */,
+				54EB85682C7F83C100C0C946 /* SearchView.swift */,
+				54EB856A2C7F84A000C0C946 /* SearchViewModel.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -589,7 +598,9 @@
 				543489D22C70A38C00CD877D /* RoundButton.swift in Sources */,
 				543489CE2C70A10000CD877D /* BaseView.swift in Sources */,
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
+				54EB856B2C7F84A000C0C946 /* SearchViewModel.swift in Sources */,
 				54EB853F2C7EEF9E00C0C946 /* LikeQuery.swift in Sources */,
+				54EB85672C7F82A900C0C946 /* SearchViewController.swift in Sources */,
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
 				54EB84E52C78B83D00C0C946 /* ProfileResponseModel.swift in Sources */,
 				54EB850D2C7C458900C0C946 /* UIColor+Extension.swift in Sources */,
@@ -627,6 +638,7 @@
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
 				54EB84DA2C78789000C0C946 /* PostDetailViewCell.swift in Sources */,
 				54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */,
+				54EB85692C7F83C100C0C946 /* SearchView.swift in Sources */,
 				543489C12C6F260F00CD877D /* LoginQuery.swift in Sources */,
 				54EB84E12C78B53400C0C946 /* ProfileView.swift in Sources */,
 				54EB84E32C78B7CC00C0C946 /* User.swift in Sources */,

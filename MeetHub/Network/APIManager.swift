@@ -187,6 +187,26 @@ final class APIManager {
             return Disposables.create()
         }
     }
+    
+    func callTest<T:Decodable>(api: Router, type: T.Type) {
+        do {
+            let request = try api.asURLRequest()
+            AF.request(request)
+                .validate(statusCode: 200..<300)
+                .responseString { result in
+                    print(result.response?.statusCode)
+                    switch result.result {
+                    case .success(let v):
+                        print(v)
+                    case .failure(let e):
+                        print("error: \(e)")
+                    }
+                }
+        }
+        catch {
+            print("error")
+        }
+    }
         
 }
 

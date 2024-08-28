@@ -14,4 +14,6 @@ enum Header: String {
     case contentType = "Content-Type"
     case json = "application/json"
     case multipart = "multipart/form-data"
+    case naverClientID = "X-Naver-Client-Id"
+    case naverClientSecret = "X-Naver-Client-Secret"
 }
