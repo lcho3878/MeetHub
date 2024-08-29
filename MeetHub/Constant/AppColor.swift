@@ -8,8 +8,9 @@
 import UIKit
 
 enum AppColor {
-    static let mint = UIColor(hexCode: "A1D6B2")
-    static let sage = UIColor(hexCode: "CEDF9F")
-    static let beige = UIColor(hexCode: "F1F3C2")
-    static let orange = UIColor(hexCode: "E8B86D")
+    static let mint = UIColor(hexCode: "48CFCB")
+    static let sage = UIColor(hexCode: "F1D3CE")
+    
+    static let beige = UIColor(hexCode: "F5F5F5")
+    static let orange = UIColor(hexCode: "48CFCB")
 }
