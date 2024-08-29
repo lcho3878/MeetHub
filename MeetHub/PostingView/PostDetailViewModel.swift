@@ -22,18 +22,26 @@ final class PostDetailViewModel: ViewModel {
         let postOutput: PublishSubject<Post>
         let imageDataOutput: PublishSubject<[Data]>
         let likeStatusOutput: PublishSubject<Bool>
+        let errorOutput: PublishSubject<Post.ErrorModel?>
+        let likeErrorOutput: PublishSubject<LikeQuery.Body.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
         let postOutput = PublishSubject<Post>()
         let imageDataOutput = PublishSubject<[Data]>()
         let likeStatusOutput = PublishSubject<Bool>()
+        let errorOutput = PublishSubject<Post.ErrorModel?>()
+        let likeErrorOutput = PublishSubject<LikeQuery.Body.ErrorModel?>()
         
         let postIDInput = input.postIDInput.share()
         
         postIDInput
             .flatMap {
                 APIManager.shared.callRequest(api: .detailPost(postID: $0), type: Post.self)
+                    .catch { error in
+                        errorOutput.onNext(error as? Post.ErrorModel)
+                        return Single<Post>.never()
+                    }
             }
             .bind(with: self, onNext: { owner, post in
                 postOutput.onNext(post)
@@ -47,6 +55,10 @@ final class PostDetailViewModel: ViewModel {
             }
             .flatMap {
                 APIManager.shared.callRequest(api: .likePost(query: $0), type: LikeQuery.Body.self)
+                    .catch { error in
+                        likeErrorOutput.onNext(error as? LikeQuery.Body.ErrorModel)
+                        return Single<LikeQuery.Body>.never()
+                    }
             }
             .bind(onNext: { value in
                 likeStatusOutput.onNext(value.like_status)
@@ -70,7 +82,9 @@ final class PostDetailViewModel: ViewModel {
         return Output(
             postOutput: postOutput, 
             imageDataOutput: imageDataOutput,
-            likeStatusOutput: likeStatusOutput
+            likeStatusOutput: likeStatusOutput,
+            errorOutput: errorOutput,
+            likeErrorOutput: likeErrorOutput
         )
     }
 }

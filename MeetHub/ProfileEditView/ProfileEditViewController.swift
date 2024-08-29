@@ -60,7 +60,13 @@ final class ProfileEditViewController: BaseViewController {
                 owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
-
+        
+        output.errorOutput
+            .bind(with: self) { owner, error in
+                owner.showAlert(content: error?.errorMessage)
+            }
+            .disposed(by: disposeBag)
+        
         profileEditView.profileImageView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self, onNext: { owner, _ in

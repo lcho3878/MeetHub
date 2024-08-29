@@ -105,8 +105,22 @@ class SearchTableViewCell: UITableViewCell {
     }
 }
 
-struct Response: Decodable {
+struct Response: Decodable, ResponseModel {
     let items: [Place]
+    
+    struct ErrorModel: ResponseError {
+        var responseCode: Int?
+        
+        init(responseCode: Int? = nil) {
+            self.responseCode = responseCode
+        }
+        
+        var errorMessage: String {
+            switch responseCode {
+            default: return ""
+            }
+        }
+    }
 }
 
 struct Place: Decodable {

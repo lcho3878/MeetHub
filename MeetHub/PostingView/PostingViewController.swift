@@ -80,6 +80,18 @@ final class PostingViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.fileErrorOutput
+            .bind(with: self) { owner, error in
+                owner.showAlert(content: error?.errorMessage)
+            }
+            .disposed(by: disposeBag)
+        
+        output.postErrorOutput
+            .bind(with: self) { owner, error in
+                owner.showAlert(content: error?.errorMessage)
+            }
+            .disposed(by: disposeBag)
+        
         postingView.collectionView.rx.itemSelected
             .bind(with: self) { owner, indexPath in
                 guard indexPath.item == 0 else { return }

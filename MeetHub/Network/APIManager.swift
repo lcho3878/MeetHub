@@ -36,7 +36,7 @@ final class APIManager {
         }
     }
     
-    func callRequest<T:Decodable>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
+    func callRequest<T:ResponseModel>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
         return Single.create { single -> Disposable in
             func loop() {
                 do {
@@ -51,7 +51,8 @@ final class APIManager {
                     method
                         .validate(statusCode: 200..<300)
                         .responseDecodable(of: T.self) { response in
-                            if response.response?.statusCode == 419 {
+                            let statusCode = response.response?.statusCode
+                            if statusCode == 419 {
                                 print("토큰갱신 필요")
                                 self.refreshToken { result in
                                     switch result {
@@ -66,8 +67,8 @@ final class APIManager {
                                 switch response.result {
                                 case .success(let v):
                                     single(.success(v))
-                                case .failure(let e):
-                                    single(.failure(e))
+                                case .failure(_):
+                                    single(.failure(T.ErrorModel(responseCode: statusCode)))
                                 }
                             }
                         }
@@ -141,7 +142,7 @@ final class APIManager {
         }
     }
     
-    func callRequestTest<T:ResponseModelTest>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
+    func callRequestTest<T:ResponseModel>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
         return Single.create { single -> Disposable in
             func loop() {
                 do {

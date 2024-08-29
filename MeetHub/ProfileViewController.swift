@@ -74,6 +74,14 @@ final class ProfileViewController: BaseViewController {
                 owner.changeToLoginViewController()
             }
             .disposed(by: disposeBag)
+        
+        output.errorOutput
+            .bind(with: self) { owner, error in
+                owner.showAlert(content: error?.errorMessage) {
+                    owner.changeToLoginViewController()
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
 

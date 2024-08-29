@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostsResponseModel: Decodable, ResponseModelTest {
+struct PostsResponseModel: Decodable, ResponseModel {
     let data: [Post]
     let next_cursor: String
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignupModel: Decodable, ResponseModelTest {
+struct SignupModel: Decodable, ResponseModel {
     let user_id: String
     let email: String
     let nick: String

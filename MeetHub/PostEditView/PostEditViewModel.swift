@@ -29,6 +29,8 @@ final class PostEditViewModel: ViewModel {
         let postOutput: PublishSubject<Post>
         let imageDataOutput: BehaviorSubject<[Data]>
         let successOutput: PublishSubject<Void>
+        let fileErrorOutput: PublishSubject<FilesModel.ErrorModel?>
+        let postErrorOutput: PublishSubject<Post.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
@@ -38,6 +40,8 @@ final class PostEditViewModel: ViewModel {
         let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files, input.postIDInput)
         
         let successOutput = PublishSubject<Void>()
+        let fileErrorOutput = PublishSubject<FilesModel.ErrorModel?>()
+        let postErrorOutput = PublishSubject<Post.ErrorModel?>()
         
         input.postIDInput
             .flatMap {
@@ -85,6 +89,7 @@ final class PostEditViewModel: ViewModel {
                 }
                 return APIManager.shared.callRequest(api: .uploadFiles(files: self.imageDatas.filter { !$0.isEmpty}), type: FilesModel.self)
                     .catch { error in
+                        fileErrorOutput.onNext(error as? FilesModel.ErrorModel)
                         return Single<FilesModel>.never()
                     }
             }
@@ -103,6 +108,7 @@ final class PostEditViewModel: ViewModel {
             .flatMap {
                 return APIManager.shared.callRequest(api: .editPost(query: $0), type: Post.self)
                     .catch { error in
+                        postErrorOutput.onNext(error as? Post.ErrorModel)
                         return Single<Post>.never()
                     }
             }
@@ -115,7 +121,9 @@ final class PostEditViewModel: ViewModel {
         return Output(
             postOutput: postOutput,
             imageDataOutput: imageDataOutput,
-            successOutput: successOutput
+            successOutput: successOutput,
+            fileErrorOutput: fileErrorOutput,
+            postErrorOutput: postErrorOutput
         )
     }
 }

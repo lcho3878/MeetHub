@@ -27,11 +27,15 @@ final class PostingViewModel: ViewModel {
     struct Output {
         let datasOutput: BehaviorSubject<[Data]>
         let successOutput: PublishSubject<Void>
+        let fileErrorOutput: PublishSubject<FilesModel.ErrorModel?>
+        let postErrorOutput: PublishSubject<Post.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
         let datasOutput = BehaviorSubject(value: datas)
         let successOutput = PublishSubject<Void>()
+        let fileErrorOutput = PublishSubject<FilesModel.ErrorModel?>()
+        let postErrorOutput = PublishSubject<Post.ErrorModel?>()
         
         let files = PublishSubject<[String]>()
         let queryInput = Observable.combineLatest(input.titleInput, input.contentInput, input.markerInput, files)
@@ -60,6 +64,7 @@ final class PostingViewModel: ViewModel {
                 }
                 return APIManager.shared.callRequest(api: .uploadFiles(files: self.datas.filter { !$0.isEmpty }), type: FilesModel.self)
                     .catch { error in
+                        fileErrorOutput.onNext(error as? FilesModel.ErrorModel)
                         return Single<FilesModel>.never()
                     }
             }
@@ -76,6 +81,7 @@ final class PostingViewModel: ViewModel {
             .flatMap {
                 return APIManager.shared.callRequest(api: .uploadPost(query: $0), type: Post.self)
                     .catch { error in
+                        postErrorOutput.onNext(error as? Post.ErrorModel)
                         return Single<Post>.never()
                     }
             }
@@ -87,7 +93,9 @@ final class PostingViewModel: ViewModel {
 
         return Output(
             datasOutput: datasOutput,
-            successOutput: successOutput
+            successOutput: successOutput,
+            fileErrorOutput: fileErrorOutput,
+            postErrorOutput: postErrorOutput
         )
     }
     

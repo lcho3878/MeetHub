@@ -7,13 +7,7 @@
 
 import Foundation
 
-protocol ResponseModel {
-    static func errorModel(responseCode: Int?) -> Self
-    
-    var errorMessage: String { get }
-}
-
-protocol ResponseModelTest: Decodable {
+protocol ResponseModel: Decodable {
     associatedtype ErrorModel: ResponseError
 }
 

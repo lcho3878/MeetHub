@@ -23,6 +23,7 @@ final class ProfileEditViewModel: ViewModel {
     struct Output {
         let userOutput: PublishSubject<User>
         let successOutput: PublishSubject<Void>
+        let errorOutput: PublishSubject<User.ErrorModel?>
     }
     
     func transform(input: Input) -> Output {
@@ -30,6 +31,7 @@ final class ProfileEditViewModel: ViewModel {
         let queryInput = Observable.combineLatest(input.nicknameInput, input.imageDataInput)
         let userOutput = PublishSubject<User>()
         let successOutput = PublishSubject<Void>()
+        let errorOutput = PublishSubject<User.ErrorModel?>()
         
         APIManager.shared.callRequest(api: .myProfile, type: User.self)
             .asObservable()
@@ -46,6 +48,7 @@ final class ProfileEditViewModel: ViewModel {
             .flatMap { query in
                 APIManager.shared.callRequest(api: .editProfile(query: query), type: User.self)
                     .catch { error in
+                        errorOutput.onNext(error as? User.ErrorModel)
                         return Single<User>.never()
                     }
             }
@@ -55,7 +58,11 @@ final class ProfileEditViewModel: ViewModel {
             })
             .disposed(by: disposeBag)
         
-        return Output(userOutput: userOutput, successOutput: successOutput)
+        return Output(
+            userOutput: userOutput,
+            successOutput: successOutput,
+            errorOutput: errorOutput
+        )
     }
 }
 

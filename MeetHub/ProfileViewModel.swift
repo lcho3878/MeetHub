@@ -38,6 +38,7 @@ final class ProfileViewModel: ViewModel {
         let inquiryOutput: PublishSubject<User>
         let editOutput: PublishSubject<Void>
         let logoutOutput: PublishSubject<Void>
+        let errorOutput: PublishSubject<User.ErrorModel?>
     }
     
     private let disposeBag = DisposeBag()
@@ -46,6 +47,8 @@ final class ProfileViewModel: ViewModel {
         let inquiryOutput = PublishSubject<User>()
         let editOutput = PublishSubject<Void>()
         let logoutOutput = PublishSubject<Void>()
+        let errorOutput = PublishSubject<User.ErrorModel?>()
+        
         input.menuInput
             .bind(with: self) { owner, menu in
                 switch menu {
@@ -67,6 +70,10 @@ final class ProfileViewModel: ViewModel {
         input.requestInput
             .flatMap {
                 APIManager.shared.callRequest(api: .myProfile, type: User.self)
+                    .catch { error in
+                        errorOutput.onNext(error as? User.ErrorModel)
+                        return Single<User>.never()
+                    }
             }
             .bind(with: self) { owner, user in
                 inquiryOutput.onNext(user)
@@ -74,6 +81,12 @@ final class ProfileViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         
-        return Output(menuOutput: Observable.just(menus), inquiryOutput: inquiryOutput, editOutput: editOutput, logoutOutput: logoutOutput)
+        return Output(
+            menuOutput: Observable.just(menus),
+            inquiryOutput: inquiryOutput,
+            editOutput: editOutput,
+            logoutOutput: logoutOutput,
+            errorOutput: errorOutput
+        )
     }
 }

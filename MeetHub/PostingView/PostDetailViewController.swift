@@ -108,6 +108,22 @@ final class PostDetailViewController: BaseViewController {
                 likeButtonTap.onNext(isLike ? false : true)
             })
             .disposed(by: disposeBag)
+        
+        output.errorOutput
+            .bind(with: self) { owner, error in
+                owner.showAlert(content: error?.errorMessage) {
+                    owner.navigationController?.popViewController(animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.likeErrorOutput
+            .bind(with: self) { owner, error in
+                owner.showAlert(content: error?.errorMessage) {
+                    owner.navigationController?.popViewController(animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
 
