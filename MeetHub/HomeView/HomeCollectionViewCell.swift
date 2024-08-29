@@ -50,7 +50,7 @@ final class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     func configureData(_ data: String) {
-        buttonLabel.text = data
+        buttonLabel.text = "# \(data)"
     }
     
 }

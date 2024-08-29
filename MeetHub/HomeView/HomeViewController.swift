@@ -40,22 +40,22 @@ final class HomeViewController: BaseViewController {
     }
     
     private func bind() {
+        typealias Menu = HomeViewModel.Menu
         
-        let selectedIndex = BehaviorSubject(value: 0)
+        let selectedIndex = BehaviorSubject<Menu>(value: .all)
         let indexPathInput = PublishSubject<[IndexPath]>()
         
         
         let input = HomeViewModel.Input(
-            indexInput: selectedIndex,
+            menuInput: selectedIndex,
             indexPathInput: indexPathInput,
             reloadInput: reloadInput
         )
         let output = viewModel.transform(input: input)
         
-        homeView.collectionView.rx.itemSelected
-            .bind { indexPath in
-                let item = indexPath.item
-                selectedIndex.onNext(item)
+        homeView.collectionView.rx.modelSelected(Menu.self)
+            .bind { menu in
+                selectedIndex.onNext(menu)
             }
             .disposed(by: disposeBag)
         
@@ -77,7 +77,7 @@ final class HomeViewController: BaseViewController {
         
         output.menuOutput
             .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in
-                cell.configureData(element)
+                cell.configureData(element.menuTitle)
             }
             .disposed(by: disposeBag)
         
@@ -101,6 +101,12 @@ final class HomeViewController: BaseViewController {
                 let postingVC = PostingViewController()
                 postingVC.delegate = owner
                 owner.navigationController?.pushViewController(postingVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.scrollTopOutput
+            .bind(with: self) { owner, _ in
+                owner.homeView.tableView.scrollToTop()
             }
             .disposed(by: disposeBag)
     }

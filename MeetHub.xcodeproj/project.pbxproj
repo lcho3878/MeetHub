@@ -43,6 +43,7 @@
 		543489EB2C7323CE00CD877D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */; };
 		543489ED2C73250500CD877D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EC2C73250500CD877D /* Post.swift */; };
 		543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EE2C7329DD00CD877D /* PostsResponseModel.swift */; };
+		546777D42C80E93100109B85 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777D32C80E93100109B85 /* UITableView+Extension.swift */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
@@ -131,6 +132,7 @@
 		543489EA2C7323CE00CD877D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		543489EC2C73250500CD877D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		543489EE2C7329DD00CD877D /* PostsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponseModel.swift; sourceTree = "<group>"; };
+		546777D32C80E93100109B85 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				54EB849D2C75D21600C0C946 /* UIView+Extension.swift */,
+				546777D32C80E93100109B85 /* UITableView+Extension.swift */,
 				54EB850C2C7C458900C0C946 /* UIColor+Extension.swift */,
 				54EB84D72C7870BB00C0C946 /* String+Extenstion.swift */,
 				54EB85102C7C4D8000C0C946 /* Date+Extension.swift */,
@@ -636,6 +639,7 @@
 				543489D82C70A8E700CD877D /* SignupViewModel.swift in Sources */,
 				5409F4432C74752200199D27 /* UserDefaultsManager.swift in Sources */,
 				543489B02C6DD1EE00CD877D /* LoginView.swift in Sources */,
+				546777D42C80E93100109B85 /* UITableView+Extension.swift in Sources */,
 				54EB84DA2C78789000C0C946 /* PostDetailViewCell.swift in Sources */,
 				54EB84A12C75DEA900C0C946 /* PostingViewController.swift in Sources */,
 				54EB85692C7F83C100C0C946 /* SearchView.swift in Sources */,

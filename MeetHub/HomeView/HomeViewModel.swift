@@ -11,12 +11,32 @@ import RxSwift
 final class HomeViewModel: ViewModel {
     private let disposeBag = DisposeBag()
     
-    private let menus = [
-        "전체",
-        "데이트",
-        "맛집",
-        "기타"
-    ]
+    private let menus = Menu.allCases
+    
+    private var menu: Menu?
+    
+    enum Menu: CaseIterable {
+        case all
+        case date
+        case restaurant
+        
+        var menuTitle: String {
+            switch self {
+            case .all: return "전체"
+            case .date: return "데이트"
+            case .restaurant: return "맛집"
+            }
+        }
+        
+        func api(next: String?) -> Router {
+            switch self {
+            case .all:
+                return .lookUpPost(next: next)
+            default:
+                return .hashTag(next: next, hashTag: menuTitle)
+            }
+        }
+    }
     
     private var next: String?
     
@@ -25,46 +45,51 @@ final class HomeViewModel: ViewModel {
     private var postsOutput = PublishSubject<[Post]>()
     
     struct Input {
-        let indexInput: BehaviorSubject<Int>
+        let menuInput: BehaviorSubject<Menu>
         let indexPathInput: PublishSubject<[IndexPath]>
         let reloadInput: PublishSubject<Void>
     }
     
     struct Output {
-        let menuOutput: Observable<[String]>
+        let menuOutput: Observable<[Menu]>
         let postOutput: PublishSubject<[Post]>
         let errorOutput: PublishSubject<PostsResponseModel.ErrorModel?>
+        let scrollTopOutput: PublishSubject<Void>
     }
     
     func transform(input: Input) -> Output {
         let errorOutput = PublishSubject<PostsResponseModel.ErrorModel?>()
+        let scrollTopOutput = PublishSubject<Void>()
         
-        func fetchPost(next: String?) {
-            APIManager.shared.callRequestTest(api: .lookUpPost(next: next), type: PostsResponseModel.self) { error in
+        func fetchPost(menu: Menu?) {
+            guard let menu else { return }
+            APIManager.shared.callRequestTest(api: menu.api(next: next), type: PostsResponseModel.self) { error in
                 errorOutput.onNext(error as? PostsResponseModel.ErrorModel)
             }
             .asObservable()
             .bind(with: self) { owner, value in
-                if next == nil {
+                if owner.next == nil {
                     print("리로드는 여기로 ")
                     owner.posts = value.data
+                    scrollTopOutput.onNext(())
                 }
                 else {
                     print("페이지네이션은 여기")
                     owner.posts.append(contentsOf: value.data)
                 }
-                owner.postsOutput.onNext(owner.posts)
                 owner.next = value.next_cursor
+                owner.postsOutput.onNext(owner.posts)
+                
             }
             .disposed(by: disposeBag)
         }
         
-        fetchPost(next: next)
-        
-        input.indexInput
-            .bind { index in
+        input.menuInput
+            .bind(with: self) { owner, menu in
                 // 메뉴 선택시 로직 구현
-                print("\(self.menus[index]) 선택")
+                owner.menu = menu
+                owner.next = nil
+                fetchPost(menu: menu)
             }
             .disposed(by: disposeBag)
         
@@ -72,7 +97,7 @@ final class HomeViewModel: ViewModel {
             .bind(with: self) { owner, indexPaths in
                 for indexPath in indexPaths {
                     if indexPath.item == owner.posts.count - 4 && owner.next != "0" {
-                        fetchPost(next: owner.next)
+                        fetchPost(menu: owner.menu)
                     }
                 }
             }
@@ -81,10 +106,10 @@ final class HomeViewModel: ViewModel {
         input.reloadInput
             .bind(with: self, onNext: { owner, _ in
                 owner.next = nil
-                fetchPost(next: owner.next)
+                fetchPost(menu: owner.menu)
             })
             .disposed(by: disposeBag)
 
-        return Output(menuOutput: Observable.just(menus), postOutput: postsOutput, errorOutput: errorOutput)
+        return Output(menuOutput: Observable.just(menus), postOutput: postsOutput, errorOutput: errorOutput, scrollTopOutput: scrollTopOutput)
     }
 }
