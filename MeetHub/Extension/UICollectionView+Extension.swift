@@ -13,7 +13,7 @@ extension UICollectionView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 4
         layout.itemSize = CGSize(width: size.width, height: size.height)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
         return layout
     }
     
