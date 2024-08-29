@@ -53,6 +53,7 @@ final class PostDetailView: BaseView {
     let titleLabel = {
         let view = UILabel()
         view.font = .boldSystemFont(ofSize: 20)
+        view.numberOfLines = 0
         return view
     }()
     
@@ -150,13 +151,13 @@ final class PostDetailView: BaseView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(creatorStackView.snp.bottom).offset(8)
-            $0.leading.equalTo(creatorProfileImageView).offset(8)
-            $0.trailing.equalTo(contentView)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+//            $0.trailing.equalTo(contentView).inset(8)
         }
         
         contentTextView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-            $0.horizontalEdges.equalTo(titleLabel)
+            $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.greaterThanOrEqualTo(40)
         }
         

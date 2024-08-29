@@ -17,6 +17,7 @@ final class TextView: UITextView {
         layer.cornerRadius = 4
         layer.borderWidth = 0.2
         layer.borderColor = UIColor.lightGray.cgColor
+        font = .systemFont(ofSize: 17)
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
