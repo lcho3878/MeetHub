@@ -40,6 +40,13 @@ final class HomeTableViewCell: UITableViewCell {
         return view
     }()
     
+    let tagLabel: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = .systemBlue
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -61,6 +68,7 @@ final class HomeTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(content1Label)
+        contentView.addSubview(tagLabel)
         
         mainImageView.snp.makeConstraints {
             $0.leading.verticalEdges.equalToSuperview().inset(8)
@@ -81,6 +89,11 @@ final class HomeTableViewCell: UITableViewCell {
             $0.top.equalTo(dateLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel)
         }
+        
+        tagLabel.snp.makeConstraints {
+            $0.top.equalTo(content1Label.snp.bottom).offset(8)
+            $0.leading.equalTo(content1Label)
+        }
     }
 
     func configureDate(_ data: Post) {
@@ -91,6 +104,9 @@ final class HomeTableViewCell: UITableViewCell {
             APIManager.shared.requestImageData(image: first) { [weak self] data in
                 self?.mainImageView.image = UIImage(data: data)
             }
+        }
+        if let hashTags = data.hashTags {
+            tagLabel.text = hashTags.map{ "#" + $0 }.joined(separator: ", ")
         }
     }
 }

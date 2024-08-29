@@ -12,15 +12,16 @@ struct Post: Decodable, ResponseModel {
 //    let product_id: String
     let title: String
     let content: String
-    let content1: String?
-    let content2: String?
-    let content3: String?
+    let content1: String? //좌표
+    let content2: String? // 장소 이름(네이버)
+    let content3: String? // 도로명 주소?
     let content4: String?
     let content5: String?
     let creator: Creator
     let createdAt: String
     let files: [String]
     let likes: [String]
+    let hashTags: [String]?
     
     struct Creator: Decodable {
         let user_id: String

@@ -46,11 +46,11 @@ final class HomeViewModel: ViewModel {
             .asObservable()
             .bind(with: self) { owner, value in
                 if next == nil {
-                    print("리로드는 여기로 와야함")
+                    print("리로드는 여기로 ")
                     owner.posts = value.data
                 }
                 else {
-                    print("여기로 오면 안됨")
+                    print("페이지네이션은 여기")
                     owner.posts.append(contentsOf: value.data)
                 }
                 owner.postsOutput.onNext(owner.posts)
