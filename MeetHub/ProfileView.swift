@@ -47,6 +47,12 @@ final class ProfileView: BaseView {
         return view
     }()
     
+    var tabmanView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         profileImageView.makeRound()
@@ -59,6 +65,7 @@ final class ProfileView: BaseView {
         userStackView.addArrangedSubview(emailLabel)
 //        addSubview(profileNameLabel)
         addSubview(menuTableView)
+        addSubview(tabmanView)
         
         profileImageView.snp.makeConstraints {
             $0.top.leading.equalTo(safeAreaLayoutGuide).offset(8)
@@ -78,7 +85,14 @@ final class ProfileView: BaseView {
         
         menuTableView.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            $0.height.equalTo(120)
+        }
+        
+        tabmanView.snp.makeConstraints {
+            $0.top.equalTo(menuTableView.snp.bottom)
             $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+            
         }
     }
     
@@ -92,3 +106,5 @@ final class ProfileView: BaseView {
         }
     }
 }
+
+

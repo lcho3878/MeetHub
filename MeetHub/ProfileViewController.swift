@@ -31,7 +31,15 @@ final class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTapman()
         bind()
+    }
+    
+    private func configureTapman() {
+        let tapmanVC = ProfileTabManViewController()
+        addChild(tapmanVC)
+        self.profileView.tabmanView.addSubview(tapmanVC.view)
+        tapmanVC.didMove(toParent: self)
     }
     
     private func bind() {
