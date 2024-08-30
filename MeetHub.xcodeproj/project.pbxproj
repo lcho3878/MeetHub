@@ -45,6 +45,7 @@
 		543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543489EE2C7329DD00CD877D /* PostsResponseModel.swift */; };
 		546777D42C80E93100109B85 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777D32C80E93100109B85 /* UITableView+Extension.swift */; };
 		546777D92C81AEB900109B85 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777D82C81AEB900109B85 /* UIImage+Extension.swift */; };
+		546777DC2C81BBD500109B85 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 546777DB2C81BBD500109B85 /* Tabman */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
@@ -190,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54EB84F42C78FDBB00C0C946 /* RxRelay in Frameworks */,
+				546777DC2C81BBD500109B85 /* Tabman in Frameworks */,
 				543489AC2C6DD19900CD877D /* RxCocoa in Frameworks */,
 				543489A62C6DD17F00CD877D /* Alamofire in Frameworks */,
 				543489AE2C6DD19900CD877D /* RxSwift in Frameworks */,
@@ -479,6 +481,7 @@
 				543489AD2C6DD19900CD877D /* RxSwift */,
 				54EB84F32C78FDBB00C0C946 /* RxRelay */,
 				54EB84F62C78FE0E00C0C946 /* RxGesture */,
+				546777DB2C81BBD500109B85 /* Tabman */,
 			);
 			productName = MeetHub;
 			productReference = 543489882C6C746E00CD877D /* MeetHub.app */;
@@ -513,6 +516,7 @@
 				543489A72C6DD18A00CD877D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				543489AA2C6DD19900CD877D /* XCRemoteSwiftPackageReference "RxSwift" */,
 				54EB84F52C78FE0E00C0C946 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				546777DA2C81BBD500109B85 /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 543489892C6C746E00CD877D /* Products */;
 			projectDirPath = "";
@@ -910,6 +914,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		546777DA2C81BBD500109B85 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 		54EB84F52C78FE0E00C0C946 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
@@ -940,6 +952,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 543489AA2C6DD19900CD877D /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		546777DB2C81BBD500109B85 /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 546777DA2C81BBD500109B85 /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 		54EB84F32C78FDBB00C0C946 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;

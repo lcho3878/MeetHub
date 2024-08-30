@@ -35,14 +35,16 @@ final class ProfileViewController: BaseViewController {
     }
     
     private func bind() {
-        let menuInput = PublishSubject<ProfileViewModel.ProfileMenu>()
+        typealias Menu = ProfileViewModel.ProfileMenu
+        
+        let menuInput = PublishSubject<Menu>()
         
         let input = ProfileViewModel.Input(menuInput: menuInput, requestInput: requestInput)
         let output = viewModel.transform(input: input)
         
         requestInput.onNext(())
 
-        profileView.menuTableView.rx.modelSelected(ProfileViewModel.ProfileMenu.self)
+        profileView.menuTableView.rx.modelSelected(Menu.self)
             .bind { menu in
                 menuInput.onNext(menu)
             }
@@ -60,18 +62,14 @@ final class ProfileViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.editOutput
-            .bind(with: self) { owner, _ in
-                let profileEditVC = ProfileEditViewController()
-                profileEditVC.delegate = owner
-                owner.navigationController?.pushViewController(profileEditVC, animated: true)
-            }
-            .disposed(by: disposeBag)
-        
-        output.logoutOutput
-            .bind(with: self) { owner, _ in
-                UserDefaultsManager.shared.logout()
-                owner.changeToLoginViewController()
+        output.menuSelectOutput
+            .bind(with: self) { owner, menu in
+                switch menu {
+                case .profileEdit:
+                    owner.openProfileEditVC()
+                case .logout:
+                    owner.logout()
+                }
             }
             .disposed(by: disposeBag)
         
@@ -82,6 +80,19 @@ final class ProfileViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+    }
+}
+
+extension ProfileViewController {
+    private func openProfileEditVC() {
+        let profileEditVC = ProfileEditViewController()
+        profileEditVC.delegate = self
+        navigationController?.pushViewController(profileEditVC, animated: true)
+    }
+    
+    private func logout() {
+        UserDefaultsManager.shared.logout()
+        changeToLoginViewController()
     }
 }
 

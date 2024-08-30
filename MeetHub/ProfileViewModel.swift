@@ -10,15 +10,12 @@ import RxSwift
 
 final class ProfileViewModel: ViewModel {
     
-    enum ProfileMenu {
-//        case profileInquiry
+    enum ProfileMenu: CaseIterable {
         case profileEdit
         case logout
         
         var title: String {
             switch self {
-//            case .profileInquiry:
-//                return "내 프로필 조회"
             case .profileEdit:
                 return  "내 프로필 수정"
             case .logout:
@@ -27,7 +24,7 @@ final class ProfileViewModel: ViewModel {
         }
     }
     
-    private let menus: [ProfileMenu] = [.profileEdit, .logout]
+    private let menus: [ProfileMenu] = ProfileMenu.allCases
     
     struct Input {
         let menuInput: PublishSubject<ProfileMenu>
@@ -36,34 +33,21 @@ final class ProfileViewModel: ViewModel {
     struct Output {
         let menuOutput: Observable<[ProfileMenu]>
         let inquiryOutput: PublishSubject<User>
-        let editOutput: PublishSubject<Void>
-        let logoutOutput: PublishSubject<Void>
         let errorOutput: PublishSubject<User.ErrorModel?>
+        let menuSelectOutput: PublishSubject<ProfileMenu>
     }
     
     private let disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
         let inquiryOutput = PublishSubject<User>()
-        let editOutput = PublishSubject<Void>()
-        let logoutOutput = PublishSubject<Void>()
         let errorOutput = PublishSubject<User.ErrorModel?>()
+        let menuSelectOutput = PublishSubject<ProfileMenu>()
+
         
         input.menuInput
             .bind(with: self) { owner, menu in
-                switch menu {
-//                case .profileInquiry:
-//                    APIManager.shared.callRequest(api: .myProfile, type: User.self)
-//                        .asObservable()
-//                        .bind { user in
-//                            inquiryOutput.onNext(user)
-//                        }
-//                        .disposed(by: owner.disposeBag)
-                case .profileEdit:
-                    editOutput.onNext(())
-                case .logout:
-                    logoutOutput.onNext(())
-                }
+                menuSelectOutput.onNext(menu)
             }
             .disposed(by: disposeBag)
         
@@ -84,9 +68,8 @@ final class ProfileViewModel: ViewModel {
         return Output(
             menuOutput: Observable.just(menus),
             inquiryOutput: inquiryOutput,
-            editOutput: editOutput,
-            logoutOutput: logoutOutput,
-            errorOutput: errorOutput
+            errorOutput: errorOutput,
+            menuSelectOutput: menuSelectOutput
         )
     }
 }
