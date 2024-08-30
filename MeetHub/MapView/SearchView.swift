@@ -19,7 +19,7 @@ final class SearchView: BaseView {
     let searchTableView = {
         let view = UITableView()
         view.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
-        view.rowHeight = 120
+        view.rowHeight = 60
         view.isHidden = true
         return view
     }()

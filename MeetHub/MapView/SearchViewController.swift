@@ -68,6 +68,8 @@ class SearchTableViewCell: UITableViewCell {
     let label2 = {
         let view = UILabel()
         view.text = "레이블2"
+        view.textColor = .lightGray
+        view.font = .systemFont(ofSize: 14)
         return view
     }()
     
@@ -100,7 +102,7 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     func configureDate(_ data: Place) {
-        label1.text = data.title
+        label1.text = data.cleanTitle
         label2.text = data.roadAddress
     }
 }
@@ -129,6 +131,13 @@ struct Place: Decodable {
     let roadAddress: String
     let mapx: String
     let mapy: String
+    
+    var cleanTitle: String {
+        var cleanTitle = title
+        cleanTitle = cleanTitle.replacingOccurrences(of: "<b>", with: "")
+        cleanTitle = cleanTitle.replacingOccurrences(of: "</b>", with: "")
+        return cleanTitle
+    }
     
     var lat: Double {
         let y = Double(mapy)!

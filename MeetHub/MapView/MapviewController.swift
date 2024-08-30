@@ -24,62 +24,60 @@ final class MapviewController: BaseViewController {
     
     var preMarker: NMFMarker?
     
-    let mapView = {
-        let view = NMFNaverMapView()
-        view.showLocationButton = true
-        view.mapView.positionMode = .compass
-        return view
-    }()
+    let mapView = NMFNaverMapView()
     
-    private lazy var searchButton = {
-        let view = UIButton()
-        view.setTitle("장소 검색하기", for: .normal)
-        view.setTitleColor(.black, for: .normal)
-        return view
-    }()
+    private lazy var searchButton = UIBarButtonItem(title: "검색", style: .plain, target: nil, action: nil)
 
-    private lazy var rightBarButton = UIBarButtonItem(title: "확인", style: .plain, target: self, action: #selector(rightBarButtonTap))
+    private lazy var rightBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(rightBarButtonTap))
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupViews()
+        bind()
+    }
+    
+    private func setupViews() {
         view.addSubview(mapView)
         mapView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
+        setupMapView()
+        configureMapView(coord)
         if let viewType, viewType == .other {
             mapView.mapView.touchDelegate = self
-            view.addSubview(searchButton)
-            searchButton.snp.makeConstraints {
-                $0.height.equalTo(44)
-                $0.centerX.equalToSuperview()
-                $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            }
+            navigationItem.rightBarButtonItems = [rightBarButton, searchButton]
         }
-        
-        configureMapView(coord)
-        navigationItem.rightBarButtonItem = rightBarButton
-  
-        searchButton.rx.tap
-            .bind(with: self) { owner, _ in
-                let searchVC = SearchViewController()
-                searchVC.delegate = owner
-                owner.present(searchVC, animated: true)
-            }
-            .disposed(by: disposeBag)
-        
     }
 
+    private func bind() {
+        searchButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.openSearchViewController()
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 extension MapviewController {
+    private func setupMapView() {
+        mapView.showLocationButton = true
+        mapView.mapView.positionMode = .compass
+    }
+    
     @objc
     private func rightBarButtonTap() {
         delegate?.updateMarker(coord)
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func openSearchViewController() {
+        let searchVC = SearchViewController()
+        searchVC.delegate = self
+        searchVC.sheetPresentationController?.detents = [.medium(), .large()]
+        present(searchVC, animated: true)
     }
 }
 
@@ -111,9 +109,7 @@ extension MapviewController: NMFMapViewTouchDelegate {
         }
         else {
             print("없다")
-            let searchVC = SearchViewController()
-            searchVC.delegate = self
-            present(searchVC, animated: true)
+            openSearchViewController()
         }
     }
 }
