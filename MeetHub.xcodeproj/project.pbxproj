@@ -47,6 +47,9 @@
 		546777D92C81AEB900109B85 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777D82C81AEB900109B85 /* UIImage+Extension.swift */; };
 		546777DC2C81BBD500109B85 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 546777DB2C81BBD500109B85 /* Tabman */; };
 		546777DE2C81C96500109B85 /* ProfileTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777DD2C81C96500109B85 /* ProfileTabManViewController.swift */; };
+		546777E12C81CE1900109B85 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777E02C81CE1900109B85 /* MyPostViewController.swift */; };
+		546777E32C81CE5100109B85 /* MyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777E22C81CE5100109B85 /* MyPostView.swift */; };
+		546777E52C81CE5600109B85 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777E42C81CE5600109B85 /* MyPostViewModel.swift */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
@@ -138,6 +141,9 @@
 		546777D32C80E93100109B85 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		546777D82C81AEB900109B85 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		546777DD2C81C96500109B85 /* ProfileTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabManViewController.swift; sourceTree = "<group>"; };
+		546777E02C81CE1900109B85 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
+		546777E22C81CE5100109B85 /* MyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostView.swift; sourceTree = "<group>"; };
+		546777E42C81CE5600109B85 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
 		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -352,6 +358,16 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
+		546777DF2C81CE0B00109B85 /* MyPostView */ = {
+			isa = PBXGroup;
+			children = (
+				546777E02C81CE1900109B85 /* MyPostViewController.swift */,
+				546777E22C81CE5100109B85 /* MyPostView.swift */,
+				546777E42C81CE5600109B85 /* MyPostViewModel.swift */,
+			);
+			name = MyPostView;
+			sourceTree = "<group>";
+		};
 		54EB849C2C75D21100C0C946 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +408,7 @@
 		54EB84DD2C78B40700C0C946 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				546777DF2C81CE0B00109B85 /* MyPostView */,
 				54EB84DE2C78B41800C0C946 /* ProfileViewController.swift */,
 				54EB84E82C78E0D100C0C946 /* ProfileTableViewCell.swift */,
 				54EB84E02C78B53400C0C946 /* ProfileView.swift */,
@@ -591,8 +608,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				543489EF2C7329DD00CD877D /* PostsResponseModel.swift in Sources */,
+				546777E12C81CE1900109B85 /* MyPostViewController.swift in Sources */,
 				543489E72C73212600CD877D /* HomeViewController.swift in Sources */,
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
+				546777E52C81CE5600109B85 /* MyPostViewModel.swift in Sources */,
 				54EB84C62C77A6F300C0C946 /* PostingViewModel.swift in Sources */,
 				54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */,
 				54EB84F02C78E7C200C0C946 /* ProfileEditViewModel.swift in Sources */,
@@ -607,6 +626,7 @@
 				543489902C6C746E00CD877D /* LoginViewController.swift in Sources */,
 				54EB85112C7C4D8000C0C946 /* Date+Extension.swift in Sources */,
 				54EB84FA2C79C39700C0C946 /* PostEditViewController.swift in Sources */,
+				546777E32C81CE5100109B85 /* MyPostView.swift in Sources */,
 				543489BC2C6F243A00CD877D /* Router.swift in Sources */,
 				543489D22C70A38C00CD877D /* RoundButton.swift in Sources */,
 				543489CE2C70A10000CD877D /* BaseView.swift in Sources */,

@@ -26,6 +26,7 @@ enum Router {
     case likePost(query: LikeQuery)
     case recommendPost(query: LikeQuery)
     case search(query: String)
+    case userPost(userID: String)
 }
 
 extension Router: TargetType {
@@ -42,7 +43,7 @@ extension Router: TargetType {
         switch self {
         case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost, .recommendPost:
             return .post
-        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search:
+        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search, .userPost:
             return .get
         case .editProfile, .editPost:
             return .put
@@ -83,6 +84,8 @@ extension Router: TargetType {
             return "/posts/\(query.postID)/like-2"
         case .search:
             return "v1/search/local.json"
+        case .userPost(let userID):
+            return "/posts/users/\(userID)"
         }
     }
     
@@ -93,7 +96,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.contentType.rawValue: Header.json.rawValue
             ]
-        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .deletePost:
+        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .deletePost, .userPost:
             return [
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token

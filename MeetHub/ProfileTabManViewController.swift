@@ -15,7 +15,7 @@ final class ProfileTabManViewController: TabmanViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let vc1 = UIViewController()
+        let vc1 = MyPostViewController()
         let vc2 = UIViewController()
         let vc3 = UIViewController()
         vc1.view.backgroundColor = .red

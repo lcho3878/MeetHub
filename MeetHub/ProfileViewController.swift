@@ -38,6 +38,7 @@ final class ProfileViewController: BaseViewController {
     private func configureTapman() {
         let tapmanVC = ProfileTabManViewController()
         addChild(tapmanVC)
+        tapmanVC.view.frame = self.profileView.tabmanView.frame
         self.profileView.tabmanView.addSubview(tapmanVC.view)
         tapmanVC.didMove(toParent: self)
     }
@@ -93,8 +94,9 @@ final class ProfileViewController: BaseViewController {
 
 extension ProfileViewController {
     private func openProfileEditVC() {
-        let profileEditVC = ProfileEditViewController()
-        profileEditVC.delegate = self
+//        let profileEditVC = ProfileEditViewController()
+//        profileEditVC.delegate = self
+        let profileEditVC = MyPostViewController()
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
     

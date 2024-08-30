@@ -20,13 +20,7 @@ final class HomeView: BaseView {
         return view
     }()
     
-    let tableView = {
-        let view = UITableView()
-        view.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.id)
-        view.rowHeight = 120
-        view.backgroundColor = .clear
-        return view
-    }()
+    let tableView = UITableView.postTableView()
     
     let postingButton = {
         let view = UIButton()
