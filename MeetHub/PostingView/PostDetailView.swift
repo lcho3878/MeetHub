@@ -221,11 +221,18 @@ final class PostDetailView: BaseView {
             }
         }
         updateLikeButton(data.isLiked)
+        updateRecommendButton(data.isRecommend)
     }
     
     func updateLikeButton(_ isLiked: Bool) {
         let imageName = isLiked ? "heart.fill" : "heart"
         let image = UIImage(systemName: imageName)
         likeButton.setImage(image, for: .normal)
+    }
+    
+    func updateRecommendButton(_ isRecommend: Bool) {
+        let imageName = isRecommend ? "hand.thumbsup.fill" : "hand.thumbsup"
+        let image = UIImage(systemName: imageName)
+        recommendButton.setImage(image, for: .normal)
     }
 }

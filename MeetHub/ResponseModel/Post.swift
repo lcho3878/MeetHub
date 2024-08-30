@@ -21,6 +21,7 @@ struct Post: Decodable, ResponseModel {
     let createdAt: String
     let files: [String]
     let likes: [String]
+    let likes2: [String]
     let hashTags: [String]?
     
     struct Creator: Decodable {
@@ -39,6 +40,10 @@ struct Post: Decodable, ResponseModel {
     
     var isLiked: Bool {
         return likes.contains(UserDefaultsManager.shared.userID)
+    }
+    
+    var isRecommend: Bool {
+        return likes2.contains(UserDefaultsManager.shared.userID)
     }
     
     struct ErrorModel: ResponseError {

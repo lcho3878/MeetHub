@@ -24,6 +24,7 @@ enum Router {
     case editPost(query: PostEditQuery)
     case deletePost(postID: String)
     case likePost(query: LikeQuery)
+    case recommendPost(query: LikeQuery)
     case search(query: String)
 }
 
@@ -39,7 +40,7 @@ extension Router: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost:
+        case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost, .recommendPost:
             return .post
         case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search:
             return .get
@@ -78,6 +79,8 @@ extension Router: TargetType {
             return "/posts/\(query.postID)"
         case .likePost(let query):
             return "/posts/\(query.postID)/like"
+        case .recommendPost(let query):
+            return "/posts/\(query.postID)/like-2"
         case .search:
             return "v1/search/local.json"
         }
@@ -95,7 +98,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
             ]
-        case .uploadPost, .editPost, .likePost:
+        case .uploadPost, .editPost, .likePost, .recommendPost:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.contentType.rawValue: Header.json.rawValue,
@@ -159,7 +162,7 @@ extension Router: TargetType {
             return try? JSONEncoder().encode(query)
         case .editPost(let query):
             return try? JSONEncoder().encode(query.query)
-        case .likePost(let query):
+        case .likePost(let query), .recommendPost(let query):
             return try? JSONEncoder().encode(query.body)
         default:
             return nil

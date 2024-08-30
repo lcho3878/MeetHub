@@ -46,8 +46,9 @@ final class PostDetailViewController: BaseViewController {
     private func bind() {
         guard let postID else { return }
         let likeButtonTap = PublishSubject<Bool>()
+        let recommendButtonTap = PublishSubject<Bool>()
         
-        let input = PostDetailViewModel.Input(postIDInput: postIDInput, likeButtonTap: likeButtonTap)
+        let input = PostDetailViewModel.Input(postIDInput: postIDInput, likeButtonTap: likeButtonTap, recommendButtonTap: recommendButtonTap)
         let output = viewModel.transform(input: input)
         postIDInput.onNext(postID)
         
@@ -101,12 +102,25 @@ final class PostDetailViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.recommendStatusOutput
+            .bind(with: self) { owner, isRecommend in
+                owner.postDetailView.updateRecommendButton(isRecommend)
+            }
+            .disposed(by: disposeBag)
+        
         postDetailView.likeButton.rx.tap
             .withLatestFrom(output.likeStatusOutput)
             .bind(onNext: { isLike in
                 print("좋아요 값 변경")
                 likeButtonTap.onNext(isLike ? false : true)
             })
+            .disposed(by: disposeBag)
+        
+        postDetailView.recommendButton.rx.tap
+            .withLatestFrom(output.likeStatusOutput)
+            .bind { isRecommend in
+                recommendButtonTap.onNext(isRecommend ? false : true)
+            }
             .disposed(by: disposeBag)
         
         output.errorOutput

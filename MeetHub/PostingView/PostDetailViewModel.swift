@@ -16,12 +16,14 @@ final class PostDetailViewModel: ViewModel {
     struct Input {
         let postIDInput: Observable<String>
         let likeButtonTap: PublishSubject<Bool>
+        let recommendButtonTap: PublishSubject<Bool>
     }
     
     struct Output {
         let postOutput: PublishSubject<Post>
         let imageDataOutput: PublishSubject<[Data]>
         let likeStatusOutput: PublishSubject<Bool>
+        let recommendStatusOutput: PublishSubject<Bool>
         let errorOutput: PublishSubject<Post.ErrorModel?>
         let likeErrorOutput: PublishSubject<LikeQuery.Body.ErrorModel?>
     }
@@ -30,6 +32,7 @@ final class PostDetailViewModel: ViewModel {
         let postOutput = PublishSubject<Post>()
         let imageDataOutput = PublishSubject<[Data]>()
         let likeStatusOutput = PublishSubject<Bool>()
+        let recommendStatusOutput = PublishSubject<Bool>()
         let errorOutput = PublishSubject<Post.ErrorModel?>()
         let likeErrorOutput = PublishSubject<LikeQuery.Body.ErrorModel?>()
         
@@ -66,6 +69,23 @@ final class PostDetailViewModel: ViewModel {
             
             .disposed(by: disposeBag)
         
+        Observable.combineLatest(postIDInput, input.recommendButtonTap)
+            .map { postID, isRecommend in
+                LikeQuery(postID: postID, body: LikeQuery.Body(like_status: isRecommend))
+            }
+            .flatMap {
+                APIManager.shared.callRequest(api: .recommendPost(query: $0), type: LikeQuery.Body.self)
+                    .catch { error in
+                        likeErrorOutput.onNext(error as? LikeQuery.Body.ErrorModel)
+                        return Single<LikeQuery.Body>.never()
+                    }
+            }
+            .bind(onNext: { value in
+                recommendStatusOutput.onNext(value.like_status)
+            })
+            
+            .disposed(by: disposeBag)
+        
         postOutput
             .bind(with: self, onNext: { owner, post in
                 owner.imageDatas = []
@@ -83,6 +103,7 @@ final class PostDetailViewModel: ViewModel {
             postOutput: postOutput, 
             imageDataOutput: imageDataOutput,
             likeStatusOutput: likeStatusOutput,
+            recommendStatusOutput: recommendStatusOutput,
             errorOutput: errorOutput,
             likeErrorOutput: likeErrorOutput
         )
