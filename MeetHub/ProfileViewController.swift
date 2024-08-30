@@ -94,9 +94,9 @@ final class ProfileViewController: BaseViewController {
 
 extension ProfileViewController {
     private func openProfileEditVC() {
-//        let profileEditVC = ProfileEditViewController()
-//        profileEditVC.delegate = self
-        let profileEditVC = MyPostViewController()
+        let profileEditVC = ProfileEditViewController()
+        profileEditVC.delegate = self
+//        let profileEditVC = MyPostViewController()
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
     
