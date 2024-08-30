@@ -119,6 +119,7 @@ final class PostDetailViewController: BaseViewController {
         postDetailView.recommendButton.rx.tap
             .withLatestFrom(output.likeStatusOutput)
             .bind { isRecommend in
+                print("추천 값 변경")
                 recommendButtonTap.onNext(isRecommend ? false : true)
             }
             .disposed(by: disposeBag)

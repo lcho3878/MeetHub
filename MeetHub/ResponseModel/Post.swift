@@ -22,7 +22,7 @@ struct Post: Decodable, ResponseModel {
     let files: [String]
     let likes: [String]
     let likes2: [String]
-    let hashTags: [String]?
+    let hashTags: [String]
     
     struct Creator: Decodable {
         let user_id: String
