@@ -29,9 +29,11 @@ final class PostDetailViewController: BaseViewController {
     
     private let postIDInput = PublishSubject<String>()
         
-    private lazy var modifyButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
+//    private lazy var modifyButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
     
-    private lazy var deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: nil)
+    private lazy var modifyButton = UIBarButtonItem(image: UIImage(systemName: "text.append"), style: .plain, target: nil, action: nil)
+    
+    private lazy var deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: nil, action: nil)
     
     override func loadView() {
         view = postDetailView
@@ -85,8 +87,9 @@ final class PostDetailViewController: BaseViewController {
                 owner.modifyButton.rx.isHidden.onNext(!post.isMyPost)
                 owner.deleteButton.rx.isHidden.onNext(!post.isMyPost)
                 owner.coord = post.content1?.asCoord()
-                print(post.post_id)
+//                print(post.post_id)
                 print(post.isLiked)
+                print(post.isRecommend)
             }
             .disposed(by: disposeBag)
         
@@ -117,7 +120,7 @@ final class PostDetailViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         postDetailView.recommendButton.rx.tap
-            .withLatestFrom(output.likeStatusOutput)
+            .withLatestFrom(output.recommendStatusOutput)
             .bind { isRecommend in
                 print("추천 값 변경")
                 recommendButtonTap.onNext(isRecommend ? false : true)

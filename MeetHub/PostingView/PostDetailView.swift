@@ -94,11 +94,12 @@ final class PostDetailView: BaseView {
     }()
     
     let recommendButton = {
-        let view = RoundButton(title: "도움이 되었어요!")
-        view.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
-        #warning("좋아요 2로 추천 기능 구현")
-        view.backgroundColor = AppColor.orange
-        view.setTitleColor(.white, for: .normal)
+        var configuration = UIButton.Configuration.filled()
+        configuration.background.backgroundColor = AppColor.mint
+        configuration.image = UIImage(systemName: "hand.thumbsup")
+        configuration.title = "도움이 되었어요!"
+        configuration.imagePadding = 16
+        let view = UIButton(configuration: configuration)
         return view
     }()
     
@@ -226,13 +227,13 @@ final class PostDetailView: BaseView {
     
     func updateLikeButton(_ isLiked: Bool) {
         let imageName = isLiked ? "heart.fill" : "heart"
-        let image = UIImage(systemName: imageName)
+        let image = UIImage(systemName: imageName)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         likeButton.setImage(image, for: .normal)
     }
     
     func updateRecommendButton(_ isRecommend: Bool) {
         let imageName = isRecommend ? "hand.thumbsup.fill" : "hand.thumbsup"
-        let image = UIImage(systemName: imageName)
+        let image = UIImage(systemName: imageName)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         recommendButton.setImage(image, for: .normal)
     }
 }

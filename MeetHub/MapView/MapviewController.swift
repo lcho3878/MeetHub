@@ -26,9 +26,9 @@ final class MapviewController: BaseViewController {
     
     let mapView = NMFNaverMapView()
     
-    private lazy var searchButton = UIBarButtonItem(title: "검색", style: .plain, target: nil, action: nil)
+    private lazy var searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: nil, action: nil)
 
-    private lazy var rightBarButton = UIBarButtonItem(title: "확인", style: .done, target: self, action: #selector(rightBarButtonTap))
+    private lazy var rightBarButton = UIBarButtonItem(image: UIImage(systemName: "checkmark"), style: .done, target: self, action: #selector(rightBarButtonTap))
     
     private let disposeBag = DisposeBag()
     
@@ -39,9 +39,10 @@ final class MapviewController: BaseViewController {
     }
     
     private func setupViews() {
+        view.backgroundColor = .white
         view.addSubview(mapView)
         mapView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
         setupMapView()

@@ -49,6 +49,7 @@ final class PostDetailViewModel: ViewModel {
             .bind(with: self, onNext: { owner, post in
                 postOutput.onNext(post)
                 likeStatusOutput.onNext(post.isLiked)
+                recommendStatusOutput.onNext(post.isRecommend)
             })
             .disposed(by: disposeBag)
         

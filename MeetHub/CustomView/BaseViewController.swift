@@ -20,6 +20,7 @@ class BaseViewController: UIViewController {
     
     private func configureBaseView() {
         navigationItem.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = AppColor.mint
     }
     
     func showAlert(content: String?, handler: (() -> Void)? = nil) {

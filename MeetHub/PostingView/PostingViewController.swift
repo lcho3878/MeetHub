@@ -23,7 +23,7 @@ final class PostingViewController: BaseViewController {
         
     let markerInput = BehaviorSubject<Coord?>(value: nil)
     
-    lazy var uploadButton = UIBarButtonItem(title: "업로드", style: .plain, target: self, action: nil)
+    lazy var uploadButton = UIBarButtonItem(image: UIImage(systemName: "icloud.and.arrow.up.fill"), style: .plain, target: self, action: nil)
     
     private let postingView = PostingView()
     

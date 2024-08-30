@@ -19,10 +19,10 @@ final class PostingView: UsingTextView {
     
     private let contentView = UIView()
     
-    let titleTextField = RoundTextField(placeholder: "제목을 입력해주세요")
+    let titleTextField = RoundTextField(placeholder: "* 제목을 입력해주세요")
     
     lazy var contentTextView = {
-        placeholder = "컨텐츠 내용 입력하세요"
+        placeholder = "* 내용을 입력해주세요. \n원하는 단어 앞에 #을 붙이면 해시태그를 사용할 수 있습니다. \nex) #데이트, #맛집 ..."
         let view = TextView(placeholder: placeholder)
         view.delegate = self
         return view
