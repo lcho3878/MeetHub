@@ -15,9 +15,26 @@ protocol HomeViewControllerDelegate: AnyObject {
 
 final class HomeViewController: BaseViewController {
     
+    typealias Menu = HomeViewModel.Menu
+    
     enum ViewType {
         case home
         case myPost
+        case likedPost
+        case recommendPost
+        
+        var menu: Menu {
+            switch self {
+            case .home:
+                return .all
+            case .myPost:
+                return .myPost
+            case .likedPost:
+                return .likedPost
+            case .recommendPost:
+                return .recommendPost
+            }
+        }
     }
     
     var viewType: ViewType?
@@ -54,9 +71,9 @@ final class HomeViewController: BaseViewController {
     }
     
     private func bind() {
-        typealias Menu = HomeViewModel.Menu
+     
         
-        let selectedIndex = BehaviorSubject<Menu>(value: viewType == .home ? .all : .myPost)
+        let selectedIndex = BehaviorSubject<Menu?>(value: viewType?.menu)
         let indexPathInput = PublishSubject<[IndexPath]>()
         
         
@@ -91,9 +108,6 @@ final class HomeViewController: BaseViewController {
         
         output.menuOutput
             .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in
-                if element == .myPost {
-                    cell.isHidden = true
-                }
                 cell.configureData(element.menuTitle)
             }
             .disposed(by: disposeBag)

@@ -33,12 +33,12 @@ final class ProfileTabManViewController: TabmanViewController {
                 vc.viewType = .myPost
                 return vc
             case .likedPost:
-                let vc = UIViewController()
-                vc.view.backgroundColor = .red
+                let vc = HomeViewController()
+                vc.viewType = .likedPost
                 return vc
             case .recommendPost:
-                let vc = UIViewController()
-                vc.view.backgroundColor = .yellow
+                let vc = HomeViewController()
+                vc.viewType = .recommendPost
                 return vc
             }
         }

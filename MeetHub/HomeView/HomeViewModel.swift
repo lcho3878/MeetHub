@@ -11,7 +11,7 @@ import RxSwift
 final class HomeViewModel: ViewModel {
     private let disposeBag = DisposeBag()
     
-    private let menus = Menu.allCases
+    private let menus = Array(Menu.allCases.prefix(3))
     
     private var menu: Menu?
     
@@ -20,6 +20,8 @@ final class HomeViewModel: ViewModel {
         case date
         case restaurant
         case myPost
+        case likedPost
+        case recommendPost
         
         var menuTitle: String {
             switch self {
@@ -27,6 +29,8 @@ final class HomeViewModel: ViewModel {
             case .date: return "데이트"
             case .restaurant: return "맛집"
             case .myPost: return "내글"
+            case .likedPost: return "내글"
+            case .recommendPost: return "내글"
             }
         }
         
@@ -36,6 +40,10 @@ final class HomeViewModel: ViewModel {
                 return .lookUpPost(next: next)
             case .myPost:
                 return .userPost(next: next, userID: UserDefaultsManager.shared.userID)
+            case .likedPost:
+                return .myLikePost(next: next)
+            case .recommendPost:
+                return .myRecommendPost(next: next)
             default:
                 return .hashTag(next: next, hashTag: menuTitle)
             }
@@ -49,7 +57,7 @@ final class HomeViewModel: ViewModel {
     private var postsOutput = PublishSubject<[Post]>()
     
     struct Input {
-        let menuInput: BehaviorSubject<Menu>
+        let menuInput: BehaviorSubject<Menu?>
         let indexPathInput: PublishSubject<[IndexPath]>
         let reloadInput: PublishSubject<Void>
     }
@@ -91,7 +99,7 @@ final class HomeViewModel: ViewModel {
         input.menuInput
             .bind(with: self) { owner, menu in
                 // 메뉴 선택시 로직 구현
-                print(menu.menuTitle)
+                print(menu?.menuTitle)
                 owner.menu = menu
                 owner.next = nil
                 fetchPost(menu: menu)

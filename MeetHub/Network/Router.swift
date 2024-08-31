@@ -27,6 +27,8 @@ enum Router {
     case recommendPost(query: LikeQuery)
     case search(query: String)
     case userPost(next: String?, userID: String)
+    case myLikePost(next: String?)
+    case myRecommendPost(next: String?)
 }
 
 extension Router: TargetType {
@@ -43,7 +45,7 @@ extension Router: TargetType {
         switch self {
         case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost, .recommendPost:
             return .post
-        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search, .userPost:
+        case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search, .userPost, .myLikePost, .myRecommendPost:
             return .get
         case .editProfile, .editPost:
             return .put
@@ -84,8 +86,12 @@ extension Router: TargetType {
             return "/posts/\(query.postID)/like-2"
         case .search:
             return "v1/search/local.json"
-        case .userPost(let next, let userID):
+        case .userPost(_, let userID):
             return "/posts/users/\(userID)"
+        case .myLikePost:
+            return "/posts/likes/me"
+        case .myRecommendPost:
+            return "/posts/likes-2/me"
         }
     }
     
@@ -96,7 +102,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.contentType.rawValue: Header.json.rawValue
             ]
-        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .deletePost, .userPost:
+        case .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .deletePost, .userPost, .myLikePost, .myRecommendPost:
             return [
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
@@ -149,7 +155,7 @@ extension Router: TargetType {
                 URLQueryItem(name: "query", value: query),
                 URLQueryItem(name: "display", value: "5")
             ]
-        case .userPost(let next, let userID):
+        case .userPost(let next, _), .myLikePost(let next), .myRecommendPost(let next):
             return [
             URLQueryItem(name: "next", value: next)
             ]
