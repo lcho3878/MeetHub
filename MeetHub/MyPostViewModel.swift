@@ -24,19 +24,19 @@ final class MyPostViewModel: ViewModel {
         let postOutput = PublishSubject<[Post]>()
         let errorOutput = PublishSubject<PostsResponseModel.ErrorModel?>()
         
-        input.requestInput
-            .flatMap {
-                let userID = UserDefaultsManager.shared.userID
-                return APIManager.shared.callRequest(api: .userPost(userID: userID), type: PostsResponseModel.self)
-                    .catch { error in
-                        errorOutput.onNext(error as? PostsResponseModel.ErrorModel)
-                        return Single<PostsResponseModel>.never()
-                    }
-            }
-            .bind(with: self) { owner, response in
-                postOutput.onNext(response.data)
-            }
-            .disposed(by: disposeBag)
+//        input.requestInput
+//            .flatMap {
+//                let userID = UserDefaultsManager.shared.userID
+//                return APIManager.shared.callRequest(api: .userPost(userID: userID), type: PostsResponseModel.self)
+//                    .catch { error in
+//                        errorOutput.onNext(error as? PostsResponseModel.ErrorModel)
+//                        return Single<PostsResponseModel>.never()
+//                    }
+//            }
+//            .bind(with: self) { owner, response in
+//                postOutput.onNext(response.data)
+//            }
+//            .disposed(by: disposeBag)
    
         
         return Output(

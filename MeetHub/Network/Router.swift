@@ -26,7 +26,7 @@ enum Router {
     case likePost(query: LikeQuery)
     case recommendPost(query: LikeQuery)
     case search(query: String)
-    case userPost(userID: String)
+    case userPost(next: String?, userID: String)
 }
 
 extension Router: TargetType {
@@ -84,7 +84,7 @@ extension Router: TargetType {
             return "/posts/\(query.postID)/like-2"
         case .search:
             return "v1/search/local.json"
-        case .userPost(let userID):
+        case .userPost(let next, let userID):
             return "/posts/users/\(userID)"
         }
     }
@@ -148,6 +148,10 @@ extension Router: TargetType {
             return [
                 URLQueryItem(name: "query", value: query),
                 URLQueryItem(name: "display", value: "5")
+            ]
+        case .userPost(let next, let userID):
+            return [
+            URLQueryItem(name: "next", value: next)
             ]
         default: return nil
         }

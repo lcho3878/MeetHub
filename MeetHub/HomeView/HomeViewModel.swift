@@ -19,12 +19,14 @@ final class HomeViewModel: ViewModel {
         case all
         case date
         case restaurant
+        case myPost
         
         var menuTitle: String {
             switch self {
             case .all: return "전체"
             case .date: return "데이트"
             case .restaurant: return "맛집"
+            case .myPost: return "내글"
             }
         }
         
@@ -32,6 +34,8 @@ final class HomeViewModel: ViewModel {
             switch self {
             case .all:
                 return .lookUpPost(next: next)
+            case .myPost:
+                return .userPost(next: next, userID: UserDefaultsManager.shared.userID)
             default:
                 return .hashTag(next: next, hashTag: menuTitle)
             }
@@ -87,6 +91,7 @@ final class HomeViewModel: ViewModel {
         input.menuInput
             .bind(with: self) { owner, menu in
                 // 메뉴 선택시 로직 구현
+                print(menu.menuTitle)
                 owner.menu = menu
                 owner.next = nil
                 fetchPost(menu: menu)

@@ -12,6 +12,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let homeVC = HomeViewController()
+        homeVC.viewType = .home
         let homeNaVC = UINavigationController(rootViewController: homeVC)
         homeNaVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
         

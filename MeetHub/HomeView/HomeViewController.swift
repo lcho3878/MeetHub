@@ -15,6 +15,13 @@ protocol HomeViewControllerDelegate: AnyObject {
 
 final class HomeViewController: BaseViewController {
     
+    enum ViewType {
+        case home
+        case myPost
+    }
+    
+    var viewType: ViewType?
+    
     private let homeView = HomeView()
     
     private let viewModel = HomeViewModel()
@@ -36,13 +43,20 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         bind()
         navigationItem.title = AppTitle.main.rawValue
-        homeView.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
+        if viewType == .home {
+            homeView.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
+        }
+        else {
+            homeView.collectionView.isHidden = true
+            homeView.postingButton.isHidden = true
+        }
+                
     }
     
     private func bind() {
         typealias Menu = HomeViewModel.Menu
         
-        let selectedIndex = BehaviorSubject<Menu>(value: .all)
+        let selectedIndex = BehaviorSubject<Menu>(value: viewType == .home ? .all : .myPost)
         let indexPathInput = PublishSubject<[IndexPath]>()
         
         
@@ -77,6 +91,9 @@ final class HomeViewController: BaseViewController {
         
         output.menuOutput
             .bind(to: homeView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.id, cellType: HomeCollectionViewCell.self)) { row, element, cell in
+                if element == .myPost {
+                    cell.isHidden = true
+                }
                 cell.configureData(element.menuTitle)
             }
             .disposed(by: disposeBag)
