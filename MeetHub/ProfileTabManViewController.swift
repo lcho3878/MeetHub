@@ -10,21 +10,44 @@ import Tabman
 import Pageboy
 
 final class ProfileTabManViewController: TabmanViewController {
-    private var viewControllers = [UIViewController]()
+    private enum Section: CaseIterable {
+        case myPost
+        case likedPost
+        case recommendPost
+        
+        var sectionTitle: String {
+            switch self {
+            case .myPost:
+                return "내가 쓴 게시글"
+            case .likedPost:
+                return "좋아요 한 게시글"
+            case .recommendPost:
+                return "추천한 게시글"
+            }
+        }
+        
+        var viewController: UIViewController {
+            switch self {
+            case .myPost:
+                let vc = HomeViewController()
+                vc.viewType = .myPost
+                return vc
+            case .likedPost:
+                let vc = UIViewController()
+                vc.view.backgroundColor = .red
+                return vc
+            case .recommendPost:
+                let vc = UIViewController()
+                vc.view.backgroundColor = .yellow
+                return vc
+            }
+        }
+    }
+    
+    private var sections = Section.allCases
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let vc1 = HomeViewController()
-        vc1.viewType = .myPost
-        let vc2 = UIViewController()
-        let vc3 = UIViewController()
-        vc2.view.backgroundColor = .yellow
-        vc3.view.backgroundColor = .blue
-        
-        viewControllers.append(vc1)
-        viewControllers.append(vc2)
-        viewControllers.append(vc3)
         
         self.dataSource = self
         
@@ -36,11 +59,11 @@ final class ProfileTabManViewController: TabmanViewController {
 
 extension ProfileTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
     func numberOfViewControllers(in pageboyViewController: Pageboy.PageboyViewController) -> Int {
-        viewControllers.count
+        sections.count
     }
     
     func viewController(for pageboyViewController: Pageboy.PageboyViewController, at index: Pageboy.PageboyViewController.PageIndex) -> UIViewController? {
-        return viewControllers[index]
+        return sections[index].viewController
     }
     
     func defaultPage(for pageboyViewController: Pageboy.PageboyViewController) -> Pageboy.PageboyViewController.Page? {
@@ -48,7 +71,7 @@ extension ProfileTabManViewController: PageboyViewControllerDataSource, TMBarDat
     }
     
     func barItem(for bar: any Tabman.TMBar, at index: Int) -> any Tabman.TMBarItemable {
-        let item = TMBarItem(title: "아이템 \(index)")
+        let item = TMBarItem(title: sections[index].sectionTitle)
         return item
     }
     
