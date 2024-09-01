@@ -13,6 +13,7 @@ final class ProfileViewModel: ViewModel {
     enum ProfileMenu: CaseIterable {
         case profileEdit
         case logout
+        case donate
         
         var title: String {
             switch self {
@@ -20,6 +21,8 @@ final class ProfileViewModel: ViewModel {
                 return  "내 프로필 수정"
             case .logout:
                 return "로그아웃"
+            case .donate:
+                return "개발자에게 후원하기"
             }
         }
     }

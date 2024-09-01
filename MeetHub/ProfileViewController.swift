@@ -78,6 +78,8 @@ final class ProfileViewController: BaseViewController {
                     owner.openProfileEditVC()
                 case .logout:
                     owner.logout()
+                case .donate:
+                    print("donate")
                 }
             }
             .disposed(by: disposeBag)
