@@ -190,18 +190,32 @@ final class APIManager {
         }
     }
     
-    func callTest<T:Decodable>(api: Router, type: T.Type) {
+    func callTest(api: Router) {
+        do {
+            let request = try api.asURLRequest()
+            AF.request(request)
+//                .validate(statusCode: 200..<300)
+                .responseString { result in
+                    print(result.response?.statusCode)
+                    print(result)
+                }
+        }
+        catch {
+            print("error")
+        }
+    }
+    
+    func callTest<T: Decodable>(api: Router, type: T.Type, handler: ((T) -> Void)? = nil) {
         do {
             let request = try api.asURLRequest()
             AF.request(request)
                 .validate(statusCode: 200..<300)
-                .responseString { result in
-                    print(result.response?.statusCode)
-                    switch result.result {
+                .responseDecodable(of: T.self) { response in
+                    switch response.result {
                     case .success(let v):
-                        print(v)
+                        handler?(v)
                     case .failure(let e):
-                        print("error: \(e)")
+                        print(e)
                     }
                 }
         }

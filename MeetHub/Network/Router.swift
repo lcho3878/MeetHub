@@ -29,6 +29,7 @@ enum Router {
     case userPost(next: String?, userID: String)
     case myLikePost(next: String?)
     case myRecommendPost(next: String?)
+    case payValidation(query: PayValidationQuery)
 }
 
 extension Router: TargetType {
@@ -43,7 +44,7 @@ extension Router: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost, .recommendPost:
+        case .login, .emailValidation, .signUp, .uploadPost, .uploadFiles, .likePost, .recommendPost, .payValidation:
             return .post
         case .refresh, .lookUpPost, .image, .detailPost, .myProfile, .hashTag, .search, .userPost, .myLikePost, .myRecommendPost:
             return .get
@@ -92,6 +93,8 @@ extension Router: TargetType {
             return "/posts/likes/me"
         case .myRecommendPost:
             return "/posts/likes-2/me"
+        case .payValidation:
+            return "/payments/validation"
         }
     }
     
@@ -107,7 +110,7 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key,
                 Header.authorization.rawValue: UserDefaultsManager.shared.token
             ]
-        case .uploadPost, .editPost, .likePost, .recommendPost:
+        case .uploadPost, .editPost, .likePost, .recommendPost, .payValidation:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.contentType.rawValue: Header.json.rawValue,
@@ -177,6 +180,8 @@ extension Router: TargetType {
             return try? JSONEncoder().encode(query.query)
         case .likePost(let query), .recommendPost(let query):
             return try? JSONEncoder().encode(query.body)
+        case .payValidation(let query):
+            return try? JSONEncoder().encode(query)
         default:
             return nil
         }

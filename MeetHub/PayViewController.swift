@@ -50,9 +50,13 @@ final class PayViewController:BaseViewController {
             payment: payment) { [weak self] iamportResponse in
                 print(String(describing: iamportResponse))
                 if iamportResponse?.success == true {
-                    self?.showAlert(content: "결제 성공", handler: {
-                        self?.dismiss(animated: true)
-                    })
+                    print(iamportResponse?.imp_uid)
+                    let query = PayValidationQuery(imp_uid: (iamportResponse?.imp_uid)!, post_id: "66d4a1635a9c85013f8eeab7")
+                    APIManager.shared.callTest(api: .payValidation(query: query), type: PayValidationResponseModel.self) { result in
+                        self?.showAlert(content: "결제 성공") {
+                            self?.dismiss(animated: true)
+                        }
+                    }
                 }
                 else {
                     self?.showAlert(content: "결제가 실패했습니다.") {

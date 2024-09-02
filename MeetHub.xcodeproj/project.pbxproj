@@ -52,6 +52,8 @@
 		546777E52C81CE5600109B85 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777E42C81CE5600109B85 /* MyPostViewModel.swift */; };
 		546777E82C84C3AD00109B85 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = 546777E72C84C3AD00109B85 /* iamport-ios */; };
 		546777EB2C84D96000109B85 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777EA2C84D96000109B85 /* PayViewController.swift */; };
+		54750BDD2C85AA1B0035FE6A /* PayValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54750BDC2C85AA1B0035FE6A /* PayValidationQuery.swift */; };
+		54750BDF2C85AC1A0035FE6A /* PayValidationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54750BDE2C85AC1A0035FE6A /* PayValidationResponseModel.swift */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
@@ -147,6 +149,8 @@
 		546777E22C81CE5100109B85 /* MyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostView.swift; sourceTree = "<group>"; };
 		546777E42C81CE5600109B85 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
 		546777EA2C84D96000109B85 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		54750BDC2C85AA1B0035FE6A /* PayValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationQuery.swift; sourceTree = "<group>"; };
+		54750BDE2C85AC1A0035FE6A /* PayValidationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationResponseModel.swift; sourceTree = "<group>"; };
 		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 				54EB84C92C784F1000C0C946 /* PostQuery.swift */,
 				54EB84FF2C79CD4D00C0C946 /* PostEditQuery.swift */,
 				54EB853E2C7EEF9E00C0C946 /* LikeQuery.swift */,
+				54750BDC2C85AA1B0035FE6A /* PayValidationQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				54EB84E22C78B7CC00C0C946 /* User.swift */,
 				54EB84E42C78B83D00C0C946 /* ProfileResponseModel.swift */,
 				54EB85012C79F2D600C0C946 /* PostDeleteResponse.swift */,
+				54750BDE2C85AC1A0035FE6A /* PayValidationResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -628,6 +634,8 @@
 				543489DA2C71F72500CD877D /* SignupQuery.swift in Sources */,
 				546777E52C81CE5600109B85 /* MyPostViewModel.swift in Sources */,
 				54EB84C62C77A6F300C0C946 /* PostingViewModel.swift in Sources */,
+				54750BDF2C85AC1A0035FE6A /* PayValidationResponseModel.swift in Sources */,
+				54750BDD2C85AA1B0035FE6A /* PayValidationQuery.swift in Sources */,
 				54EB84D52C786DBF00C0C946 /* PostDetailViewModel.swift in Sources */,
 				54EB84F02C78E7C200C0C946 /* ProfileEditViewModel.swift in Sources */,
 				54EB84DC2C78B21D00C0C946 /* TabBarController.swift in Sources */,
