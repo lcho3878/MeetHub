@@ -79,7 +79,7 @@ final class ProfileViewController: BaseViewController {
                 case .logout:
                     owner.logout()
                 case .donate:
-                    print("donate")
+                    owner.openPayVC()
                 }
             }
             .disposed(by: disposeBag)
@@ -100,6 +100,12 @@ extension ProfileViewController {
         profileEditVC.delegate = self
 //        let profileEditVC = MyPostViewController()
         navigationController?.pushViewController(profileEditVC, animated: true)
+    }
+    
+    private func openPayVC() {
+        let payVC = PayViewController()
+//        navigationController?.pushViewController(payVC, animated: true)
+        present(payVC, animated: true)
     }
     
     private func logout() {
