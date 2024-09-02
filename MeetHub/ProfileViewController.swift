@@ -98,13 +98,11 @@ extension ProfileViewController {
     private func openProfileEditVC() {
         let profileEditVC = ProfileEditViewController()
         profileEditVC.delegate = self
-//        let profileEditVC = MyPostViewController()
         navigationController?.pushViewController(profileEditVC, animated: true)
     }
     
     private func openPayVC() {
         let payVC = PayViewController()
-//        navigationController?.pushViewController(payVC, animated: true)
         present(payVC, animated: true)
     }
     

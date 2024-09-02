@@ -86,7 +86,7 @@ final class ProfileView: BaseView {
         menuTableView.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            $0.height.equalTo(120)
+            $0.height.equalTo(180)
         }
         
         tabmanView.snp.makeConstraints {
