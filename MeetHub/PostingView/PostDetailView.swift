@@ -226,7 +226,7 @@ final class PostDetailView: BaseView {
     }
     
     func updateLikeButton(_ isLiked: Bool) {
-        let imageName = isLiked ? "heart.fill" : "heart"
+        let imageName = isLiked ? "bookmark.fill" : "bookmark"
         let image = UIImage(systemName: imageName)?.withTintColor(.white, renderingMode: .alwaysOriginal)
         likeButton.setImage(image, for: .normal)
     }

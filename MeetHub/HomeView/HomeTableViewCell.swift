@@ -52,7 +52,7 @@ final class HomeTableViewCell: UITableViewCell {
     
     let likesImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+        view.image = UIImage(systemName: "bookmark.fill")?.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
         return view
     }()
     

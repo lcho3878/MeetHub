@@ -15,4 +15,9 @@ extension UIView {
     func makeRound() {
         self.layer.cornerRadius = self.frame.height / 2
     }
+    
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.endEditing(true)
+    }
 }

@@ -110,7 +110,7 @@ extension MapviewController: NMFMapViewTouchDelegate {
         }
         else {
             print("없다")
-            openSearchViewController()
+//            openSearchViewController()
         }
     }
 }

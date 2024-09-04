@@ -46,6 +46,8 @@ final class ProfileViewModel: ViewModel {
         let inquiryOutput = PublishSubject<User>()
         let errorOutput = PublishSubject<User.ErrorModel?>()
         let menuSelectOutput = PublishSubject<ProfileMenu>()
+        
+        let userSSS = PublishSubject<User>()
 
         
         input.menuInput
@@ -64,6 +66,7 @@ final class ProfileViewModel: ViewModel {
             }
             .bind(with: self) { owner, user in
                 inquiryOutput.onNext(user)
+                userSSS.onNext(user)
             }
             .disposed(by: disposeBag)
         

@@ -12,7 +12,7 @@ final class SearchView: BaseView {
     
     let searchTextField = {
         let view = UITextField()
-        view.placeholder = "장소 검색해보세요"
+        view.placeholder = "공유할 장소를 검색해주세요!"
         return view
     }()
     

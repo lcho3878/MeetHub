@@ -20,7 +20,7 @@ final class ProfileTabManViewController: TabmanViewController {
             case .myPost:
                 return "내가 쓴 게시글"
             case .likedPost:
-                return "좋아요 한 게시글"
+                return "북마크 한 게시글"
             case .recommendPost:
                 return "추천한 게시글"
             }

@@ -164,13 +164,16 @@ final class APIManager {
                                     switch result {
                                     case .success(_):
                                         loop()
-                                    case .failure(let failure):
+                                    case .failure(let error):
                                         #warning("refresh Token 만료시 핸들링 고민해보기")
-                                        hander?(failure)
+                                        hander?(error)
+                                        print(error)
+//                                        single(.failure(T.ErrorModel(responseCode: statusCode)))
                                     }
                                 }
                             }
                             else {
+                                print("else문 작동")
                                 switch response.result {
                                 case .success(let v):
                                     single(.success(v))

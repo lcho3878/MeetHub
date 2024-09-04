@@ -16,7 +16,7 @@ extension UITableView {
     static func postTableView() -> UITableView {
         let view = UITableView()
         view.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.id)
-        view.rowHeight = 120
+        view.rowHeight = 140
         view.backgroundColor = .clear
         return view
     }
