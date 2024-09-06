@@ -54,6 +54,8 @@
 		546777EB2C84D96000109B85 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546777EA2C84D96000109B85 /* PayViewController.swift */; };
 		54750BDD2C85AA1B0035FE6A /* PayValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54750BDC2C85AA1B0035FE6A /* PayValidationQuery.swift */; };
 		54750BDF2C85AC1A0035FE6A /* PayValidationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54750BDE2C85AC1A0035FE6A /* PayValidationResponseModel.swift */; };
+		54E94DCD2C886B95001B8053 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E94DCC2C886B95001B8053 /* NetworkMonitor.swift */; };
+		54E94DD12C8AE6D0001B8053 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E94DD02C8AE6D0001B8053 /* NetworkErrorView.swift */; };
 		54EB84972C75B6BB00C0C946 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84962C75B6BB00C0C946 /* RefreshModel.swift */; };
 		54EB84992C75CD4500C0C946 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB84982C75CD4500C0C946 /* HomeViewModel.swift */; };
 		54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */; };
@@ -151,6 +153,8 @@
 		546777EA2C84D96000109B85 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		54750BDC2C85AA1B0035FE6A /* PayValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationQuery.swift; sourceTree = "<group>"; };
 		54750BDE2C85AC1A0035FE6A /* PayValidationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayValidationResponseModel.swift; sourceTree = "<group>"; };
+		54E94DCC2C886B95001B8053 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		54E94DD02C8AE6D0001B8053 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		54EB84962C75B6BB00C0C946 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 		54EB84982C75CD4500C0C946 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		54EB849A2C75D20800C0C946 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 				543489BB2C6F243A00CD877D /* Router.swift */,
 				543489B92C6F211400CD877D /* TargetType.swift */,
 				5409F4422C74752200199D27 /* UserDefaultsManager.swift */,
+				54E94DCC2C886B95001B8053 /* NetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				54EB85142C7C57B600C0C946 /* RoundTextField.swift */,
 				54EB84DB2C78B21D00C0C946 /* TabBarController.swift */,
 				54EB85182C7C629A00C0C946 /* TextView.swift */,
+				54E94DD02C8AE6D0001B8053 /* NetworkErrorView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -656,6 +662,7 @@
 				5434898C2C6C746E00CD877D /* AppDelegate.swift in Sources */,
 				54EB856B2C7F84A000C0C946 /* SearchViewModel.swift in Sources */,
 				54EB853F2C7EEF9E00C0C946 /* LikeQuery.swift in Sources */,
+				54E94DD12C8AE6D0001B8053 /* NetworkErrorView.swift in Sources */,
 				54EB85672C7F82A900C0C946 /* SearchViewController.swift in Sources */,
 				543489BA2C6F211400CD877D /* TargetType.swift in Sources */,
 				54EB84E52C78B83D00C0C946 /* ProfileResponseModel.swift in Sources */,
@@ -670,6 +677,7 @@
 				543489D62C70A69E00CD877D /* EmailValidationModel.swift in Sources */,
 				54EB85332C7DBD4F00C0C946 /* MapviewController.swift in Sources */,
 				54EB849B2C75D20800C0C946 /* HomeCollectionViewCell.swift in Sources */,
+				54E94DCD2C886B95001B8053 /* NetworkMonitor.swift in Sources */,
 				543489B52C6F1B3400CD877D /* ViewModel.swift in Sources */,
 				54EB85002C79CD4D00C0C946 /* PostEditQuery.swift in Sources */,
 				54EB84D82C7870BB00C0C946 /* String+Extenstion.swift in Sources */,

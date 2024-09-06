@@ -10,6 +10,7 @@ import Alamofire
 import RxSwift
 
 final class APIManager {
+    
     static let shared = APIManager()
     
     private init() {}
