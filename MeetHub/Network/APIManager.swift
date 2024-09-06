@@ -143,7 +143,7 @@ final class APIManager {
         }
     }
     
-    func callRequestTest<T:ResponseModel>(api: Router, type: T.Type, hander: ((Error) -> Void)? = nil)  -> Single<T> {
+    func callRequestTest<T:ResponseModel>(api: Router, type: T.Type, handler: ((T.ErrorModel) -> Void)? = nil)  -> Single<T> {
         return Single.create { single -> Disposable in
             func loop() {
                 do {
@@ -167,8 +167,7 @@ final class APIManager {
                                         loop()
                                     case .failure(let error):
                                         #warning("refresh Token 만료시 핸들링 고민해보기")
-                                        hander?(error)
-                                        print(error)
+                                        handler?(T.ErrorModel(responseCode: 419))
 //                                        single(.failure(T.ErrorModel(responseCode: statusCode)))
                                     }
                                 }
@@ -179,8 +178,8 @@ final class APIManager {
                                 case .success(let v):
                                     single(.success(v))
                                 case .failure(let e):
-//                                    single(.failure(response.response?.statusCode))
                                     single(.failure(T.ErrorModel(responseCode: statusCode)))
+                                    
                                 }
                             }
                         }

@@ -11,7 +11,7 @@ import SnapKit
 final class NetworkErrorView: BaseView {
     private let errorLabel = {
         let view = UILabel()
-        view.text = "네트워크 오류류류류"
+        view.text = "네트워크 연결을 확인해주세요."
         view.font = .systemFont(ofSize: 30)
         return view
     }()

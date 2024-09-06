@@ -76,7 +76,12 @@ final class HomeViewModel: ViewModel {
         func fetchPost(menu: Menu?) {
             guard let menu else { return }
             APIManager.shared.callRequestTest(api: menu.api(next: next), type: PostsResponseModel.self) { error in
-                errorOutput.onNext(error as? PostsResponseModel.ErrorModel)
+                errorOutput.onNext(error)
+            }
+            .catch { error in
+                let error = error as? PostsResponseModel.ErrorModel
+                errorOutput.onNext(error)
+                return Single<PostsResponseModel>.never()
             }
             .asObservable()
             .bind(with: self) { owner, value in
