@@ -8,7 +8,7 @@
 
 기술스택
 
-UIKit, RxSwift, MVVM, Alamofire, iamport-ios, Tabmen
+UIKit, RxSwift, MVVM, Alamofire, iamport-ios, Tabmen, NetworkdMonitor
 
 기술스택 관련 기능
 
@@ -21,7 +21,7 @@ Alamofire: API Response
 
 홈화면
 
-전체 게시글들을 조회할 수 있습니다. 해시태그를 기반으로 데이트, 맛집을 검색할 수 있습니다.
+전체 게시글들을 조회할 수 있습니다. 해시태그를 기반으로 데이트, 맛집을 검색할 수 있습니다.
 
 게시글 화면
 
@@ -47,6 +47,12 @@ Alamofire: API Response
 
 트러블슈팅
 
+서버에 전달할 수 있는 데이터 타입의 제한사항
+
+서버에 전달할 수 있는 일부 데이터의 형식이 String으로 제한되어, 좌표값을 위한 [Double]을 전달할 수 없었다.
+
+Coord 타입 ([Double])을 만들고 String과 Coord에 각각 asCoord, asString이라는 함수를 생성하여 
+
+서버에 주고받는 데이터의 형식을 String으로 변환하고, 받아온 String을 Coord로 변환하는 방식으로 해결하였다.
 
 
-    
