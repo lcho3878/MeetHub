@@ -63,7 +63,6 @@ final class ProfileView: BaseView {
         addSubview(userStackView)
         userStackView.addArrangedSubview(profileNameLabel)
         userStackView.addArrangedSubview(emailLabel)
-//        addSubview(profileNameLabel)
         addSubview(menuTableView)
         addSubview(tabmanView)
         
@@ -78,11 +77,6 @@ final class ProfileView: BaseView {
             $0.trailing.equalTo(safeAreaLayoutGuide).offset(8)
         }
         
-//        profileNameLabel.snp.makeConstraints {
-//            $0.centerY.equalTo(profileImageView)
-//            $0.leading.equalTo(profileImageView.snp.trailing).offset(8)
-//        }
-        
         menuTableView.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.bottom).offset(8)
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide)
@@ -92,7 +86,6 @@ final class ProfileView: BaseView {
         tabmanView.snp.makeConstraints {
             $0.top.equalTo(menuTableView.snp.bottom)
             $0.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
-            
         }
     }
     

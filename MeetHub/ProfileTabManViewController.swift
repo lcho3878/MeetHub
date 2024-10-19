@@ -53,6 +53,7 @@ final class ProfileTabManViewController: TabmanViewController {
         
         let bar = TMBar.ButtonBar()
         bar.layout.transitionStyle = .snap
+        bar.layout.alignment = .centerDistributed
         addBar(bar, dataSource: self, at: .top)
     }
 }
@@ -74,6 +75,4 @@ extension ProfileTabManViewController: PageboyViewControllerDataSource, TMBarDat
         let item = TMBarItem(title: sections[index].sectionTitle)
         return item
     }
-    
-    
 }

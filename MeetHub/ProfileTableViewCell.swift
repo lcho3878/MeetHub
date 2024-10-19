@@ -30,7 +30,9 @@ final class ProfileTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+//            $0.edges.equalToSuperview()
+            $0.verticalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
     }
     
