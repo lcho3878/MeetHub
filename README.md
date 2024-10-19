@@ -56,3 +56,8 @@ Coord 타입 ([Double])을 만들고 String과 Coord에 각각 asCoord, asString
 서버에 주고받는 데이터의 형식을 String으로 변환하고, 받아온 String을 Coord로 변환하는 방식으로 해결하였다.
 
 
+네트워크 에러코드 핸들링 관련
+
+같은 statusCode로 응답이 와도 요청에 따라 코드값만 같을 뿐 에러의 내용이 달랐다.
+
+ResponseModel, ResponseError 프로토콜을 구현하여 모든 ResponseModel이 Error을 가지도록 제한하여 에러 발생시 대응할 수 있도록 하였다.
