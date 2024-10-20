@@ -1,4 +1,4 @@
-# 밋허브(Meethub)
+![Simulator Screenshot - iPhone 15 Pro - 2024-10-21 at 00 54 34](https://github.com/user-attachments/assets/0c632b71-e0d4-48d0-81c8-3b0bcb3d472d)# 밋허브(Meethub)
 다른 사람들과 장소 및 정보를 공유할 수 있는 어플리케이션
 
 ## 개발기간
@@ -9,7 +9,15 @@
 
 |홈화면|게시글화면|글쓰기화면|프로핋화면|
 |:-:|:-:|:-:|:-:|
-|<img src="https://github.com/user-attachments/assets/7207338e-8378-4652-bd93-07c919925ba9" width="150"/>|<img src="https://github.com/user-attachments/assets/e2a10133-8dbd-412b-9b95-d54258c927b8" width="150"/>|<img src="https://github.com/user-attachments/assets/0a2f9ac0-a807-4082-a344-106b7445c3b6" width="150"/>|<img src="https://github.com/user-attachments/assets/c2018bbb-3417-4706-a32d-dbda509e7376" width="150"/>|
+|<img src="https://github.com/user-attachments/assets/14f9eda0-ff76-4c16-b6c7-8dc49f25ebbf" width="150"/>|<img src="https://github.com/user-attachments/assets/43ef0ffb-1e8a-4077-a76e-dd532113334a" width="150"/>|<img src="https://github.com/user-attachments/assets/4b65a014-21eb-4114-825c-0083e4f53734" width="150"/>|<img src="https://github.com/user-attachments/assets/63d08d63-2d21-4817-8061-ac6c89335837" width="150"/>|
+
+|지도검색화면|지도화면|
+|:-:|:-:|
+|<img src="https://github.com/user-attachments/assets/9d5043d8-8b90-4d56-9ca2-0a36ef074f0d" width="150"/>|<img src="https://github.com/user-attachments/assets/a92e7edc-f184-477a-b41f-24947dcbf260" width="150"/>|
+
+
+
+
 
 ## 기술스택
 
