@@ -33,13 +33,15 @@
 * MVVM
   * Input, Output, transform 프로토콜 적용
 
+  * ViewModelProtocol을 통한 ViewModel 추상화
+
 * Combine
   * ViewModel과 ViewController 데이터 바인딩
 
 * Alamofire
   * Rest API 요청 및 응답 처리
     
-  * Router 및 TargetType 패턴 적용
+  * Router 및 TargetType 패턴 적용을 통한 네트워크 통신 로직 추상화
 
 * iamport-ios
   * 개발자 후원(결제기능) 구현
