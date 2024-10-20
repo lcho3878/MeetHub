@@ -15,10 +15,6 @@
 |:-:|:-:|
 |<img src="https://github.com/user-attachments/assets/9d5043d8-8b90-4d56-9ca2-0a36ef074f0d" width="150"/>|<img src="https://github.com/user-attachments/assets/a92e7edc-f184-477a-b41f-24947dcbf260" width="150"/>|
 
-
-
-
-
 ## 🛠️ 기술스택
 
 * UIKit
@@ -35,7 +31,7 @@
 
   * ViewModelProtocol을 통한 ViewModel 추상화
 
-* Combine
+* RxSwift
   * ViewModel과 ViewController 데이터 바인딩
 
 * Alamofire
