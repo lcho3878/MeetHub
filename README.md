@@ -83,7 +83,6 @@
   - 코드
     
     ```swift
-    ...
     struct Coord {
         let lat: Double
         let lon: Double
@@ -105,7 +104,6 @@
                 return nil
             }
         }
-    ...
     }
     ```
 * 네트워크 에러코드 핸들링 관련
