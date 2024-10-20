@@ -1,4 +1,4 @@
-![Simulator Screenshot - iPhone 15 Pro - 2024-10-21 at 00 54 34](https://github.com/user-attachments/assets/0c632b71-e0d4-48d0-81c8-3b0bcb3d472d)# 밋허브(Meethub)
+# 밋허브(Meethub)
 다른 사람들과 장소 및 정보를 공유할 수 있는 어플리케이션
 
 ## 개발기간
