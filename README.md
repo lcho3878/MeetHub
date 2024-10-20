@@ -9,7 +9,7 @@
 
 |홈화면|게시글화면|글쓰기화면|프로핋화면|
 |:-:|:-:|:-:|:-:|
-
+|<img src="https://github.com/user-attachments/assets/7207338e-8378-4652-bd93-07c919925ba9" width="150"/>|<img src="https://github.com/user-attachments/assets/e2a10133-8dbd-412b-9b95-d54258c927b8" width="150"/>|<img src="https://github.com/user-attachments/assets/0a2f9ac0-a807-4082-a344-106b7445c3b6" width="150"/>|<img src="https://github.com/user-attachments/assets/c2018bbb-3417-4706-a32d-dbda509e7376" width="150"/>|
 
 ## 기술스택
 
