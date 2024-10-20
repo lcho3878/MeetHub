@@ -1,27 +1,41 @@
-밋허브(Meethub)
-
+# 밋허브(Meethub)
 다른 사람들과 장소 및 정보를 공유할 수 있는 어플리케이션
 
-개발기간
+## 개발기간
 
 24.08.14 ~ 24.09.06
 
-기술스택
+## 기술스택
 
-UIKit, RxSwift, MVVM, Alamofire, iamport-ios, Tabmen, NetworkdMonitor
+* UIKit
+* MVVM
+* RxSwift
+* Alamofire
+* iamport-ios
+* Tabmen
 
-기술스택 관련 기능
+## 기술스택 관련 기능
 
-MVVM: Input, Output 패턴 적용
-Combine: ViewModel DataBinding 적용
-Alamofire: API Response
+* MVVM
+  * Input, Output, transform 프로토콜 적용
 
+* Combine
+  * ViewModel과 ViewController 데이터 바인딩
 
-기능설명
+* Alamofire
+  * Rest API 요청 및 응답 처리
+  * Router 및 TargetType 패턴 적용
 
-홈화면
+* iamport-ios
+  * 개발자 후원(결제기능) 구현
 
-전체 게시글들을 조회할 수 있습니다. 해시태그를 기반으로 데이트, 맛집을 검색할 수 있습니다.
+* Tabmen
+  * ViewController 내부 상단 Tabbar구현
+
+## 기능설명
+
+* 홈화면
+  * 전체 게시글들을 조회할 수 있습니다. 해시태그를 기반으로 데이트, 맛집을 검색할 수 있습니다.
 
 게시글 화면
 
