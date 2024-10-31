@@ -30,7 +30,7 @@ final class SearchViewModel: ViewModel {
                 guard !query.isEmpty else { return Single<Response>.never() }
                 return APIManager.shared.callRequest(api: .search(query: query), type: Response.self)
                     .catch { error in
-                        print(" 좋버그 발생: \(error)")
+                        print("에러 발생: \(error)")
                         return Single<Response>.never()
                     }
             }
