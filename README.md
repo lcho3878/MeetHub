@@ -22,7 +22,7 @@
 * RxSwift
 * Alamofire
 * iamport-ios
-* Tabmen
+* Tabman
 
 ## 📌 기술스택 관련 기능
 
@@ -42,7 +42,7 @@
 * iamport-ios
   * 개발자 후원(결제기능) 구현
 
-* Tabmen
+* Tabman
   * ViewController 내부 상단 Tabbar구현
 
 ## 📱 화면별 기능
